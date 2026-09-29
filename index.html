@@ -456,7 +456,7 @@
   }
 
   /* ---------- Rules visual bridge ---------- */
-  .rules-section { background: linear-gradient(90deg, rgba(4,11,19,.98) 0%, rgba(4,11,19,.9) 38%, rgba(4,11,19,.56) 72%, rgba(4,11,19,.42) 100%), url('dc-contact-art.jpg') 78% center / cover no-repeat; }
+  .rules-section { background: linear-gradient(90deg, rgba(4,11,19,.98) 0%, rgba(4,11,19,.9) 38%, rgba(4,11,19,.56) 72%, rgba(4,11,19,.42) 100%), url('batman-standards.png') 78% center / cover no-repeat; }
   .rules-section::after { background: radial-gradient(ellipse at 78% 42%, rgba(88,213,238,.16), transparent 30%), linear-gradient(180deg, rgba(4,11,19,.28), rgba(4,11,19,.7)); }
   .operations-layout { grid-template-columns: minmax(0, .86fr) minmax(430px, 1.14fr); gap: clamp(38px, 6vw, 86px); min-height: 0; padding: 108px 0 116px; align-items: start; }
   .operations-brief { position: relative; top: auto; min-height: 520px; padding: 22px 0 24px; justify-content: space-between; }
@@ -737,6 +737,17 @@
   .mission-chat-foot a { color: var(--gold); text-decoration: none; }
   .mission-chat-foot a:hover { color: var(--cyan); }
   @media (max-width: 620px) { .mission-chat-launcher { right: 16px; bottom: 16px; width: 53px; height: 53px; } .mission-chat-panel { right: 16px; bottom: 82px; } }
+
+  /* ---------- Final Operation Standards layout ---------- */
+  .rules-section { background: linear-gradient(90deg, rgba(5,14,22,.88) 0%, rgba(5,14,22,.68) 46%, rgba(5,14,22,.34) 100%), url('batman-standards.png') 78% center / cover no-repeat; }
+  .operations-layout { grid-template-columns: minmax(0, .9fr) minmax(420px, 1.1fr); gap: clamp(34px, 5vw, 72px); min-height: 0; align-items: start; }
+  .operations-brief { position: sticky; top: 104px; min-height: 0; height: auto; align-self: start; justify-content: flex-start; padding: 28px 0 24px; }
+  .operations-rail { height: min(72vh, 720px); max-height: min(72vh, 720px); overflow-y: auto; overscroll-behavior: contain; }
+  @media (max-width: 820px) {
+    .operations-layout { grid-template-columns: 1fr; gap: 30px; }
+    .operations-brief { position: relative; top: auto; min-height: 0; padding: 8px 0 8px; }
+    .operations-rail { height: 500px; max-height: 500px; overflow-y: auto; }
+  }
 </style>
 <script>document.documentElement.classList.add('landing-active');</script>
 <link rel="canonical" href="https://reversehack-2cw9n6ya.manus.space/"><link rel="manifest" href="/__manus/pwa/manifest.webmanifest" crossorigin="use-credentials"></head>
@@ -998,14 +1009,14 @@ Error generating stack: `+l.message+`
     <div class="section-shell">
       <div class="operations-layout">
         <div class="operations-brief" data-reveal="">
-          <p class="eyebrow red"><span></span>RULES &amp; REGULATIONS // CONTROLLED ENVIRONMENT</p>
-          <h2 id="rules-title">Rules and <em>Regulations</em></h2>
+          <p class="eyebrow red"><span></span>MISSION STANDARDS // CONTROLLED ENVIRONMENT</p>
+          <h2 id="rules-title">Operation <em>standards.</em></h2>
           <p class="operations-lead">A serious security event needs a clear operating model. Every participant enters the same controlled environment, works to the same evidence standard, and leaves a defensible record of what changed.</p>
-          <p class="operations-copy">The mission is designed like a professional incident-response room: establish identity, respect the boundary, document the signal, and communicate the fix. These rules are the baseline for every pod, from first check-in to final handover.</p>
-          <div class="operations-meta"><span>MISSION CONTROL</span><strong>10 field rules</strong><span>SCROLL THE RAIL</span></div>
+          <p class="operations-copy">The mission is designed like a professional incident-response room: establish identity, respect the boundary, document the signal, and communicate the fix. These standards are the baseline for every pod, from first check-in to final handover.</p>
+          <div class="operations-meta"><span>MISSION CONTROL</span><strong>10 operating standards</strong><span>SCROLL THE RAIL</span></div>
         </div>
-        <aside class="operations-rail" aria-label="Rules and Regulations">
-          <div class="operations-rail-head"><span>RULES &amp; REGULATIONS</span><small>01—10 / CONTROLLED</small></div>
+        <aside class="operations-rail" aria-label="Operation Standards">
+          <div class="operations-rail-head"><span>OPERATION STANDARDS</span><small>01—10 / CONTROLLED</small></div>
           <div class="rules-board">
             <article class="operation-rule"><span>01 / ACCESS</span><strong>Bring your college ID to check-in.</strong><small>Identity verified before entry.</small></article>
             <article class="operation-rule"><span>02 / POD</span><strong>Register solo or as a team of two.</strong><small>One registration record per pod.</small></article>
