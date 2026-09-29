@@ -335,17 +335,17 @@
   .view-other-events { margin-top: 0; }
   .full-dossier-note { color: #9eb0bf; font-family: var(--display); font-size: 10px; letter-spacing: .1em; margin-top: 18px; }
   .mission-detail-hero p.full-dossier-note { color: #9eb0bf; font-family: var(--display); font-size: 10px; line-height: 1.4; letter-spacing: .1em; margin: 18px 0 0; }
-  .mission-detail-page { --dossier-color: #9aafb4; --dossier-wash: rgba(4,10,17,.985); --dossier-mid: rgba(4,10,17,.9); --dossier-edge: rgba(4,10,17,.7); --dossier-line: rgba(185,201,210,.2); background: linear-gradient(90deg, var(--dossier-wash), var(--dossier-mid) 52%, var(--dossier-edge)), var(--dossier-art, url('hero-bg.jpg')) center right / cover no-repeat; }
+  .mission-detail-page { --dossier-color: #9aafb4; background: linear-gradient(90deg, rgba(4,10,17,.985), rgba(4,10,17,.9) 52%, rgba(4,10,17,.7)), var(--dossier-art, url('hero-bg.jpg')) center right / cover no-repeat; }
   .mission-detail-page::after { background: linear-gradient(0deg, rgba(4,10,18,.86), transparent 45%, rgba(4,10,18,.38)); }
   .mission-detail-page > .mission-close { color: #aebbc0; background: rgba(8,19,31,.68); border-color: rgba(185,201,210,.2); }
   .mission-detail-page > .mission-close span { color: var(--dossier-color); }
   .mission-detail-page .eyebrow { color: var(--dossier-color); }
   .mission-detail-page .eyebrow span { background: var(--dossier-color); }
-  .mission-detail-hero { max-width: 980px; border-bottom-color: var(--dossier-line); padding-bottom: 34px; }
+  .mission-detail-hero { max-width: 980px; border-bottom-color: rgba(185,201,210,.2); padding-bottom: 34px; }
   .mission-detail-hero h2 { max-width: 900px; color: var(--dossier-color) !important; font-size: clamp(48px, 7.2vw, 108px); font-weight: 400; line-height: .88; letter-spacing: -.055em; }
   .mission-detail-hero p { max-width: 700px; color: #c5d0d4; font-size: clamp(17px, 1.65vw, 22px); line-height: 1.5; }
   .dossier-meta { max-width: 900px; gap: 16px 18px; margin-top: 28px; }
-  .dossier-meta div { border-top-color: var(--dossier-line); }
+  .dossier-meta div { border-top-color: rgba(185,201,210,.2); }
   .dossier-meta span { color: var(--dossier-color); font-size: 8px; }
   .dossier-meta strong { color: #bac7cc; font-size: 10px; }
   .mission-detail-hero p.full-dossier-note { color: #82959d; }
@@ -1378,23 +1378,6 @@ Error generating stack: `+l.message+`
     XIV: "https://creativesum-n5ztyent.manus.space/manus-storage/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg",
     XV: "https://creativesum-n5ztyent.manus.space/manus-storage/supergirl_0jpg_0fdd9e06.jpg"
   };
-  var DOMAIN_TONES = {
-    I:   { accent: "#769f9a", wash: "rgba(12,38,39,.34)", line: "rgba(118,159,154,.28)" },
-    II:  { accent: "#9a91aa", wash: "rgba(39,33,54,.34)", line: "rgba(154,145,170,.28)" },
-    III: { accent: "#a88b68", wash: "rgba(57,39,23,.34)", line: "rgba(168,139,104,.28)" },
-    IV:  { accent: "#7f9aa4", wash: "rgba(24,47,55,.34)", line: "rgba(127,154,164,.28)" },
-    V:   { accent: "#897a83", wash: "rgba(43,29,38,.38)", line: "rgba(137,122,131,.28)" },
-    VI:  { accent: "#9d7069", wash: "rgba(55,29,25,.36)", line: "rgba(157,112,105,.28)" },
-    VII: { accent: "#ae8c62", wash: "rgba(54,39,21,.32)", line: "rgba(174,140,98,.28)" },
-    VIII:{ accent: "#7e9c78", wash: "rgba(28,48,30,.34)", line: "rgba(126,156,120,.28)" },
-    IX:  { accent: "#a58b74", wash: "rgba(53,38,28,.34)", line: "rgba(165,139,116,.28)" },
-    X:   { accent: "#8799a6", wash: "rgba(28,43,54,.36)", line: "rgba(135,153,166,.28)" },
-    XI:  { accent: "#82a0ad", wash: "rgba(24,49,60,.34)", line: "rgba(130,160,173,.28)" },
-    XII: { accent: "#9b7d72", wash: "rgba(52,31,25,.36)", line: "rgba(155,125,114,.28)" },
-    XIII:{ accent: "#b09b7c", wash: "rgba(52,43,29,.34)", line: "rgba(176,155,124,.28)" },
-    XIV: { accent: "#a98276", wash: "rgba(54,30,27,.34)", line: "rgba(169,130,118,.28)" },
-    XV:  { accent: "#aa8792", wash: "rgba(55,32,42,.34)", line: "rgba(170,135,146,.28)" }
-  };
   var TAG = {
     I: "FIND PATH IN", II: "SECURE CHAIN", III: "FLAG RUSH", IV: "TRACE ARTIFACTS",
     V: "READ THE MACHINE", VI: "CRACK THE CIPHER", VII: "TRUST BOUNDARY", VIII: "FOLLOW PACKETS",
@@ -1452,7 +1435,7 @@ Error generating stack: `+l.message+`
 
   function openModal(num) {
     var d = byNum(num);
-    var tone = DOMAIN_TONES[d.num] || { accent: d.color, wash: "rgba(4,10,17,.34)", line: "rgba(185,201,210,.2)" };
+
     modalTitle.textContent = d.title;
     modalTitle.style.removeProperty("color");
     modalTitle.removeAttribute("data-color");
@@ -1461,11 +1444,7 @@ Error generating stack: `+l.message+`
     modalRegister.textContent = "Register for " + d.title + " ▶";
     modalRegister.dataset.domain = d.num;
     modal.style.setProperty("--dossier-art", "url('" + ART_IMG[d.num] + "')");
-    modal.style.setProperty("--dossier-color", tone.accent);
-    modal.style.setProperty("--dossier-wash", "rgba(4,10,17,.985)");
-    modal.style.setProperty("--dossier-mid", tone.wash);
-    modal.style.setProperty("--dossier-edge", "rgba(4,10,17,.68)");
-    modal.style.setProperty("--dossier-line", tone.line);
+    modal.style.setProperty("--dossier-color", d.color);
     detailView.hidden = false;
     directoryView.hidden = true;
     modal.hidden = false;
