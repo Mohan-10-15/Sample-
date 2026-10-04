@@ -15,6 +15,7 @@ const {
   readJsonBody,
   sendConfirmationEmail,
 } = require("./_lib");
+const { hashPassword } = require("./auth_helpers");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "POST") {
@@ -76,8 +77,11 @@ module.exports = async function handler(req, res) {
       });
     }
 
+    const passwordHash = await hashPassword(value.password);
+    const { password, ...safeValue } = value;
     const doc = {
-      ...value,
+      ...safeValue,
+      passwordHash,
       registrationId: newRegistrationId(),
       submittedAt: new Date(),
     };
@@ -102,6 +106,7 @@ module.exports = async function handler(req, res) {
       registrationId: doc.registrationId,
       headcount: doc.headcount,
       emailSent: emailed,
+      username: doc.teamName,
     });
   } catch (e) {
     console.error("register failed", e);

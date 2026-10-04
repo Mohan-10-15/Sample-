@@ -111,6 +111,13 @@ the participant heard about the event, and agreement to the rules.
 
 The admin key is compared with `crypto.timingSafeEqual`, so it cannot be probed byte by byte.
 
+## Team workspace and scoring
+
+- `/user.html` is the team login and workspace. The team name is the username; registration creates a password hash and never stores the plain password.
+- Teams can update their problem statement and solution after logging in. The mission desk mark is visible to the team but cannot be edited there.
+- `/admin.html` is the organiser control room. It lists team members, domain, problem statement, solution and provides a 0–100 mark input per team.
+- Add a long random `SESSION_SECRET` environment variable in Vercel for signing team login cookies. If it is omitted, the server falls back to `ADMIN_KEY`; set both explicitly in production.
+
 ## Organiser dashboard
 
 Open `/admin.html`, paste the `ADMIN_KEY`, and the dashboard shows registrations, participants,

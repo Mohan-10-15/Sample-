@@ -8,7 +8,7 @@
 const { guardAdmin, isMongoConfigured, getRegistrations } = require("../_lib");
 
 /** Do not read legacy payment data; current registrations are free. */
-const LIST_PROJECTION = { payment: 0, amountDue: 0 };
+const LIST_PROJECTION = { payment: 0, amountDue: 0, passwordHash: 0, emails: 0 };
 
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") {

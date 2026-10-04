@@ -100,6 +100,13 @@
   .dc-nav nav a { color: var(--navy); text-decoration: none; position: relative; }
   .dc-nav nav a:after { content: ""; background: var(--red); height: 2px; position: absolute; bottom: -7px; left: 0; right: 0; transform: scaleX(0); transform-origin: 100%; transition: transform .2s var(--ease); }
   .dc-nav nav a:hover:after { transform: scaleX(1); transform-origin: 0; }
+  .nav-login { color: #0d1b2a; text-decoration: none; font: 10px var(--display); letter-spacing: .1em; border: 1px solid rgba(13,27,42,.28); padding: 10px 12px; background: rgba(247,241,223,.72); transition: all .18s ease; }
+  .nav-login:hover { background: #fff; border-color: var(--cyan); }
+  .account-credentials { display: grid; gap: 8px; margin: 20px 0; padding: 18px; border: 1px solid rgba(240,183,74,.42); background: rgba(240,183,74,.08); }
+  .account-credentials span { color: var(--gold); font: 9px var(--display); letter-spacing: .14em; }
+  .account-credentials strong { color: var(--paper); font: 700 24px var(--serif); overflow-wrap: anywhere; }
+  .account-credentials small { color: #aab9c4; font: 12px var(--display); }
+  .account-credentials b { color: var(--cyan); font-weight: 400; }
   .nav-cta {
     display: inline-flex; align-items: center; gap: 7px; text-decoration: none;
     background: var(--navy); color: var(--cream) !important;
@@ -862,6 +869,7 @@ Error generating stack: `+l.message+`
     <a href="#contact">Contact</a>
   </nav>
   <button class="menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="navDrop" aria-label="Toggle menu">☰</button>
+  <a class="nav-login" href="user.html">Team Login</a>
   <a class="nav-cta" href="#register" data-manus_clickable="true" data-manus_click_id="8">Register · RH ▶</a>
 </header>
 
@@ -871,6 +879,7 @@ Error generating stack: `+l.message+`
   <a href="#rules">Rules</a>
   <a href="#contact">Contact</a>
   <a href="#register">Lock your seat</a>
+  <a href="user.html">Team Login</a>
 </div>
 
 <main id="main">
@@ -1065,8 +1074,13 @@ Error generating stack: `+l.message+`
             </div>
           </div>
 
-          <div class="form-section-head"><span>02 · IDENTITY</span><p>The person we should contact first.</p></div>
+          <div class="form-section-head"><span>02 · ACCOUNT + IDENTITY</span><p>Create the team login and share the primary participant details.</p></div>
           <div class="form-grid">
+            <div class="field">
+              <span>TEAM PASSWORD <i>*</i></span>
+              <input id="f-password" name="password" type="password" autocomplete="new-password" placeholder="At least 8 characters" aria-describedby="e-password" required>
+              <small id="e-password">This password unlocks your team workspace. Keep it private.</small>
+            </div>
             <div class="field">
               <span>FULL NAME <i>*</i></span>
               <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your full name" aria-describedby="e-name" required="" data-manus_clickable="true" data-manus_click_id="55">
@@ -1193,6 +1207,7 @@ Error generating stack: `+l.message+`
         <h2>Welcome to <em>the operation.</em></h2>
         <p>Your registration is stored in the mission registry. Entry is free; no payment or receipt is required. Keep this ID safe for check-in.</p>
         <div class="registration-id"><span>REGISTRATION ID</span><strong id="regId">RH26-XXXX</strong></div>
+        <div class="account-credentials"><span>TEAM WORKSPACE LOGIN</span><strong id="accountUsername">TEAM NAME</strong><small>Password: <b id="accountPassword">Shown once after registration</b></small><a class="button ghost" href="user.html">Open team workspace →</a></div>
         <div class="register-actions">
           <a class="button primary" id="mailBtn" href="#" aria-label="Send registration email">✉ Send a copy by email</a>
           <button class="button ghost" id="copyBtn" type="button">Copy details</button>
@@ -1641,6 +1656,7 @@ Error generating stack: `+l.message+`
     domain: { el: "#f-domain", check: function (v) { return DOMAINS.some(function (d) { return d.title === v; }); } },
     agree: { el: "#f-agree", check: function (v) { return !!v; } },
     team: { el: "#f-team", check: function (v) { return v.trim().length >= 2; } },
+    password: { el: "#f-password", check: function (v) { return v.length >= 8 && v.length <= 72; } },
     pname: { el: "#f-pname", check: function (v) { return v.trim().length >= 2; } },
     pyear: { el: "#f-pyear", check: function (v) { return ["I", "II", "III"].indexOf(v) !== -1; } },
     proll: { el: "#f-proll", check: function (v) { return /^[A-Za-z0-9][A-Za-z0-9/-]{2,39}$/.test(v.trim()); } },
@@ -1694,6 +1710,7 @@ Error generating stack: `+l.message+`
     if (path === "heardAbout") return $("#f-heard");
     if (path === "domain") return $("#f-domain");
     if (path === "teamName") return $("#f-team");
+    if (path === "password") return $("#f-password");
     if (path.indexOf("partner.") === 0) {
       var pt = path.slice(8);
       return $("#f-p" + (pt === "rollNumber" ? "roll" : pt === "fullName" ? "name" : pt));
@@ -1734,6 +1751,7 @@ Error generating stack: `+l.message+`
       roll: $("#f-roll").value.trim(),
       domain: $("#f-domain").value,
       heard: $("#f-heard").value,
+      password: $("#f-password").value,
       agree: $("#f-agree").checked
     };
     var team = { team: $("#f-team").value.trim() };
@@ -1757,6 +1775,7 @@ Error generating stack: `+l.message+`
     var payload = {
       entryFormat: mode === "team" ? "duo" : "solo",
       teamName: team.team,
+      password: data.password,
       leader: {
         fullName: data.name,
         email: data.email,
@@ -1808,6 +1827,8 @@ Error generating stack: `+l.message+`
   });
 
   function finishRegistration(id, data, team) {
+    $("#accountUsername").textContent = team.team;
+    $("#accountPassword").textContent = data.password;
     var record = { mode: data.mode, email: data.email, team: team, id: id, at: new Date().toISOString() };
     regs.push(record);
     try { localStorage.setItem(LS_KEY, JSON.stringify(regs)); } catch (e) {}

@@ -250,7 +250,7 @@ module.exports = async function handler(req, res) {
 
   try {
     const col = await getRegistrations();
-    const regs = await col.find({}, { projection: { payment: 0, amountDue: 0 } }).sort({ submittedAt: -1 }).toArray();
+    const regs = await col.find({}, { projection: { payment: 0, amountDue: 0, passwordHash: 0, emails: 0 } }).sort({ submittedAt: -1 }).toArray();
 
     const totals = regs.reduce(
       (acc, r) => {

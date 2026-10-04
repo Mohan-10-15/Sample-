@@ -187,6 +187,9 @@ function validateRegistration(body) {
 
   const teamName = clean(body.teamName, 60);
   if (teamName.length < 2) fail("teamName", "Enter a team name or solo alias.");
+  const password = clean(body.password, 128);
+  if (password.length < 8) fail("password", "Create a password with at least 8 characters.");
+  if (password.length > 72) fail("password", "Keep the password under 72 characters.");
 
   const leader = {
     fullName: clean(body.leader?.fullName, 80),
@@ -247,6 +250,7 @@ function validateRegistration(body) {
       entryFormat,
       teamName,
       teamNameKey: teamName.toLowerCase(),
+      password,
       leader,
       partner,
       emails,
