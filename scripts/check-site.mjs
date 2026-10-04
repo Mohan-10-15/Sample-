@@ -115,13 +115,13 @@ if (!branded) ok("no retired event branding anywhere in the repo");
 
 /* ----------------------------------------------------------------- env ---- */
 console.log("\nSecrets");
-const envLocal = fs.existsSync(rel(".env.local"));
-envLocal ? ok(".env.local present and gitignored") : fail(".env.local missing");
-if (fs.existsSync(rel(".env"))) fail(".env exists in the repo - it must stay gitignored");
+if (fs.existsSync(rel(".env")) || fs.existsSync(rel(".env.local")))
+  fail("local environment files must not be committed");
+else ok("no local environment files are committed");
 const pkg = JSON.parse(fs.readFileSync(rel("package.json"), "utf8"));
-["mongodb", "exceljs", "nodemailer"].every((d) => (pkg.dependencies || {})[d])
-  ? ok("mongodb + exceljs + nodemailer are declared dependencies")
-  : fail("a runtime dependency is missing from package.json");
+["exceljs", "nodemailer"].every((d) => (pkg.dependencies || {})[d]) && !(pkg.dependencies || {}).mongodb
+  ? ok("Supabase REST + ExcelJS + Nodemailer runtime dependencies are configured")
+  : fail("the runtime dependency set is missing or still includes MongoDB");
 if (!fs.existsSync(rel(".gitignore")) || !/^\.env$/m.test(fs.readFileSync(rel(".gitignore"), "utf8")))
   fail(".gitignore does not ignore .env");
 

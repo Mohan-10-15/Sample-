@@ -1,9 +1,9 @@
-const { guardAdmin, isMongoConfigured, getRegistrations, readJsonBody } = require("../_lib");
+const { guardAdmin, isSupabaseConfigured, updateRegistration, readJsonBody } = require("../_lib");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "PATCH") return res.status(405).json({ error: "Use PATCH." });
   if (!guardAdmin(req, res)) return;
-  if (!isMongoConfigured()) return res.status(503).json({ error: "MONGODB_URI is not set on the server." });
+  if (!isSupabaseConfigured()) return res.status(503).json({ error: "SUPABASE_URL / SUPABASE_SECRET_KEY is not set on the server." });
   let body;
   try { body = await readJsonBody(req); } catch (_) { return res.status(400).json({ error: "Send a valid mark." }); }
   const registrationId = typeof body.registrationId === "string" ? body.registrationId.trim() : "";
@@ -14,12 +14,8 @@ module.exports = async function handler(req, res) {
     return res.status(400).json({ error: "Mark must be between 0 and 100." });
   }
   try {
-    const col = await getRegistrations();
-    const result = await col.updateOne(
-      { registrationId },
-      { $set: { mark, markUpdatedAt: new Date() } }
-    );
-    if (!result.matchedCount) return res.status(404).json({ error: "Team record not found." });
+    const updated = await updateRegistration(registrationId, { mark, updatedAt: new Date().toISOString() });
+    if (!updated) return res.status(404).json({ error: "Team record not found." });
     return res.status(200).json({ registrationId, mark });
   } catch (e) {
     console.error("admin mark failed", e);

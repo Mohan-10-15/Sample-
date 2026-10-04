@@ -1,14 +1,14 @@
 /**
  * POST /api/register
  *
- * Stores one free registration in MongoDB.
+ * Stores one free registration in Supabase.
  * Duplicate team names and duplicate participant emails are rejected with 409.
  */
 
 const {
-  isMongoConfigured,
-  getRegistrations,
-  ensureIndexes,
+  isSupabaseConfigured,
+  findRegistrationClash,
+  insertRegistration,
   validateRegistration,
   newRegistrationId,
   registrationWindowOpen,
@@ -24,7 +24,7 @@ module.exports = async function handler(req, res) {
   }
 
   // Validate before touching the database so a malformed payload reports its
-  // field errors even when MongoDB is not configured yet.
+  // field errors even when Supabase is not configured yet.
   let body;
   try {
     body = await readJsonBody(req);
@@ -47,7 +47,7 @@ module.exports = async function handler(req, res) {
     return res.status(403).json({ error: "Registration closed on 13 October 2026, 07:00 AM IST." });
   }
 
-  if (!isMongoConfigured()) {
+  if (!isSupabaseConfigured()) {
     return res.status(503).json({
       error: "The registry is not connected yet. Please try again in a moment.",
     });
@@ -56,16 +56,8 @@ module.exports = async function handler(req, res) {
   const value = result.value;
 
   try {
-    await ensureIndexes();
-    const col = await getRegistrations();
-
-    // Friendly pre-checks; the unique indexes below are the real guarantee.
-    const clash = await col.findOne(
-      {
-        $or: [{ teamNameKey: value.teamNameKey }, { emails: { $in: value.emails } }],
-      },
-      { projection: { teamName: 1, emails: 1 } }
-    );
+    // Friendly pre-checks; the unique database constraints remain the final guarantee.
+    const clash = await findRegistrationClash(value);
 
     if (clash) {
       const emailHit = (clash.emails || []).some((e) => value.emails.includes(e));
@@ -83,14 +75,14 @@ module.exports = async function handler(req, res) {
       ...safeValue,
       passwordHash,
       registrationId: newRegistrationId(),
-      submittedAt: new Date(),
+      submittedAt: new Date().toISOString(),
     };
 
     try {
-      await col.insertOne(doc);
+      await insertRegistration(doc);
     } catch (e) {
       // Two people submitted at the same moment; the index caught it.
-      if (e && e.code === 11000) {
+      if (e && (e.code === "23505" || e.status === 409)) {
         return res.status(409).json({
           error: "That team name / solo alias or email was just registered by someone else. Try again.",
         });

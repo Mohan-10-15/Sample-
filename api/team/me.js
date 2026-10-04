@@ -1,14 +1,18 @@
-const { isMongoConfigured, getRegistrations } = require("../_lib");
+const { isSupabaseConfigured, getRegistrationById } = require("../_lib");
 const { requireTeam } = require("../auth_helpers");
 
 module.exports = async function handler(req, res) {
   if (req.method !== "GET") return res.status(405).json({ error: "Use GET." });
   const session = requireTeam(req, res);
   if (!session) return;
-  if (!isMongoConfigured()) return res.status(503).json({ error: "The team registry is not connected yet." });
+  if (!isSupabaseConfigured()) return res.status(503).json({ error: "The team registry is not connected yet." });
   try {
-    const col = await getRegistrations();
-    const team = await col.findOne({ registrationId: session.sub }, { projection: { passwordHash: 0, emails: 0, agree: 0 } });
+    const team = await getRegistrationById(session.sub);
+    if (team) {
+      delete team.passwordHash;
+      delete team.emails;
+      delete team.agree;
+    }
     if (!team) return res.status(404).json({ error: "Team record not found." });
     return res.status(200).json({ team });
   } catch (e) {

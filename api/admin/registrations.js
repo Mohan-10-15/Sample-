@@ -5,7 +5,7 @@
  * Requires the x-admin-key header.
  */
 
-const { guardAdmin, isMongoConfigured, getRegistrations } = require("../_lib");
+const { guardAdmin, isSupabaseConfigured, listRegistrations } = require("../_lib");
 
 /** Do not read legacy payment data; current registrations are free. */
 const LIST_PROJECTION = { payment: 0, amountDue: 0, passwordHash: 0, emails: 0 };
@@ -18,15 +18,13 @@ module.exports = async function handler(req, res) {
 
   if (!guardAdmin(req, res)) return;
 
-  if (!isMongoConfigured()) {
-    return res.status(503).json({ error: "MONGODB_URI is not set on the server." });
+  if (!isSupabaseConfigured()) {
+    return res.status(503).json({ error: "SUPABASE_URL / SUPABASE_SECRET_KEY is not set on the server." });
   }
 
   try {
-    const col = await getRegistrations();
-    const docs = await col.find({}, { projection: LIST_PROJECTION }).sort({ submittedAt: -1 }).toArray();
-
-    const registrations = docs;
+    const docs = await listRegistrations();
+    const registrations = docs.map(({ payment, amountDue, passwordHash, emails, ...safe }) => safe);
 
     const totals = registrations.reduce(
       (acc, r) => {

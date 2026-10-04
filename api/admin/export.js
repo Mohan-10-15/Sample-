@@ -15,7 +15,7 @@
  */
 
 const ExcelJS = require("exceljs");
-const { guardAdmin, isMongoConfigured, getRegistrations } = require("../_lib");
+const { guardAdmin, isSupabaseConfigured, listRegistrations } = require("../_lib");
 
 const GOLD = "FFF0B74A";
 const DARK = "FF09111C";
@@ -244,13 +244,13 @@ module.exports = async function handler(req, res) {
 
   if (!guardAdmin(req, res)) return;
 
-  if (!isMongoConfigured()) {
-    return res.status(503).json({ error: "MONGODB_URI is not set on the server." });
+  if (!isSupabaseConfigured()) {
+    return res.status(503).json({ error: "SUPABASE_URL / SUPABASE_SECRET_KEY is not set on the server." });
   }
 
   try {
-    const col = await getRegistrations();
-    const regs = await col.find({}, { projection: { payment: 0, amountDue: 0, passwordHash: 0, emails: 0 } }).sort({ submittedAt: -1 }).toArray();
+    const all = await listRegistrations();
+    const regs = all.map(({ payment, amountDue, passwordHash, emails, ...safe }) => safe);
 
     const totals = regs.reduce(
       (acc, r) => {

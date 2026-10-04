@@ -38,7 +38,7 @@ The date lives in six places inside `index.html` — meta description, the `cont
 
 - Static HTML/CSS/vanilla JS, jQuery only for the small chat widget
 - Vercel serverless functions (Node 18+, CommonJS)
-- MongoDB Atlas (free M0 tier) via the official `mongodb` driver
+- Supabase Postgres through its server-only REST API
 - ExcelJS for the `.xlsx` export
 - No bundler, no transpiler, no framework runtime
 
@@ -53,8 +53,8 @@ See `.env.example`. Never commit real values.
 | `SMTP_USER`, `SMTP_PASS` | Mailbox + **App Password** (see below) |
 | `MAIL_FROM` | Optional display sender. Defaults to `SMTP_USER` |
 | `MAIL_NOTIFY_TO` | Optional. Comma-separated. CC/BCC yourself on every confirmation |
-| `MONGODB_URI` | Atlas connection string, e.g. `mongodb+srv://user:pass@cluster.mongodb.net` |
-| `MONGODB_DB` | Database name (default `reversehack2026`) |
+| `SUPABASE_URL` | Supabase project URL, such as `https://your-project.supabase.co` |
+| `SUPABASE_SECRET_KEY` | Server-only Supabase secret key; never expose it in browser code or GitHub |
 | `ADMIN_KEY` | Long random string that unlocks `/admin.html` and every `/api/admin/*` route |
 
 Generate a key with:
@@ -68,32 +68,23 @@ node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
 > <https://myaccount.google.com/apppasswords>, generate a 16-character App Password, and paste that
 > into `SMTP_PASS`. Port 465 with `secure: true` is already handled.
 
-Confirmation mail is sent **after** the registration is committed to MongoDB and the response is
+Confirmation mail is sent **after** the registration is committed to Supabase and the response is
 built, so an SMTP outage can never lose an entry. If mail fails the registration still succeeds and
 the response reports `"emailSent": false`.
 
-### Creating the free MongoDB cluster
+### Creating the Supabase project
 
-1. Sign up at <https://www.mongodb.com/atlas/register> and choose the free **M0** tier.
-2. **Create a deployment** — region closest to the college (Chennai), free tier.
-3. **Database Access** → *Add New Database User* → set a username and password → role
-   **Read and write to any database**.
-4. **Network Access** → *Add IP Address*. Vercel Functions use dynamic outbound addresses by
-   default, so a single workstation IP will not reliably allow a production connection. For a
-   production database, use a stable egress option such as [Vercel Static IPs](https://vercel.com/docs/networking/static-ips)
-   where the team's plan supports it. Avoid `0.0.0.0/0` unless you deliberately accept the
-   expanded exposure; it allows connection attempts from every public IP.
-5. **Deploy** → green **Connect** button → **Drivers** → copy the connection string.
+1. Create a project at <https://supabase.com/>.
+2. In **SQL Editor**, run the `registrations` table SQL supplied for this repository.
+3. Keep Row Level Security enabled and revoke public table access.
+4. Add `SUPABASE_URL` and `SUPABASE_SECRET_KEY` only in Vercel Environment Variables.
+5. Never commit the secret key or place it in browser JavaScript.
 
-No manual collection setup is needed: `api/_lib.js` creates the indexes on first write, including
-a unique index on the lowercased team name / Solo alias and another on participant emails.
-
-> M0 free tier is **5 GB shared across the whole cluster** and caps a document at 16 MB. Keep
-> registration records concise; do not store large media files in the database.
+The API talks to Supabase only from Vercel server functions. The browser never receives the secret key.
 
 ## Registration (free)
 
-Registration is free; no UPI payment, transaction ID, receipt, or proof is required. `api/_lib.js`
+Registration is free; no UPI payment, transaction ID, receipt, or proof is required. the server-side API validation layer
 is the server-side validation source of truth, and the page mirrors field errors onto the matching input.
 
 The form collects the entry format (Solo or Duo), a unique team name or Solo alias, and the primary
@@ -129,9 +120,8 @@ and Solo/Duo totals. You can filter the table and download a workbook with three
 
 The key is held in `sessionStorage`, so it disappears when the tab closes.
 
-For direct database inspection, sign in to MongoDB Atlas and open **Data Explorer** → the database
-selected by `MONGODB_DB` (defaults to `reversehack2026` if unset) → the `registrations` collection.
-The website admin key and Atlas database credentials are separate; keep `MONGODB_URI` private.
+For direct database inspection, open the Supabase dashboard → **Table Editor** → `registrations`.
+The website admin key and Supabase secret key are separate; keep `SUPABASE_SECRET_KEY` private.
 
 ## Local development
 
@@ -146,7 +136,7 @@ The API needs Node, so use the bundled helper or `vercel dev`:
 ```bash
 npm install
 # terminal 1 - static site + api/ on http://localhost:3100
-set MONGODB_URI=...&& set ADMIN_KEY=...&& node dev-host.cjs
+set SUPABASE_URL=...&& set SUPABASE_SECRET_KEY=...&& set ADMIN_KEY=...&& set SESSION_SECRET=...&& node dev-host.cjs
 # or, with the Vercel CLI (closest to production):
 npx vercel dev
 ```
@@ -160,7 +150,7 @@ try to build the leftover Next.js app. Keep the project's Framework Preset on **
 
 1. Push the repo.
 2. Vercel → **New Project** → import → preset **Other**.
-3. Add `MONGODB_URI`, `MONGODB_DB` and `ADMIN_KEY` under **Environment Variables**.
+3. Add `SUPABASE_URL`, `SUPABASE_SECRET_KEY`, `ADMIN_KEY` and `SESSION_SECRET` under **Environment Variables**.
 4. Deploy. `/`, `/admin.html` and `/api/*` all work immediately.
 
 ## Before you go live

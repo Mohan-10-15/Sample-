@@ -1,12 +1,10 @@
 /**
  * Shared helpers for the Mission Deck serverless functions.
  *
- * The site itself is a single static index.html, so everything that needs a
- * server (registration storage, the organiser dashboard, the Excel export)
- * lives in /api as Vercel Node functions talking to MongoDB Atlas.
+ * Registration data is stored in Supabase Postgres through its REST endpoint.
+ * The secret key is read only by Vercel server functions; it is never sent to
+ * the browser or committed to the repository.
  */
-
-const { MongoClient } = require("mongodb");
 
 const EVENT_START_ISO = "2026-10-13T09:00:00+05:30";
 /** The ledger closes at 07:00 on the day of the event. */
@@ -42,57 +40,161 @@ const DOMAINS = [
   "Quantum & Next-Gen Crypto",
 ];
 
-let clientPromise = null;
-
-function isMongoConfigured() {
-  return Boolean(process.env.MONGODB_URI);
+function supabaseSecret() {
+  // Support the current Supabase name and the legacy service-role name.
+  return process.env.SUPABASE_SECRET_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY || "";
 }
 
-function dbName() {
-  return process.env.MONGODB_DB || "reversehack2026";
+function isSupabaseConfigured() {
+  return Boolean(process.env.SUPABASE_URL && supabaseSecret());
 }
 
-/**
- * Vercel recycles containers, so the client is cached on globalThis to avoid
- * opening a new connection pool on every warm invocation.
- */
-function getClient() {
-  if (!clientPromise) {
-    const uri = process.env.MONGODB_URI;
-    if (!uri) throw new Error("MONGODB_URI is not set");
-    const holder = globalThis;
-    if (holder.__missionDeckMongo) {
-      clientPromise = holder.__missionDeckMongo;
-    } else {
-      const client = new MongoClient(uri, {
-        maxPoolSize: 5,
-        serverSelectionTimeoutMS: 8000,
-      });
-      clientPromise = client.connect();
-      holder.__missionDeckMongo = clientPromise;
-    }
+function supabaseEndpoint() {
+  const url = String(process.env.SUPABASE_URL || "").replace(/\/$/, "");
+  if (!url) throw new Error("SUPABASE_URL is not set");
+  return `${url}/rest/v1/registrations`;
+}
+
+function supabaseHeaders(extra = {}) {
+  const secret = supabaseSecret();
+  if (!secret) throw new Error("SUPABASE_SECRET_KEY is not set");
+  return {
+    apikey: secret,
+    Authorization: `Bearer ${secret}`,
+    "Content-Type": "application/json",
+    ...extra,
+  };
+}
+
+async function supabaseRequest(query = "", options = {}) {
+  const response = await fetch(`${supabaseEndpoint()}${query}`, {
+    ...options,
+    headers: supabaseHeaders(options.headers || {}),
+  });
+  const text = await response.text();
+  let body = null;
+  try { body = text ? JSON.parse(text) : null; } catch (_) { body = text; }
+  if (!response.ok) {
+    const error = new Error(body?.message || body?.error || `Supabase request failed (${response.status})`);
+    error.status = response.status;
+    error.body = body;
+    throw error;
   }
-  return clientPromise;
+  return body;
 }
 
-async function getDb() {
-  const client = await getClient();
-  return client.db(dbName());
+function queryString(entries) {
+  const params = new URLSearchParams(entries);
+  return `?${params.toString()}`;
 }
 
-async function getRegistrations() {
-  const db = await getDb();
-  return db.collection("registrations");
+function mapRegistration(row) {
+  if (!row) return null;
+  return {
+    ...row,
+    registrationId: row.registration_id,
+    entryFormat: row.entry_format,
+    teamName: row.team_name,
+    teamNameKey: row.team_name_key,
+    passwordHash: row.password_hash,
+    headcount: row.headcount ?? (row.entry_format === "duo" ? 2 : 1),
+    heardAbout: row.heard_about,
+    submittedAt: row.submitted_at,
+    submittedAtWork: row.submitted_at_work,
+    updatedAt: row.updated_at,
+    problemStatement: row.problem_statement,
+    solution: row.solution,
+  };
 }
 
-/** Creates the unique indexes once; safe to call on every write. */
-async function ensureIndexes() {
-  const col = await getRegistrations();
-  await Promise.all([
-    col.createIndex({ teamNameKey: 1 }, { unique: true, name: "uniq_team" }),
-    col.createIndex({ emails: 1 }, { unique: true, name: "uniq_email" }),
-    col.createIndex({ submittedAt: -1 }, { name: "by_submitted" }),
+async function findRegistrationByTeamNameKey(teamNameKey) {
+  const rows = await supabaseRequest(queryString({
+    select: "*",
+    team_name_key: `eq.${teamNameKey}`,
+    limit: "1",
+  }));
+  return mapRegistration(rows?.[0]);
+}
+
+async function findRegistrationByEmails(emails) {
+  if (!emails?.length) return null;
+  const rows = await supabaseRequest(queryString({
+    select: "*",
+    emails: `ov.{${emails.join(",")}}`,
+    limit: "1",
+  }));
+  return mapRegistration(rows?.[0]);
+}
+
+async function findRegistrationClash(value) {
+  const [team, email] = await Promise.all([
+    findRegistrationByTeamNameKey(value.teamNameKey),
+    findRegistrationByEmails(value.emails),
   ]);
+  return team || email || null;
+}
+
+async function insertRegistration(doc) {
+  const row = {
+    registration_id: doc.registrationId,
+    entry_format: doc.entryFormat,
+    team_name: doc.teamName,
+    team_name_key: doc.teamNameKey,
+    password_hash: doc.passwordHash,
+    leader: doc.leader,
+    partner: doc.partner,
+    domain: doc.domain,
+    heard_about: doc.heardAbout,
+    emails: doc.emails,
+    agree: doc.agree,
+    problem_statement: null,
+    solution: null,
+    mark: null,
+    submitted_at: doc.submittedAt,
+    submitted_at_work: null,
+    updated_at: null,
+  };
+  const rows = await supabaseRequest("?select=*", {
+    method: "POST",
+    headers: { Prefer: "return=representation" },
+    body: JSON.stringify(row),
+  });
+  return mapRegistration(rows?.[0]) || doc;
+}
+
+async function updateRegistration(registrationId, patch) {
+  const row = {};
+  if (Object.prototype.hasOwnProperty.call(patch, "problemStatement")) row.problem_statement = patch.problemStatement;
+  if (Object.prototype.hasOwnProperty.call(patch, "solution")) row.solution = patch.solution;
+  if (Object.prototype.hasOwnProperty.call(patch, "submittedAtWork")) row.submitted_at_work = patch.submittedAtWork;
+  if (Object.prototype.hasOwnProperty.call(patch, "mark")) row.mark = patch.mark;
+  if (Object.prototype.hasOwnProperty.call(patch, "updatedAt")) row.updated_at = patch.updatedAt;
+  const rows = await supabaseRequest(queryString({
+    registration_id: `eq.${registrationId}`,
+    select: "*",
+  }), {
+    method: "PATCH",
+    headers: { Prefer: "return=representation" },
+    body: JSON.stringify(row),
+  });
+  return mapRegistration(rows?.[0]);
+}
+
+async function getRegistrationById(registrationId) {
+  const rows = await supabaseRequest(queryString({
+    select: "*",
+    registration_id: `eq.${registrationId}`,
+    limit: "1",
+  }));
+  return mapRegistration(rows?.[0]);
+}
+
+async function listRegistrations() {
+  const rows = await supabaseRequest(queryString({
+    select: "*",
+    order: "submitted_at.desc",
+  }));
+  return (rows || []).map(mapRegistration);
 }
 
 /* ------------------------------------------------------------------ *
@@ -433,7 +535,7 @@ function escapeHtml(s) {
 
 /**
  * Sends the participant confirmation. Deliberately never throws: a registration
- * that is already committed to MongoDB must not be rolled back because the mail
+ * that is already committed to Supabase must not be rolled back because the mail
  * server was briefly down. Returns true only when the mail was accepted.
  */
 async function sendConfirmationEmail(reg) {
@@ -485,10 +587,14 @@ module.exports = {
   DOMAINS,
   HEARD_ABOUT,
   YEARS,
-  isMongoConfigured,
-  getDb,
-  getRegistrations,
-  ensureIndexes,
+  isSupabaseConfigured,
+  findRegistrationByTeamNameKey,
+  findRegistrationByEmails,
+  findRegistrationClash,
+  insertRegistration,
+  updateRegistration,
+  getRegistrationById,
+  listRegistrations,
   isAdminConfigured,
   isAdminRequest,
   guardAdmin,
