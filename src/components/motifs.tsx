@@ -120,7 +120,7 @@ export function WaxSeal({ className = "" }: { className?: string }) {
         fontSize="9"
         letterSpacing="2"
       >
-        2K26
+        2026
       </text>
       <circle cx="60" cy="60" r="46" fill="none" stroke="#EFE6D8" strokeWidth="1" opacity="0.35" />
     </svg>

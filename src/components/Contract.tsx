@@ -20,7 +20,7 @@ export default function Contract() {
         <Reveal className="rounded-sm border border-charcoalHi bg-charcoal/60 p-8">
           <h3 className="font-head text-2xl font-bold text-gold">Not a creation. A reckoning.</h3>
           <p className="mt-4 leading-relaxed text-parchment/75">
-            Most hackathons ask you to invent something new. At OMERTÀ 2K26 we do the opposite: your
+            Most hackathons ask you to invent something new. At Reverse Hackathon 2026 we do the opposite: your
             team is handed a working — but deliberately broken — application, riddled with real,
             findable vulnerabilities. Your job is not to write a product. It is to inspect the
             machine, discover its flaws, and repair them under a deadline.
@@ -43,7 +43,7 @@ export default function Contract() {
           <p className="mt-4 leading-relaxed text-parchment/75">
             The Whitehat Club, under the Department of Cyber Security, exists to teach security by
             doing. A keyboard warrior who has never defended a live system is a story untold. We run
-            OMERTÀ to give students of every department a safe, structured arena to make — and learn
+            RH to give students of every department a safe, structured arena to make — and learn
             from — the mistakes that real teams make. No prior hacking experience is required, only
             curiosity and a steady nerve.
           </p>

@@ -24,16 +24,31 @@ export function CountdownBoxes({ target }: { target: Date }) {
   ];
 
   return (
-    <div className="flex items-stretch gap-2 sm:gap-3" role="timer" aria-label={`Counting down to OMERTÀ 2K26 on ${formatEventDate()}`}>
+    <div
+      className="flex items-stretch gap-2 sm:gap-3"
+      role="timer"
+      aria-label={`Counting down to Reverse Hackathon 2026 on ${formatEventDate()}`}
+    >
       {cells.map((c, i) => (
         <div key={c.label} className="flex items-stretch gap-2 sm:gap-3">
-          <div className="grid h-20 w-16 place-items-center rounded-sm border border-parchment/15 bg-noir/65 backdrop-blur-md sm:h-24 sm:w-20">
+          <div className="grid h-20 w-16 place-items-center rounded-sm border border-gold/25 bg-charcoal/80 backdrop-blur sm:h-24 sm:w-20">
             <div className="text-center">
-              <span className="block font-head text-3xl font-bold tabular-nums text-parchment sm:text-4xl">{c.v}</span>
-              <span className="mt-1 block font-typewriter text-[10px] uppercase tracking-[0.25em] text-parchment/55">{c.label}</span>
+              <span className="block font-head text-3xl font-bold tabular-nums text-gold sm:text-4xl">
+                {c.v}
+              </span>
+              <span className="mt-1 block font-typewriter text-[10px] uppercase tracking-[0.25em] text-parchment/60">
+                {c.label}
+              </span>
             </div>
           </div>
-          {i < cells.length - 1 && <span aria-hidden className="hidden self-center font-head text-2xl text-parchment/30 sm:block">:</span>}
+          {i < cells.length - 1 && (
+            <span
+              aria-hidden
+              className="hidden self-center font-head text-2xl text-gold/50 sm:block"
+            >
+              :
+            </span>
+          )}
         </div>
       ))}
     </div>
@@ -45,69 +60,80 @@ export default function Hero() {
   const fade = (delay: number) => ({
     initial: reduce ? { opacity: 0 } : { opacity: 0, y: 24 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.75, delay, ease: "easeOut" as const },
+    transition: { duration: 0.9, delay, ease: "easeOut" as const },
   });
 
   return (
     <section
       id="hero"
-      className="entry-hero relative flex min-h-[100svh] items-center overflow-hidden px-5 pb-20 pt-28 sm:px-8 lg:px-14"
-      style={{
-        backgroundImage:
-          "linear-gradient(90deg, rgba(7,10,14,.98) 0%, rgba(7,10,14,.9) 38%, rgba(7,10,14,.48) 72%, rgba(7,10,14,.68) 100%), linear-gradient(180deg, rgba(7,10,14,.35), rgba(7,10,14,.9)), url('/Sample-/batman-gotham.jpg')",
-        backgroundPosition: "center",
-        backgroundSize: "cover",
-      }}
+      className="relative flex min-h-[100svh] flex-col items-center justify-center overflow-hidden px-5 pb-20 pt-28 text-center sm:px-8"
     >
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_42%,rgba(188,149,73,.12),transparent_28%),linear-gradient(110deg,transparent_0%,rgba(72,92,110,.08)_48%,transparent_70%)]" />
-      <Smoke className="pointer-events-none absolute left-1/2 top-0 hidden w-[70vw] max-w-4xl -translate-x-1/2 opacity-35 md:block" />
-      <Marionette className="pointer-events-none absolute right-5 top-28 hidden h-[46vh] opacity-10 lg:block" />
+      {/* Atmosphere */}
+      <div
+        aria-hidden
+        className="absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(900px 520px at 50% 18%, rgba(107,15,26,0.5), transparent 62%), radial-gradient(1100px 700px at 50% 110%, rgba(0,0,0,0.9), transparent 70%)",
+        }}
+      />
+      <Smoke className="absolute left-1/2 top-10 hidden w-[70vw] max-w-4xl -translate-x-1/2 opacity-70 md:block" />
+      <Marionette className="animate-drift absolute right-3 top-6 hidden h-[46vh] opacity-25 lg:block" />
 
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-end gap-12 lg:grid-cols-[minmax(0,1.1fr)_minmax(290px,.55fr)] lg:gap-24">
-        <div className="max-w-4xl">
-          <motion.div {...fade(0.1)} className="mb-8 flex items-center gap-4">
-            <span className="h-px w-12 bg-gold/80" aria-hidden />
-            <p className="font-typewriter text-[11px] uppercase tracking-[0.34em] text-gold">{siteConfig.organizer} presents</p>
-          </motion.div>
+      {/* Content */}
+      <motion.p {...fade(0.1)} className="eyebrow relative">
+        {siteConfig.organizer} presents
+      </motion.p>
 
-          <motion.p {...fade(0.18)} className="mb-5 max-w-xl font-typewriter text-[11px] uppercase tracking-[0.28em] text-parchment/60 sm:text-xs">
-            Reverse hackathon · {formatEventDate()} · {siteConfig.venue.name}
-          </motion.p>
+      <motion.h1 {...fade(0.25)} className="relative mt-6">
+        <span className="sr-only">Reverse Hackathon 2026</span>
+        <span aria-hidden className="block font-display text-5xl font-black leading-none tracking-[0.08em] text-parchment sm:text-7xl lg:text-8xl">
+          {"RH".split("").map((ch, i) => (
+            <motion.span
+              key={i}
+              className="inline-block"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 + i * 0.06, duration: 0.7, ease: "easeOut" }}
+            >
+              {ch}
+            </motion.span>
+          ))}
+        </span>
+        <span className="gold-text mt-3 block font-head text-3xl font-bold tracking-[0.5em] sm:text-5xl">
+          2026
+        </span>
+      </motion.h1>
 
-          <motion.h1 {...fade(0.28)} className="font-display text-[clamp(3.2rem,10vw,8.5rem)] font-black leading-[.88] tracking-[.04em] text-parchment">
-            OMERTÀ
-            <span className="mt-3 block font-head text-[clamp(2.3rem,6vw,5.4rem)] font-semibold tracking-[.28em] text-gold">2K26</span>
-          </motion.h1>
+      <motion.p {...fade(0.7)} className="relative mt-8 max-w-2xl font-head text-xl leading-relaxed text-parchment/85 italic sm:text-2xl">
+        {siteConfig.tagline}
+      </motion.p>
 
-          <motion.p {...fade(0.48)} className="mt-8 max-w-2xl font-head text-xl leading-relaxed text-parchment/85 italic sm:text-2xl">
-            {siteConfig.tagline}
-          </motion.p>
+      <motion.p {...fade(0.8)} className="relative mt-6 font-typewriter text-[11px] uppercase tracking-[0.3em] text-parchment/55 sm:text-xs">
+        A reverse hackathon · {formatEventDate()} · {siteConfig.venue.name}
+        <br className="sm:hidden" />
+        <span className="hidden sm:inline"> — </span>
+        {siteConfig.venue.college}, {siteConfig.venue.city}
+      </motion.p>
 
-          <motion.div {...fade(0.62)} className="mt-9 flex flex-wrap gap-x-6 gap-y-3 font-typewriter text-[10px] uppercase tracking-[0.18em] text-parchment/65 sm:text-[11px]">
-            <span>{siteConfig.venue.college}</span>
-            <span className="text-gold/80">Department of Cyber Security</span>
-            <span>{siteConfig.venue.city}</span>
-          </motion.div>
+      <motion.div {...fade(0.9)} className="relative mt-10">
+        <CountdownBoxes target={EVENT_DATE} />
+      </motion.div>
 
-          <motion.div {...fade(0.74)} className="mt-11 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a href="#register" className="btn-gold px-8 py-4 text-[11px] shadow-gold">Lock your seat</a>
-            <a href="#contract" className="btn-ghost px-8 py-4 text-[11px]">Read the brief</a>
-          </motion.div>
-        </div>
+      <motion.div {...fade(1.0)} className="relative mt-12 flex flex-col items-center gap-4 sm:flex-row">
+        <a href="#register" className="btn-gold">
+          Join the Family — Register
+        </a>
+        <a href="#contract" className="btn-ghost">
+          Read the Contract
+        </a>
+      </motion.div>
 
-        <motion.aside {...fade(0.7)} className="hidden border-l border-parchment/20 pl-7 lg:block">
-          <p className="font-typewriter text-[10px] uppercase tracking-[0.3em] text-gold">Mission status</p>
-          <p className="mt-3 font-head text-3xl font-semibold text-parchment">The city is watching.</p>
-          <p className="mt-3 max-w-xs text-sm leading-relaxed text-parchment/60">One vulnerable system. One room of defenders. Find the flaw before the clock finds you.</p>
-          <div className="mt-8"><CountdownBoxes target={EVENT_DATE} /></div>
-        </motion.aside>
-
-        <motion.div {...fade(0.78)} className="lg:hidden">
-          <CountdownBoxes target={EVENT_DATE} />
-        </motion.div>
-      </div>
-
-      <a href="#contract" aria-label="Scroll down to The Contract" className="absolute bottom-8 left-1/2 hidden h-11 w-6 -translate-x-1/2 justify-center rounded-full border border-parchment/25 sm:flex">
+      <a
+        href="#contract"
+        aria-label="Scroll down to The Contract"
+        className="relative mt-16 hidden h-12 w-6 justify-center rounded-full border border-parchment/25 sm:flex"
+      >
         <span className="mt-2 h-2.5 w-1 animate-bounce rounded bg-gold" />
       </a>
     </section>

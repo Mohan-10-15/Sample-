@@ -3,7 +3,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#09111c">
-<meta name="description" content="Reverse Hackathon 2026 — a DC-themed defensive sprint by The Whitehatians and DEP-CYS. Reverse. Exploit. Defend. Oct 8, 2026.">
+<meta name="description" content="Reverse Hackathon 2026 — a DC-themed defensive sprint by The Whitehatians and DEP-CYS. Reverse. Exploit. Defend. Oct 13, 2026.">
 <title>Reverse Hackathon 2026 | Mission Deck</title>
 <meta property="og:type" content="website">
 <meta property="og:title" content="Reverse Hackathon 2026 | Mission Deck">
@@ -68,7 +68,7 @@
   .landing-subtitle { max-width: 600px; margin: 21px 0 0; color: #aebfca; font: 17px/1.5 var(--serif); }
   .landing-art-frame { order: 1; position: relative; width: min(820px, 100%); height: min(34vh, 300px); padding: 0; border: 1px solid rgba(228,184,93,.62); background: rgba(7,18,30,.8); box-shadow: 0 24px 70px rgba(0,0,0,.48); overflow: hidden; }
   .landing-art-frame::before { content: "MISSION VISUAL / 01"; position: absolute; z-index: 1; top: 18px; left: 18px; color: rgba(247,241,223,.85); font: 9px var(--display); letter-spacing: .15em; text-shadow: 0 1px 8px rgba(0,0,0,.8); }
-  .landing-art-frame::after { content: "08 OCT 2026"; position: absolute; z-index: 1; right: 18px; bottom: 18px; color: var(--gold); font: 9px var(--display); letter-spacing: .15em; text-shadow: 0 1px 8px rgba(0,0,0,.8); }
+  .landing-art-frame::after { content: "13 OCT 2026"; position: absolute; z-index: 1; right: 18px; bottom: 18px; color: var(--gold); font: 9px var(--display); letter-spacing: .15em; text-shadow: 0 1px 8px rgba(0,0,0,.8); }
   .landing-art-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center; filter: saturate(1.08) contrast(1.08) brightness(1.03); image-rendering: auto; }
   .landing-status { display: flex; align-items: center; justify-content: center; gap: 11px; margin-top: 22px; color: #9fb4c2; font-size: 9px; letter-spacing: .15em; }
   .landing-status strong { min-width: 32px; color: var(--gold); font-weight: 400; text-align: left; }
@@ -125,10 +125,10 @@
   .dc-hero {
     isolation: isolate; position: relative; display: flex; align-items: flex-end;
     min-height: 860px; padding: 170px max(5vw, 50px) 86px;
-    background: linear-gradient(90deg, rgba(4,10,17,.72), rgba(4,10,17,.48) 38%, rgba(4,10,17,.12) 78%, rgba(4,10,17,.32)), url('superman-hero.jpg') center center / cover no-repeat;
+    background: linear-gradient(90deg, rgba(4,10,17,.72), rgba(4,10,17,.48) 38%, rgba(4,10,17,.12) 78%, rgba(4,10,17,.32)), url('assets/superman-hero.png') center center / cover no-repeat;
     overflow: hidden;
   }
-  .hero-bg { display: none; }
+
   .hero-grid-fx {
     position: absolute; inset: 0; z-index: -1; opacity: .16;
     background-image: linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
@@ -235,7 +235,8 @@
   @media (max-width: 700px) { .hero-count { align-items: flex-start; gap: 13px 18px; } .bomb-timer-head { min-width: 100%; } .hero-count .count-grid { padding-left: 0; border-left: 0; } .hero-count #cd-note { margin-left: 0 !important; width: 100%; } }
 
   /* ---------- Live visual corrections ---------- */
-  .dc-hero { background-image: linear-gradient(90deg, rgba(4,10,17,.72), rgba(4,10,17,.48) 40%, rgba(4,10,17,.12) 80%, rgba(4,10,17,.32)), url('superman-hero.jpg'); background-position: center, center center; }
+  .dc-hero { background-image: linear-gradient(90deg, rgba(4,10,17,.72), rgba(4,10,17,.48) 40%, rgba(4,10,17,.12) 80%, rgba(4,10,17,.32)), url('assets/superman-hero.png'); background-position: center, center center; }
+  .dc-hero { background-image: linear-gradient(90deg, rgba(4,10,17,.72), rgba(4,10,17,.48) 40%, rgba(4,10,17,.12) 80%, rgba(4,10,17,.32)), image-set(url('assets/superman-hero.avif') type('image/avif'), url('assets/superman-hero.webp') type('image/webp'), url('assets/superman-hero.png') type('image/png')); }
   @media (max-width: 820px) { .hero-character { right: -12vw; bottom: 58px; height: 56vh; opacity: .34; } }
   @media (max-width: 620px) { .hero-character { right: -30vw; bottom: 76px; height: 48vh; opacity: .25; } }
   .rules-section { position: relative; overflow: hidden; min-height: 100vh; background: linear-gradient(90deg, rgba(8,27,31,.64) 0%, rgba(8,27,31,.43) 45%, rgba(8,27,31,.10) 100%), url('dc-contact-art.jpg') center / cover no-repeat; }
@@ -279,13 +280,15 @@
     .about-copy > p { font-size: 16px; }
     .about-presented { max-width: 560px; }
   }
-  .mission-section { border-top: 1px solid var(--line); background: linear-gradient(90deg, rgba(4,10,17,.95), rgba(4,10,17,.83) 48%, rgba(4,10,17,.66)), url('hero-bg.jpg') center / cover no-repeat; }
+  .mission-section { border-top: 1px solid var(--line); background: linear-gradient(90deg, rgba(4,10,17,.95), rgba(4,10,17,.83) 48%, rgba(4,10,17,.66)), url('assets/superman-hero.png') center / cover no-repeat; }
+  .mission-section { background-image: linear-gradient(90deg, rgba(4,10,17,.95), rgba(4,10,17,.83) 48%, rgba(4,10,17,.66)), image-set(url('assets/superman-hero.avif') type('image/avif'), url('assets/superman-hero.webp') type('image/webp'), url('assets/superman-hero.png') type('image/png')); }
   .featured-domain-grid { display: flex; gap: 0; margin-top: 46px; overflow: hidden; position: relative; padding: 8px 0 18px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent); }
   .domain-loop { display: flex; gap: 16px; width: max-content; animation: domainReel 112s linear infinite; will-change: transform; }
   .featured-domain-grid:hover .domain-loop, .featured-domain-grid:focus-within .domain-loop { animation-play-state: paused; }
+  .featured-domain-grid.resume-after-dismiss .domain-loop { animation-play-state: running; }
   @keyframes domainReel { from { transform: translateX(0); } to { transform: translateX(calc(-50% - 8px)); } }
   @media (prefers-reduced-motion: reduce) { .domain-loop { animation: none; } }
-  @media (max-width: 900px) { .domain-loop { animation-duration: 58s; } }
+  @media (max-width: 900px) { .domain-loop { animation-duration: 112s; } }
 
   /* ---------- Mission cards ---------- */
   .event-card {
@@ -314,7 +317,7 @@
   .mission-overlay { position: fixed; inset: 0; z-index: 40; overflow: auto; }
   .mission-overlay-backdrop { position: fixed; inset: 0; background: rgba(2,7,13,.82); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); }
   .mission-detail-page {
-    position: relative; z-index: 1; min-height: 100vh; background: linear-gradient(90deg, rgba(4,10,17,.97), rgba(4,10,17,.86) 55%, rgba(4,10,17,.64)), var(--dossier-art, url('hero-bg.jpg')) center right / cover no-repeat;
+    position: relative; z-index: 1; min-height: 100vh; background: linear-gradient(90deg, rgba(4,10,17,.97), rgba(4,10,17,.86) 55%, rgba(4,10,17,.64)), var(--dossier-art, url('https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&w=1920&q=80')) center right / cover no-repeat;
     width: 100%; margin: 0; padding: clamp(26px, 5vw, 72px) max(6vw, 24px);
     box-shadow: 0 30px 90px rgba(0,0,0,.5); overflow: hidden;
   }
@@ -607,6 +610,7 @@
 
   /* ---------- Registration visual identity ---------- */
   .register-section { position: relative; isolation: isolate; overflow: hidden; border-top: 0; background: linear-gradient(90deg, rgba(4,10,18,.80) 0%, rgba(4,10,18,.62) 42%, rgba(4,10,18,.26) 100%), url('dc-contact-clear.jpg') center 28% / cover no-repeat; }
+  .register-section { background-image: linear-gradient(90deg, rgba(4,10,18,.80) 0%, rgba(4,10,18,.62) 42%, rgba(4,10,18,.26) 100%), image-set(url('dc-contact-clear.avif') type('image/avif'), url('dc-contact-clear.webp') type('image/webp'), url('dc-contact-clear.jpg') type('image/jpeg')); }
   .register-section::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background: linear-gradient(180deg, rgba(4,10,18,.22), rgba(4,10,18,.52)); }
   .register-section .section-shell { position: relative; z-index: 1; }
   .register-section .section-shell { padding: 92px 0 96px; }
@@ -719,6 +723,20 @@
   .mission-chat-foot a { color: var(--gold); text-decoration: none; }
   .mission-chat-foot a:hover { color: var(--cyan); }
   @media (max-width: 620px) { .mission-chat-launcher { right: 16px; bottom: 16px; width: 53px; height: 53px; } .mission-chat-panel { right: 16px; bottom: 82px; } }
+
+  .submit-button[aria-busy="true"] { opacity: .6; pointer-events: none; }
+  /* ---------- Mobile layout fixes ---------- */
+  @media (max-width: 700px) {
+    .dc-hero { display: block; min-height: 100vh; padding: 110px 20px 24px; }
+    .hero-copy { width: 100%; max-width: 730px; }
+    .hero-count { position: relative; inset: auto; width: min(100%, 730px); margin: 22px auto 0; }
+  }
+  @media (max-width: 820px) {
+    .operations-layout { grid-template-columns: minmax(0, 1fr); gap: 30px; min-height: 0; padding: 34px 0 32px; align-items: start; }
+    .operations-brief { width: 100%; min-width: 0; }
+    .operations-rail { width: 100%; min-width: 0; height: auto; max-height: none; overflow: visible; padding-right: 0; }
+    .operations-rail-head { position: static; flex-wrap: wrap; }
+  }
 </style>
 <script>document.documentElement.classList.add('landing-active');</script>
 <link rel="canonical" href="https://reversehack-2cw9n6ya.manus.space/"><link rel="manifest" href="/__manus/pwa/manifest.webmanifest" crossorigin="use-credentials"></head>
@@ -844,7 +862,7 @@ Error generating stack: `+l.message+`
     <a href="#contact">Contact</a>
   </nav>
   <button class="menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="navDrop" aria-label="Toggle menu">☰</button>
-  <a class="nav-cta" href="#register" data-manus_clickable="true" data-manus_click_id="8">Register · OM26 ▶</a>
+  <a class="nav-cta" href="#register" data-manus_clickable="true" data-manus_click_id="8">Register · RH ▶</a>
 </header>
 
 <div class="nav-drop" id="navDrop">
@@ -858,7 +876,7 @@ Error generating stack: `+l.message+`
 <main id="main">
   <!-- ================= HERO ================= -->
   <section class="dc-hero" id="top" aria-labelledby="hero-title">
-    <svg class="hero-bg" viewBox="0 0 1440 860" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dark city silhouette under a searchlight">
+    <svg class="hero-bg" style="display:none" viewBox="0 0 1440 860" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Dark city silhouette under a searchlight">
       <defs>
         <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0" stop-color="#0b1a2d"></stop><stop offset=".55" stop-color="#091220"></stop><stop offset="1" stop-color="#050a13"></stop>
@@ -913,9 +931,9 @@ Error generating stack: `+l.message+`
         <a class="button ghost" href="#domains" data-manus_clickable="true" data-manus_click_id="10">Explore all events ▤</a>
       </div>
       <p class="hero-meta">
-        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Oct 08, 2026 · 09:00 IST</span>
+        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Oct 13, 2026 · 09:00 IST</span>
         <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"></path><circle cx="12" cy="10" r="2.5"></circle></svg>DEP-CYS Campus</span>
-        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 19c.6-3 2.4-4.5 5.5-4.5s4.9 1.5 5.5 4.5M14 15c3.5-.2 5.6 1.1 6.2 4"></path></svg>Solo / duo entry</span>
+        <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="9" cy="8" r="3"></circle><circle cx="17" cy="9" r="2.5"></circle><path d="M3.5 19c.6-3 2.4-4.5 5.5-4.5s4.9 1.5 5.5 4.5M14 15c3.5-.2 5.6 1.1 6.2 4"></path></svg>Solo or duo</span>
         <span><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>Doors 08:00 · Ledger seals 07:00</span>
       </p>
     </div>
@@ -968,7 +986,7 @@ Error generating stack: `+l.message+`
         </div>
         <p>The mission deck holds fifteen domains, each with its own practice grounds. Pick one at registration — it locks when the sprint starts.</p>
       </div>
-  <div class="featured-domain-grid" id="featuredGrid" aria-label="Animated mission dossier reel"><div class="domain-loop" id="domainLoop"><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Ethical Hacking" data-domain="I" data-manus_clickable="true" data-manus_click_id="11"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/aquaman_5c411a95e70ff550429372jpg_d568e319.jpg" alt="Ethical Hacking comic artwork" loading="lazy"><span class="tag">FIND PATH IN</span><span class="file">FILE://ETHICAL · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO I</span><h3>Ethical Hacking</h3><p>Think like an attacker, act like a defender. Find the path in, then close it with intent.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>TryHackMe · Hack The Box</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Penetration Testing" data-domain="II" data-manus_clickable="true" data-manus_click_id="12"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/bizarro_5c4114e7bebbf379574128jpg_d6117680.jpg" alt="Penetration Testing comic artwork" loading="lazy"><span class="tag">SECURE CHAIN</span><span class="file">FILE://PENTEST · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO II</span><h3>Penetration Testing</h3><p>Scope a target, build a chain, and report the story behind every access point.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · PentesterLab</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for CTF &amp; Capture The Flag" data-domain="III" data-manus_clickable="true" data-manus_click_id="13"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/brainiac_5d7844ba704f9783305344jpg_b4819d3a.jpg" alt="CTF &amp; Capture The Flag comic artwork" loading="lazy"><span class="tag">FLAG RUSH</span><span class="file">FILE://CTF · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO III</span><h3>CTF &amp; Capture The Flag</h3><p>Race the clock through flags, clues, and creative problem-solving across the full security stack.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>picoCTF · CTFtime</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Digital Forensics" data-domain="IV" data-manus_clickable="true" data-manus_click_id="14"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/cyborg_4efd21a2.jpg" alt="Digital Forensics comic artwork" loading="lazy"><span class="tag">TRACE ARTIFACTS</span><span class="file">FILE://FORENSICS · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IV</span><h3>Digital Forensics</h3><p>Reconstruct the incident from the evidence left behind. Every artifact has a timeline.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Autopsy · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Reverse Engineering" data-domain="V" data-manus_clickable="true" data-manus_click_id="15"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/darkseid_5c48a0ddca621934241271jpg_697f1a96.jpg" alt="Reverse Engineering comic artwork" loading="lazy"><span class="tag">READ THE MACHINE</span><span class="file">FILE://BRAINIAC · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO V</span><h3>Reverse Engineering</h3><p>Read the machine. Dismantle binaries, crack challenges and unravel hostile code in your own sandbox.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Ghidra · Crackmes.one</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cryptography" data-domain="VI" data-manus_clickable="true" data-manus_click_id="16"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/doomsday_5c48a5df9de8e952366405jpg_62d9473c.jpg" alt="Cryptography comic artwork" loading="lazy"><span class="tag">CRACK THE CIPHER</span><span class="file">FILE://CIPHER · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VI</span><h3>Cryptography</h3><p>Challenge the assumptions behind secure communication, from classical ciphers to modern primitives.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CryptoHack · Cryptopals</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Web App Security" data-domain="VII" data-manus_clickable="true" data-manus_click_id="17"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/flash_fa699639.jpg" alt="Web App Security comic artwork" loading="lazy"><span class="tag">TRUST BOUNDARY</span><span class="file">FILE://WEB · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VII</span><h3>Web App Security</h3><p>Trace the request, find the trust boundary, and secure the app from the inside out.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · OWASP Juice Shop</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Network Security" data-domain="VIII" data-manus_clickable="true" data-manus_click_id="18"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/greenlantern_a3fc206a.jpg" alt="Network Security comic artwork" loading="lazy"><span class="tag">FOLLOW PACKETS</span><span class="file">FILE://NET · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VIII</span><h3>Network Security</h3><p>Follow the packets. Protect the paths. Learn how systems reveal their weak points in motion.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Wireshark · TryHackMe Networking</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Malware Analysis" data-domain="IX" data-manus_clickable="true" data-manus_click_id="19"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/jimmyolsen_5c4fa2975d673957945186jpg_06d05f61.jpg" alt="Malware Analysis comic artwork" loading="lazy"><span class="tag">SANDBOX IT</span><span class="file">FILE://MALWARE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IX</span><h3>Malware Analysis</h3><p>Understand what a suspicious file does before it gets the chance to do it again.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>ANY.RUN · REMnux</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Binary Exploitation / Pwn" data-domain="X" data-manus_clickable="true" data-manus_click_id="20"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/justiceleague_5be4e1a2b164c857008596jpg_6ef699b6.jpg" alt="Binary Exploitation / Pwn comic artwork" loading="lazy"><span class="tag">MEMORY EDGE</span><span class="file">FILE://PWN · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO X</span><h3>Binary Exploitation / Pwn</h3><p>Find the edge in compiled systems and turn memory behavior into a controlled result.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>pwn.college · Exploit Education</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for OSINT &amp; Social Engineering" data-domain="XI" data-manus_clickable="true" data-manus_click_id="21"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/krypto_5c4a61c3a365a899170981jpg_c97a417a.jpg" alt="OSINT &amp; Social Engineering comic artwork" loading="lazy"><span class="tag">SIGNAL IN PLAIN SIGHT</span><span class="file">FILE://OSINT · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XI</span><h3>OSINT &amp; Social Engineering</h3><p>Gather the signal hiding in plain sight — carefully, legally, and with a sharp eye.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>OSINT Framework · Bellingcat Toolkit</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cloud Security" data-domain="XII" data-manus_clickable="true" data-manus_click_id="22"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/lexluthor_5c4a62d28625a055684763jpg_0f3f6999.jpg" alt="Cloud Security comic artwork" loading="lazy"><span class="tag">MISCONFIGURED BUCKET</span><span class="file">FILE://CLOUD · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XII</span><h3>Cloud Security</h3><p>Map identity, permissions, and exposed services across the modern cloud perimeter.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CloudGoat · flAWS.cloud</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Incident Response" data-domain="XIII" data-manus_clickable="true" data-manus_click_id="23"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/perrywhite_5fc85063e9cb9772094293jpg_ccf0e612.jpg" alt="Incident Response comic artwork" loading="lazy"><span class="tag">STABILIZE FIRST</span><span class="file">FILE://RESPONSE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIII</span><h3>Incident Response</h3><p>Stabilize first. Then investigate, contain, and make the next incident harder to repeat.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>LetsDefend · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Zero-Day Hunting" data-domain="XIV" data-manus_clickable="true" data-manus_click_id="24"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg" alt="Zero-Day Hunting comic artwork" loading="lazy"><span class="tag">NO CHECKLIST YET</span><span class="file">FILE://ZERO-DAY · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIV</span><h3>Zero-Day Hunting</h3><p>Look for the unexpected behavior that no checklist has named yet.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Fuzzing101 · OSS-Fuzz</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Quantum &amp; Next-Gen Crypto" data-domain="XV" data-manus_clickable="true" data-manus_click_id="25"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/supergirl_0jpg_0fdd9e06.jpg" alt="Quantum &amp; Next-Gen Crypto comic artwork" loading="lazy"><span class="tag">POST-QUANTUM AGE</span><span class="file">FILE://QUANTUM · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XV</span><h3>Quantum &amp; Next-Gen Crypto</h3><p>Explore how tomorrow's cryptography survives the quantum age — and what breaks today.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Qiskit · NIST PQC</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Ethical Hacking" data-domain="I" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="26"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/aquaman_5c411a95e70ff550429372jpg_d568e319.jpg" alt="Ethical Hacking comic artwork" loading="lazy"><span class="tag">FIND PATH IN</span><span class="file">FILE://ETHICAL · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO I</span><h3>Ethical Hacking</h3><p>Think like an attacker, act like a defender. Find the path in, then close it with intent.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>TryHackMe · Hack The Box</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Penetration Testing" data-domain="II" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="27"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/bizarro_5c4114e7bebbf379574128jpg_d6117680.jpg" alt="Penetration Testing comic artwork" loading="lazy"><span class="tag">SECURE CHAIN</span><span class="file">FILE://PENTEST · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO II</span><h3>Penetration Testing</h3><p>Scope a target, build a chain, and report the story behind every access point.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · PentesterLab</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for CTF &amp; Capture The Flag" data-domain="III" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="28"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/brainiac_5d7844ba704f9783305344jpg_b4819d3a.jpg" alt="CTF &amp; Capture The Flag comic artwork" loading="lazy"><span class="tag">FLAG RUSH</span><span class="file">FILE://CTF · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO III</span><h3>CTF &amp; Capture The Flag</h3><p>Race the clock through flags, clues, and creative problem-solving across the full security stack.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>picoCTF · CTFtime</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Digital Forensics" data-domain="IV" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="29"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/cyborg_4efd21a2.jpg" alt="Digital Forensics comic artwork" loading="lazy"><span class="tag">TRACE ARTIFACTS</span><span class="file">FILE://FORENSICS · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IV</span><h3>Digital Forensics</h3><p>Reconstruct the incident from the evidence left behind. Every artifact has a timeline.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Autopsy · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Reverse Engineering" data-domain="V" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="30"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/darkseid_5c48a0ddca621934241271jpg_697f1a96.jpg" alt="Reverse Engineering comic artwork" loading="lazy"><span class="tag">READ THE MACHINE</span><span class="file">FILE://BRAINIAC · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO V</span><h3>Reverse Engineering</h3><p>Read the machine. Dismantle binaries, crack challenges and unravel hostile code in your own sandbox.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Ghidra · Crackmes.one</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cryptography" data-domain="VI" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="31"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/doomsday_5c48a5df9de8e952366405jpg_62d9473c.jpg" alt="Cryptography comic artwork" loading="lazy"><span class="tag">CRACK THE CIPHER</span><span class="file">FILE://CIPHER · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VI</span><h3>Cryptography</h3><p>Challenge the assumptions behind secure communication, from classical ciphers to modern primitives.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CryptoHack · Cryptopals</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Web App Security" data-domain="VII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="32"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/flash_fa699639.jpg" alt="Web App Security comic artwork" loading="lazy"><span class="tag">TRUST BOUNDARY</span><span class="file">FILE://WEB · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VII</span><h3>Web App Security</h3><p>Trace the request, find the trust boundary, and secure the app from the inside out.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · OWASP Juice Shop</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Network Security" data-domain="VIII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="33"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/greenlantern_a3fc206a.jpg" alt="Network Security comic artwork" loading="lazy"><span class="tag">FOLLOW PACKETS</span><span class="file">FILE://NET · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VIII</span><h3>Network Security</h3><p>Follow the packets. Protect the paths. Learn how systems reveal their weak points in motion.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Wireshark · TryHackMe Networking</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Malware Analysis" data-domain="IX" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="34"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/jimmyolsen_5c4fa2975d673957945186jpg_06d05f61.jpg" alt="Malware Analysis comic artwork" loading="lazy"><span class="tag">SANDBOX IT</span><span class="file">FILE://MALWARE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IX</span><h3>Malware Analysis</h3><p>Understand what a suspicious file does before it gets the chance to do it again.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>ANY.RUN · REMnux</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Binary Exploitation / Pwn" data-domain="X" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="35"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/justiceleague_5be4e1a2b164c857008596jpg_6ef699b6.jpg" alt="Binary Exploitation / Pwn comic artwork" loading="lazy"><span class="tag">MEMORY EDGE</span><span class="file">FILE://PWN · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO X</span><h3>Binary Exploitation / Pwn</h3><p>Find the edge in compiled systems and turn memory behavior into a controlled result.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>pwn.college · Exploit Education</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for OSINT &amp; Social Engineering" data-domain="XI" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="36"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/krypto_5c4a61c3a365a899170981jpg_c97a417a.jpg" alt="OSINT &amp; Social Engineering comic artwork" loading="lazy"><span class="tag">SIGNAL IN PLAIN SIGHT</span><span class="file">FILE://OSINT · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XI</span><h3>OSINT &amp; Social Engineering</h3><p>Gather the signal hiding in plain sight — carefully, legally, and with a sharp eye.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>OSINT Framework · Bellingcat Toolkit</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cloud Security" data-domain="XII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="37"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/lexluthor_5c4a62d28625a055684763jpg_0f3f6999.jpg" alt="Cloud Security comic artwork" loading="lazy"><span class="tag">MISCONFIGURED BUCKET</span><span class="file">FILE://CLOUD · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XII</span><h3>Cloud Security</h3><p>Map identity, permissions, and exposed services across the modern cloud perimeter.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CloudGoat · flAWS.cloud</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Incident Response" data-domain="XIII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="38"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/perrywhite_5fc85063e9cb9772094293jpg_ccf0e612.jpg" alt="Incident Response comic artwork" loading="lazy"><span class="tag">STABILIZE FIRST</span><span class="file">FILE://RESPONSE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIII</span><h3>Incident Response</h3><p>Stabilize first. Then investigate, contain, and make the next incident harder to repeat.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>LetsDefend · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Zero-Day Hunting" data-domain="XIV" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="39"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg" alt="Zero-Day Hunting comic artwork" loading="lazy"><span class="tag">NO CHECKLIST YET</span><span class="file">FILE://ZERO-DAY · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIV</span><h3>Zero-Day Hunting</h3><p>Look for the unexpected behavior that no checklist has named yet.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Fuzzing101 · OSS-Fuzz</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Quantum &amp; Next-Gen Crypto" data-domain="XV" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="40"><span class="event-image"><img class="domain-character-art" src="https://creativesum-n5ztyent.manus.space/manus-storage/supergirl_0jpg_0fdd9e06.jpg" alt="Quantum &amp; Next-Gen Crypto comic artwork" loading="lazy"><span class="tag">POST-QUANTUM AGE</span><span class="file">FILE://QUANTUM · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XV</span><h3>Quantum &amp; Next-Gen Crypto</h3><p>Explore how tomorrow's cryptography survives the quantum age — and what breaks today.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Qiskit · NIST PQC</span></span></button></div></div>
+  <div class="featured-domain-grid" id="featuredGrid" aria-label="Animated mission dossier reel"><div class="domain-loop" id="domainLoop"><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Ethical Hacking" data-domain="I" data-manus_clickable="true" data-manus_click_id="11"><span class="event-image"><img class="domain-character-art" src="assets/villains/aquaman_5c411a95e70ff550429372jpg_d568e319.jpg" alt="Ethical Hacking comic artwork" loading="lazy"><span class="tag">FIND PATH IN</span><span class="file">FILE://ETHICAL · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO I</span><h3>Ethical Hacking</h3><p>Think like an attacker, act like a defender. Find the path in, then close it with intent.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>TryHackMe · Hack The Box</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Penetration Testing" data-domain="II" data-manus_clickable="true" data-manus_click_id="12"><span class="event-image"><img class="domain-character-art" src="assets/villains/bizarro_5c4114e7bebbf379574128jpg_d6117680.jpg" alt="Penetration Testing comic artwork" loading="lazy"><span class="tag">SECURE CHAIN</span><span class="file">FILE://PENTEST · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO II</span><h3>Penetration Testing</h3><p>Scope a target, build a chain, and report the story behind every access point.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · PentesterLab</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for CTF &amp; Capture The Flag" data-domain="III" data-manus_clickable="true" data-manus_click_id="13"><span class="event-image"><img class="domain-character-art" src="assets/villains/brainiac_5d7844ba704f9783305344jpg_b4819d3a.jpg" alt="CTF &amp; Capture The Flag comic artwork" loading="lazy"><span class="tag">FLAG RUSH</span><span class="file">FILE://CTF · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO III</span><h3>CTF &amp; Capture The Flag</h3><p>Race the clock through flags, clues, and creative problem-solving across the full security stack.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>picoCTF · CTFtime</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Digital Forensics" data-domain="IV" data-manus_clickable="true" data-manus_click_id="14"><span class="event-image"><img class="domain-character-art" src="assets/villains/cyborg_4efd21a2.jpg" alt="Digital Forensics comic artwork" loading="lazy"><span class="tag">TRACE ARTIFACTS</span><span class="file">FILE://FORENSICS · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IV</span><h3>Digital Forensics</h3><p>Reconstruct the incident from the evidence left behind. Every artifact has a timeline.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Autopsy · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Reverse Engineering" data-domain="V" data-manus_clickable="true" data-manus_click_id="15"><span class="event-image"><img class="domain-character-art" src="assets/villains/darkseid_5c48a0ddca621934241271jpg_697f1a96.jpg" alt="Reverse Engineering comic artwork" loading="lazy"><span class="tag">READ THE MACHINE</span><span class="file">FILE://BRAINIAC · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO V</span><h3>Reverse Engineering</h3><p>Read the machine. Dismantle binaries, crack challenges and unravel hostile code in your own sandbox.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Ghidra · Crackmes.one</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cryptography" data-domain="VI" data-manus_clickable="true" data-manus_click_id="16"><span class="event-image"><img class="domain-character-art" src="assets/villains/doomsday_5c48a5df9de8e952366405jpg_62d9473c.jpg" alt="Cryptography comic artwork" loading="lazy"><span class="tag">CRACK THE CIPHER</span><span class="file">FILE://CIPHER · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VI</span><h3>Cryptography</h3><p>Challenge the assumptions behind secure communication, from classical ciphers to modern primitives.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CryptoHack · Cryptopals</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Web App Security" data-domain="VII" data-manus_clickable="true" data-manus_click_id="17"><span class="event-image"><img class="domain-character-art" src="assets/villains/flash_fa699639.jpg" alt="Web App Security comic artwork" loading="lazy"><span class="tag">TRUST BOUNDARY</span><span class="file">FILE://WEB · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VII</span><h3>Web App Security</h3><p>Trace the request, find the trust boundary, and secure the app from the inside out.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · OWASP Juice Shop</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Network Security" data-domain="VIII" data-manus_clickable="true" data-manus_click_id="18"><span class="event-image"><img class="domain-character-art" src="assets/villains/greenlantern_a3fc206a.jpg" alt="Network Security comic artwork" loading="lazy"><span class="tag">FOLLOW PACKETS</span><span class="file">FILE://NET · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VIII</span><h3>Network Security</h3><p>Follow the packets. Protect the paths. Learn how systems reveal their weak points in motion.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Wireshark · TryHackMe Networking</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Malware Analysis" data-domain="IX" data-manus_clickable="true" data-manus_click_id="19"><span class="event-image"><img class="domain-character-art" src="assets/villains/jimmyolsen_5c4fa2975d673957945186jpg_06d05f61.jpg" alt="Malware Analysis comic artwork" loading="lazy"><span class="tag">SANDBOX IT</span><span class="file">FILE://MALWARE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IX</span><h3>Malware Analysis</h3><p>Understand what a suspicious file does before it gets the chance to do it again.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>ANY.RUN · REMnux</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Binary Exploitation / Pwn" data-domain="X" data-manus_clickable="true" data-manus_click_id="20"><span class="event-image"><img class="domain-character-art" src="assets/villains/justiceleague_5be4e1a2b164c857008596jpg_6ef699b6.jpg" alt="Binary Exploitation / Pwn comic artwork" loading="lazy"><span class="tag">MEMORY EDGE</span><span class="file">FILE://PWN · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO X</span><h3>Binary Exploitation / Pwn</h3><p>Find the edge in compiled systems and turn memory behavior into a controlled result.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>pwn.college · Exploit Education</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for OSINT &amp; Social Engineering" data-domain="XI" data-manus_clickable="true" data-manus_click_id="21"><span class="event-image"><img class="domain-character-art" src="assets/villains/krypto_5c4a61c3a365a899170981jpg_c97a417a.jpg" alt="OSINT &amp; Social Engineering comic artwork" loading="lazy"><span class="tag">SIGNAL IN PLAIN SIGHT</span><span class="file">FILE://OSINT · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XI</span><h3>OSINT &amp; Social Engineering</h3><p>Gather the signal hiding in plain sight — carefully, legally, and with a sharp eye.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>OSINT Framework · Bellingcat Toolkit</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cloud Security" data-domain="XII" data-manus_clickable="true" data-manus_click_id="22"><span class="event-image"><img class="domain-character-art" src="assets/villains/lexluthor_5c4a62d28625a055684763jpg_0f3f6999.jpg" alt="Cloud Security comic artwork" loading="lazy"><span class="tag">MISCONFIGURED BUCKET</span><span class="file">FILE://CLOUD · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XII</span><h3>Cloud Security</h3><p>Map identity, permissions, and exposed services across the modern cloud perimeter.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CloudGoat · flAWS.cloud</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Incident Response" data-domain="XIII" data-manus_clickable="true" data-manus_click_id="23"><span class="event-image"><img class="domain-character-art" src="assets/villains/perrywhite_5fc85063e9cb9772094293jpg_ccf0e612.jpg" alt="Incident Response comic artwork" loading="lazy"><span class="tag">STABILIZE FIRST</span><span class="file">FILE://RESPONSE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIII</span><h3>Incident Response</h3><p>Stabilize first. Then investigate, contain, and make the next incident harder to repeat.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>LetsDefend · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Zero-Day Hunting" data-domain="XIV" data-manus_clickable="true" data-manus_click_id="24"><span class="event-image"><img class="domain-character-art" src="assets/villains/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg" alt="Zero-Day Hunting comic artwork" loading="lazy"><span class="tag">NO CHECKLIST YET</span><span class="file">FILE://ZERO-DAY · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIV</span><h3>Zero-Day Hunting</h3><p>Look for the unexpected behavior that no checklist has named yet.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Fuzzing101 · OSS-Fuzz</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Quantum &amp; Next-Gen Crypto" data-domain="XV" data-manus_clickable="true" data-manus_click_id="25"><span class="event-image"><img class="domain-character-art" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80" alt="Black Adam comic artwork" loading="lazy"><span class="tag">POST-QUANTUM AGE</span><span class="file">FILE://QUANTUM · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XV</span><h3>Quantum &amp; Next-Gen Crypto</h3><p>Explore how tomorrow's cryptography survives the quantum age — and what breaks today.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Qiskit · NIST PQC</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Ethical Hacking" data-domain="I" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="26"><span class="event-image"><img class="domain-character-art" src="assets/villains/aquaman_5c411a95e70ff550429372jpg_d568e319.jpg" alt="Ethical Hacking comic artwork" loading="lazy"><span class="tag">FIND PATH IN</span><span class="file">FILE://ETHICAL · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO I</span><h3>Ethical Hacking</h3><p>Think like an attacker, act like a defender. Find the path in, then close it with intent.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>TryHackMe · Hack The Box</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Penetration Testing" data-domain="II" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="27"><span class="event-image"><img class="domain-character-art" src="assets/villains/bizarro_5c4114e7bebbf379574128jpg_d6117680.jpg" alt="Penetration Testing comic artwork" loading="lazy"><span class="tag">SECURE CHAIN</span><span class="file">FILE://PENTEST · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO II</span><h3>Penetration Testing</h3><p>Scope a target, build a chain, and report the story behind every access point.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · PentesterLab</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for CTF &amp; Capture The Flag" data-domain="III" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="28"><span class="event-image"><img class="domain-character-art" src="assets/villains/brainiac_5d7844ba704f9783305344jpg_b4819d3a.jpg" alt="CTF &amp; Capture The Flag comic artwork" loading="lazy"><span class="tag">FLAG RUSH</span><span class="file">FILE://CTF · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO III</span><h3>CTF &amp; Capture The Flag</h3><p>Race the clock through flags, clues, and creative problem-solving across the full security stack.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>picoCTF · CTFtime</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Digital Forensics" data-domain="IV" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="29"><span class="event-image"><img class="domain-character-art" src="assets/villains/cyborg_4efd21a2.jpg" alt="Digital Forensics comic artwork" loading="lazy"><span class="tag">TRACE ARTIFACTS</span><span class="file">FILE://FORENSICS · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IV</span><h3>Digital Forensics</h3><p>Reconstruct the incident from the evidence left behind. Every artifact has a timeline.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Autopsy · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Reverse Engineering" data-domain="V" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="30"><span class="event-image"><img class="domain-character-art" src="assets/villains/darkseid_5c48a0ddca621934241271jpg_697f1a96.jpg" alt="Reverse Engineering comic artwork" loading="lazy"><span class="tag">READ THE MACHINE</span><span class="file">FILE://BRAINIAC · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO V</span><h3>Reverse Engineering</h3><p>Read the machine. Dismantle binaries, crack challenges and unravel hostile code in your own sandbox.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Ghidra · Crackmes.one</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cryptography" data-domain="VI" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="31"><span class="event-image"><img class="domain-character-art" src="assets/villains/doomsday_5c48a5df9de8e952366405jpg_62d9473c.jpg" alt="Cryptography comic artwork" loading="lazy"><span class="tag">CRACK THE CIPHER</span><span class="file">FILE://CIPHER · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VI</span><h3>Cryptography</h3><p>Challenge the assumptions behind secure communication, from classical ciphers to modern primitives.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CryptoHack · Cryptopals</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Web App Security" data-domain="VII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="32"><span class="event-image"><img class="domain-character-art" src="assets/villains/flash_fa699639.jpg" alt="Web App Security comic artwork" loading="lazy"><span class="tag">TRUST BOUNDARY</span><span class="file">FILE://WEB · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VII</span><h3>Web App Security</h3><p>Trace the request, find the trust boundary, and secure the app from the inside out.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>PortSwigger Academy · OWASP Juice Shop</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Network Security" data-domain="VIII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="33"><span class="event-image"><img class="domain-character-art" src="assets/villains/greenlantern_a3fc206a.jpg" alt="Network Security comic artwork" loading="lazy"><span class="tag">FOLLOW PACKETS</span><span class="file">FILE://NET · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO VIII</span><h3>Network Security</h3><p>Follow the packets. Protect the paths. Learn how systems reveal their weak points in motion.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Wireshark · TryHackMe Networking</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Malware Analysis" data-domain="IX" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="34"><span class="event-image"><img class="domain-character-art" src="assets/villains/jimmyolsen_5c4fa2975d673957945186jpg_06d05f61.jpg" alt="Malware Analysis comic artwork" loading="lazy"><span class="tag">SANDBOX IT</span><span class="file">FILE://MALWARE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO IX</span><h3>Malware Analysis</h3><p>Understand what a suspicious file does before it gets the chance to do it again.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>ANY.RUN · REMnux</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Binary Exploitation / Pwn" data-domain="X" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="35"><span class="event-image"><img class="domain-character-art" src="assets/villains/justiceleague_5be4e1a2b164c857008596jpg_6ef699b6.jpg" alt="Binary Exploitation / Pwn comic artwork" loading="lazy"><span class="tag">MEMORY EDGE</span><span class="file">FILE://PWN · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO X</span><h3>Binary Exploitation / Pwn</h3><p>Find the edge in compiled systems and turn memory behavior into a controlled result.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>pwn.college · Exploit Education</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for OSINT &amp; Social Engineering" data-domain="XI" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="36"><span class="event-image"><img class="domain-character-art" src="assets/villains/krypto_5c4a61c3a365a899170981jpg_c97a417a.jpg" alt="OSINT &amp; Social Engineering comic artwork" loading="lazy"><span class="tag">SIGNAL IN PLAIN SIGHT</span><span class="file">FILE://OSINT · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XI</span><h3>OSINT &amp; Social Engineering</h3><p>Gather the signal hiding in plain sight — carefully, legally, and with a sharp eye.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>OSINT Framework · Bellingcat Toolkit</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Cloud Security" data-domain="XII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="37"><span class="event-image"><img class="domain-character-art" src="assets/villains/lexluthor_5c4a62d28625a055684763jpg_0f3f6999.jpg" alt="Cloud Security comic artwork" loading="lazy"><span class="tag">MISCONFIGURED BUCKET</span><span class="file">FILE://CLOUD · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XII</span><h3>Cloud Security</h3><p>Map identity, permissions, and exposed services across the modern cloud perimeter.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>CloudGoat · flAWS.cloud</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Incident Response" data-domain="XIII" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="38"><span class="event-image"><img class="domain-character-art" src="assets/villains/perrywhite_5fc85063e9cb9772094293jpg_ccf0e612.jpg" alt="Incident Response comic artwork" loading="lazy"><span class="tag">STABILIZE FIRST</span><span class="file">FILE://RESPONSE · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIII</span><h3>Incident Response</h3><p>Stabilize first. Then investigate, contain, and make the next incident harder to repeat.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>LetsDefend · CyberDefenders</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Zero-Day Hunting" data-domain="XIV" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="39"><span class="event-image"><img class="domain-character-art" src="assets/villains/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg" alt="Zero-Day Hunting comic artwork" loading="lazy"><span class="tag">NO CHECKLIST YET</span><span class="file">FILE://ZERO-DAY · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XIV</span><h3>Zero-Day Hunting</h3><p>Look for the unexpected behavior that no checklist has named yet.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Fuzzing101 · OSS-Fuzz</span></span></button><button type="button" class="event-card" aria-haspopup="dialog" aria-label="Open mission file for Quantum &amp; Next-Gen Crypto" data-domain="XV" aria-hidden="true" data-manus_clickable="true" data-manus_click_id="40"><span class="event-image"><img class="domain-character-art" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80" alt="Quantum &amp; Next-Gen Crypto comic artwork" loading="lazy"><span class="tag">POST-QUANTUM AGE</span><span class="file">FILE://QUANTUM · OPEN DECK</span></span><span class="event-card-copy"><span>DOMAIN DETAILS · NO XV</span><h3>Quantum &amp; Next-Gen Crypto</h3><p>Explore how tomorrow's cryptography survives the quantum age — and what breaks today.</p><span class="sites"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"></path></svg>Qiskit · NIST PQC</span></span></button></div></div>
       <div class="view-wrap" data-reveal="">
         <button class="button ghost" type="button" id="viewAllBtn" data-manus_clickable="true" data-manus_click_id="41">View all 15 domains ▤</button>
       </div>
@@ -990,7 +1008,7 @@ Error generating stack: `+l.message+`
           <div class="operations-rail-head"><span>RULES &amp; REGULATIONS</span><small>01—10 / CONTROLLED</small></div>
           <div class="rules-board">
             <article class="operation-rule"><span>01 / ACCESS</span><strong>Bring your college ID to check-in.</strong><small>Identity verified before entry.</small></article>
-            <article class="operation-rule"><span>02 / POD</span><strong>Register solo or as a team of two.</strong><small>One registration record per pod.</small></article>
+            <article class="operation-rule"><span>02 / POD</span><strong>Register solo or as a team of two.</strong><small>One registration record per entry.</small></article>
             <article class="operation-rule"><span>03 / SCOPE</span><strong>Work only inside the assigned environment.</strong><small>External systems remain out of scope.</small></article>
             <article class="operation-rule"><span>04 / CONDUCT</span><strong>Respect the scope, the system, and every participant.</strong><small>Professional conduct is non-negotiable.</small></article>
             <article class="operation-rule"><span>05 / BOUNDARY</span><strong>Do not probe external systems or other teams.</strong><small>Stay within the approved mission boundary.</small></article>
@@ -1023,19 +1041,19 @@ Error generating stack: `+l.message+`
         <h3>Build your <em>dossier.</em></h3>
         <p>Complete the participant record below. Your details stay focused, readable, and ready for the mission desk.</p>
         <div class="register-steps">
-          <div class="register-step"><b>01</b><div><strong>CHOOSE FORMAT</strong><small>Enter solo or with one teammate.</small></div></div>
-          <div class="register-step"><b>02</b><div><strong>IDENTIFY CREW</strong><small>Share the lead participant details.</small></div></div>
+          <div class="register-step"><b>01</b><div><strong>SOLO / DUO</strong><small>Register alone or with one teammate.</small></div></div>
+          <div class="register-step"><b>02</b><div><strong>IDENTIFY PARTICIPANT</strong><small>Share the primary participant details.</small></div></div>
           <div class="register-step"><b>03</b><div><strong>SELECT DOMAIN</strong><small>Lock one cybersecurity practice ground.</small></div></div>
           <div class="register-step"><b>04</b><div><strong>CONFIRM ENTRY</strong><small>Accept the rules and submit the record.</small></div></div>
         </div>
-        <div class="register-brief-foot"><span>ENTRY STATUS</span><strong>OPEN / 08 OCT 2026</strong></div>
+        <div class="register-brief-foot"><span>ENTRY STATUS</span><strong>OPEN / 13 OCT 2026</strong></div>
       </aside>
       <div id="regFormWrap">
         <form class="mission-form" id="regForm" novalidate="">
-          <div class="form-section-head"><span>01 · CREW FORMAT</span><p>Select your participation mode and reserve a unique seat.</p></div>
+          <div class="form-section-head"><span>01 · CREW FORMAT</span><p>Select your participation mode and reserve your place.</p></div>
           <div class="mode-toggle" role="group" aria-label="Choose solo or team of two">
-            <button type="button" class="mode-btn selected" data-mode="solo" aria-pressed="true" data-manus_clickable="true" data-manus_click_id="53">SOLO</button>
-            <button type="button" class="mode-btn" data-mode="team" aria-pressed="false" data-manus_clickable="true" data-manus_click_id="54">TEAM OF TWO</button>
+            <button type="button" class="mode-btn selected" data-mode="solo" aria-pressed="true">SOLO</button>
+            <button type="button" class="mode-btn" data-mode="team" aria-pressed="false">TEAM OF TWO</button>
           </div>
           <p class="panel-note" id="partnerNote">A pod of two. The registrant below is the Capo (team lead); your partner is the Soldato.</p>
 
@@ -1043,7 +1061,7 @@ Error generating stack: `+l.message+`
             <div class="field">
               <span>TEAM NAME / SOLO ALIAS <i>*</i></span>
               <input id="f-team" name="team" type="text" autocomplete="off" placeholder="e.g. Batman_01 or The Silent Circle" aria-describedby="e-team">
-              <small id="e-team">Required for every entry. Solo participants must enter a unique team name or alias for the registry.</small>
+              <small id="e-team">Required for every entry. Solo participants may use a unique alias.</small>
             </div>
           </div>
 
@@ -1067,7 +1085,7 @@ Error generating stack: `+l.message+`
             <div class="field">
               <span>ROLL NUMBER <i>*</i></span>
               <input id="f-roll" name="roll" type="text" autocomplete="off" placeholder="Your register number" aria-describedby="e-roll" required="" data-manus_clickable="true" data-manus_click_id="58">
-              <small id="e-roll">Enter your register number.</small>
+              <small id="e-roll">Enter your register number - letters, numbers, / and - only.</small>
             </div>
             <div class="field">
               <span>YEAR <i>*</i></span>
@@ -1109,8 +1127,21 @@ Error generating stack: `+l.message+`
             </div>
             <div class="field">
               <span>DOMAIN <i>*</i></span>
-              <select id="f-domain" name="domain" aria-describedby="e-domain" required="" data-manus_clickable="true" data-manus_click_id="60"><option value="Ethical Hacking">Ethical Hacking</option><option value="Penetration Testing">Penetration Testing</option><option value="CTF &amp; Capture The Flag">CTF &amp; Capture The Flag</option><option value="Digital Forensics">Digital Forensics</option><option value="Reverse Engineering">Reverse Engineering</option><option value="Cryptography">Cryptography</option><option value="Web App Security">Web App Security</option><option value="Network Security">Network Security</option><option value="Malware Analysis">Malware Analysis</option><option value="Binary Exploitation / Pwn">Binary Exploitation / Pwn</option><option value="OSINT &amp; Social Engineering">OSINT &amp; Social Engineering</option><option value="Cloud Security">Cloud Security</option><option value="Incident Response">Incident Response</option><option value="Zero-Day Hunting">Zero-Day Hunting</option><option value="Quantum &amp; Next-Gen Crypto">Quantum &amp; Next-Gen Crypto</option></select>
+              <select id="f-domain" name="domain" aria-describedby="e-domain" required="" data-manus_clickable="true" data-manus_click_id="60"><option value="">Select domain.</option><option value="Ethical Hacking">Ethical Hacking</option><option value="Penetration Testing">Penetration Testing</option><option value="CTF &amp; Capture The Flag">CTF &amp; Capture The Flag</option><option value="Digital Forensics">Digital Forensics</option><option value="Reverse Engineering">Reverse Engineering</option><option value="Cryptography">Cryptography</option><option value="Web App Security">Web App Security</option><option value="Network Security">Network Security</option><option value="Malware Analysis">Malware Analysis</option><option value="Binary Exploitation / Pwn">Binary Exploitation / Pwn</option><option value="OSINT &amp; Social Engineering">OSINT &amp; Social Engineering</option><option value="Cloud Security">Cloud Security</option><option value="Incident Response">Incident Response</option><option value="Zero-Day Hunting">Zero-Day Hunting</option><option value="Quantum &amp; Next-Gen Crypto">Quantum &amp; Next-Gen Crypto</option></select>
               <small id="e-domain">Pick the single domain for your pod.</small>
+            </div>
+            <div class="field">
+              <span>HOW DID YOU HEAR? <i>*</i></span>
+              <select id="f-heard" name="heard" aria-describedby="e-heard" required="" data-manus_clickable="true" data-manus_click_id="67">
+                <option value="">Select source.</option>
+                <option value="Instagram">Instagram</option>
+                <option value="WhatsApp">WhatsApp</option>
+                <option value="Friend or senior">Friend or senior</option>
+                <option value="Faculty">Faculty</option>
+                <option value="Flyer / poster">Flyer / poster</option>
+                <option value="Other">Other</option>
+              </select>
+              <small id="e-heard">Tell us how you heard about the event.</small>
             </div>
           </div>
 
@@ -1118,12 +1149,12 @@ Error generating stack: `+l.message+`
             <div class="form-section-head"><span>03 · PARTNER</span><p>Exactly one partner per pod.</p></div>
             <div class="form-grid">
               <div class="field">
-                <span>PARTNER FULL NAME</span>
+                <span>PARTNER FULL NAME <i>*</i></span>
                 <input id="f-pname" name="pname" type="text" autocomplete="off" placeholder="Partner full name" aria-describedby="e-pname" data-manus_clickable="true" data-manus_click_id="61">
                 <small id="e-pname">Enter your partner's full name.</small>
               </div>
               <div class="field">
-                <span>PARTNER YEAR</span>
+                <span>PARTNER YEAR <i>*</i></span>
                 <select id="f-pyear" name="pyear" aria-describedby="e-pyear" data-manus_clickable="true" data-manus_click_id="62">
                   <option value="">Select year…</option>
                   <option value="I">Year I</option>
@@ -1133,9 +1164,9 @@ Error generating stack: `+l.message+`
                 <small id="e-pyear">Select your partner's year.</small>
               </div>
               <div class="field">
-                <span>PARTNER ROLL NUMBER</span>
+                <span>PARTNER ROLL NUMBER <i>*</i></span>
                 <input id="f-proll" name="proll" type="text" autocomplete="off" placeholder="Partner register number" aria-describedby="e-proll" data-manus_clickable="true" data-manus_click_id="63">
-                <small id="e-proll">Enter your partner's register number.</small>
+                <small id="e-proll">Enter your partner's register number - letters, numbers, / and - only.</small>
               </div>
             </div>
           </div>
@@ -1147,9 +1178,10 @@ Error generating stack: `+l.message+`
           </label>
           <p class="field-agree-err" id="e-agree" style="display:none;color:#ff8079;font-size:9px;margin:8px 0 0">Sign the code — accept the rules to enter the ledger.</p>
 
-          <button class="button primary submit-button" type="submit" data-manus_clickable="true" data-manus_click_id="66">Submit registration ▶</button>
+          <p class="form-footnote">Registration is free. No payment or proof is required.</p>
+
+          <button class="button primary submit-button" type="submit" data-manus_clickable="true" data-manus_click_id="68">Submit registration &rarr;</button>
           <p class="form-alert" id="formAlert" role="alert"></p>
-          <p class="form-footnote">This build prepares a registration email and copyable details. Replace <strong>[CONTACT EMAIL]</strong> with the official inbox before publishing.</p>
         </form>
       </div>
 
@@ -1159,14 +1191,14 @@ Error generating stack: `+l.message+`
         </span>
         <p class="eyebrow gold"><span></span>REGISTRATION RECEIVED</p>
         <h2>Welcome to <em>the operation.</em></h2>
-        <p>Your registration is staged. Keep this ID safe and send the details to the official event inbox — that confirms your seat on the ledger.</p>
-        <div class="registration-id"><span>REGISTRATION ID</span><strong id="regId">OM26-XXXX</strong></div>
+        <p>Your registration is stored in the mission registry. Entry is free; no payment or receipt is required. Keep this ID safe for check-in.</p>
+        <div class="registration-id"><span>REGISTRATION ID</span><strong id="regId">RH26-XXXX</strong></div>
         <div class="register-actions">
-          <a class="button primary" id="mailBtn" href="#" aria-label="Send registration email">✉ Send registration email</a>
+          <a class="button primary" id="mailBtn" href="#" aria-label="Send registration email">✉ Send a copy by email</a>
           <button class="button ghost" id="copyBtn" type="button">Copy details</button>
         </div>
         <button class="text-link" id="copyLink" type="button">copy to clipboard instead</button>
-        <p class="form-footnote" id="copyNote" aria-live="polite">No email app to hand? Copy your details and send them to the inbox above.</p>
+        <p class="form-footnote" id="copyNote" aria-live="polite">Keep a copy of these details for the check-in desk.</p>
         <div class="detail-text" id="detailText"></div>
       </div>
       </div>
@@ -1184,7 +1216,7 @@ Error generating stack: `+l.message+`
       <div class="contact-grid">
           <div class="contact-card"><span>EVENT ORGANISER</span><strong>Anesh</strong><a href="tel:+917339614244">+91 73396 14244</a></div>
           <div class="contact-card"><span>WHATSAPP DESK</span><strong>Direct support</strong><a href="https://wa.me/917339614244" target="_blank" rel="noopener noreferrer">Open WhatsApp →</a></div>
-          <div class="contact-card"><span>REGISTRATION EMAIL</span><strong>Inbox support</strong><a href="mailto:registration@whitehatians.in">registration@whitehatians.in</a></div>
+          <div class="contact-card"><span>REGISTRATION EMAIL</span><strong>Inbox support</strong><a href="mailto:srmvec14@gmail.com">srmvec14@gmail.com</a></div>
           <div class="contact-card"><span>WHEN TO REACH US</span><strong>Before the mission</strong><a href="#register">Continue to registration →</a></div>
       </div>
       <div class="contact-footer"><span><strong>RESPONSE DESK ACTIVE</strong> · Reach out before the mission begins.</span><a href="#register">PROCEED TO REGISTRATION →</a></div>
@@ -1205,13 +1237,13 @@ Error generating stack: `+l.message+`
         <p id="modalDesc1"></p>
         <p id="modalDesc2"></p>
         <div class="dossier-meta" aria-label="Event details">
-          <div><span>DATE</span><strong>October 8, 2026</strong></div>
+          <div><span>DATE</span><strong>October 13, 2026</strong></div>
           <div><span>TIME</span><strong>09:00 AM IST</strong></div>
           <div><span>LOCATION</span><strong>DEP-CYS Campus</strong></div>
-          <div><span>TEAM SIZE</span><strong>Solo or duo</strong></div>
+          <div><span>ENTRY FORMAT</span><strong>Solo or duo</strong></div>
           <div><span>PARTICIPANT CAP</span><strong>30 participants</strong></div>
           <div><span>DURATION</span><strong>3 hours</strong></div>
-          <div><span>REGISTRATION FEE</span><strong>₹ 100 per team</strong></div>
+          <div><span>ENTRY FEE</span><strong>Free — no payment required</strong></div>
         </div>
         <p class="full-dossier-note">SECURE YOUR SLOT · CHOOSE YOUR DOMAIN · ENTER THE OPERATION</p>
         <div class="dossier-actions">
@@ -1256,13 +1288,13 @@ Error generating stack: `+l.message+`
   "use strict";
 
   /* ================= SWAP LIST =================
-     1. CONTACT_EMAIL — confirmation mailto + contact panel   [placeholder]
+     1. CONTACT_EMAIL — reply-to for the confirmation mailto + contact panel.
+        Set it to the same mailbox as SMTP_USER so replies land in one inbox.
      2. SOCIALS       — fill URLs; TBA chips go live
      3. PRIZE amounts — sealed until the live finale
      4. TEAM names    — committee/student-head lineup
-     5. MODEL/BRAND   — hero + card art is original inline SVG (no DC imagery)
   =============================================== */
-  var CONTACT_EMAIL = "registration@whitehatians.in";
+  var CONTACT_EMAIL = "srmvec14@gmail.com";
   var SOCIALS = { discord: "", instagram: "", linkedin: "" };
 
   function $(s, c) { return (c || document).querySelector(s); }
@@ -1344,21 +1376,21 @@ Error generating stack: `+l.message+`
     XIII: "! ]!!", XIV: "?-", XV: "?~"
   };
   var ART_IMG = {
-    I: "https://creativesum-n5ztyent.manus.space/manus-storage/aquaman_5c411a95e70ff550429372jpg_d568e319.jpg",
-    II: "https://creativesum-n5ztyent.manus.space/manus-storage/bizarro_5c4114e7bebbf379574128jpg_d6117680.jpg",
-    III: "https://creativesum-n5ztyent.manus.space/manus-storage/brainiac_5d7844ba704f9783305344jpg_b4819d3a.jpg",
-    IV: "https://creativesum-n5ztyent.manus.space/manus-storage/cyborg_4efd21a2.jpg",
-    V: "https://creativesum-n5ztyent.manus.space/manus-storage/darkseid_5c48a0ddca621934241271jpg_697f1a96.jpg",
-    VI: "https://creativesum-n5ztyent.manus.space/manus-storage/doomsday_5c48a5df9de8e952366405jpg_62d9473c.jpg",
-    VII: "https://creativesum-n5ztyent.manus.space/manus-storage/flash_fa699639.jpg",
-    VIII: "https://creativesum-n5ztyent.manus.space/manus-storage/greenlantern_a3fc206a.jpg",
-    IX: "https://creativesum-n5ztyent.manus.space/manus-storage/jimmyolsen_5c4fa2975d673957945186jpg_06d05f61.jpg",
-    X: "https://creativesum-n5ztyent.manus.space/manus-storage/justiceleague_5be4e1a2b164c857008596jpg_6ef699b6.jpg",
-    XI: "https://creativesum-n5ztyent.manus.space/manus-storage/krypto_5c4a61c3a365a899170981jpg_c97a417a.jpg",
-    XII: "https://creativesum-n5ztyent.manus.space/manus-storage/lexluthor_5c4a62d28625a055684763jpg_0f3f6999.jpg",
-    XIII: "https://creativesum-n5ztyent.manus.space/manus-storage/perrywhite_5fc85063e9cb9772094293jpg_ccf0e612.jpg",
-    XIV: "https://creativesum-n5ztyent.manus.space/manus-storage/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg",
-    XV: "https://creativesum-n5ztyent.manus.space/manus-storage/supergirl_0jpg_0fdd9e06.jpg"
+    I: "assets/villains/aquaman_5c411a95e70ff550429372jpg_d568e319.jpg",
+    II: "assets/villains/bizarro_5c4114e7bebbf379574128jpg_d6117680.jpg",
+    III: "assets/villains/brainiac_5d7844ba704f9783305344jpg_b4819d3a.jpg",
+    IV: "assets/villains/cyborg_4efd21a2.jpg",
+    V: "assets/villains/darkseid_5c48a0ddca621934241271jpg_697f1a96.jpg",
+    VI: "assets/villains/doomsday_5c48a5df9de8e952366405jpg_62d9473c.jpg",
+    VII: "assets/villains/flash_fa699639.jpg",
+    VIII: "assets/villains/greenlantern_a3fc206a.jpg",
+    IX: "assets/villains/jimmyolsen_5c4fa2975d673957945186jpg_06d05f61.jpg",
+    X: "assets/villains/justiceleague_5be4e1a2b164c857008596jpg_6ef699b6.jpg",
+    XI: "assets/villains/krypto_5c4a61c3a365a899170981jpg_c97a417a.jpg",
+    XII: "assets/villains/lexluthor_5c4a62d28625a055684763jpg_0f3f6999.jpg",
+    XIII: "assets/villains/perrywhite_5fc85063e9cb9772094293jpg_ccf0e612.jpg",
+    XIV: "assets/villains/superboy_5c5a362fd8f1b194225098jpg_58eb3927.jpg",
+    XV: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=1600&q=80"
   };
   var TAG = {
     I: "FIND PATH IN", II: "SECURE CHAIN", III: "FLAG RUSH", IV: "TRACE ARTIFACTS",
@@ -1418,6 +1450,8 @@ Error generating stack: `+l.message+`
   function openModal(num) {
     var d = byNum(num);
 
+    if (featuredGrid) featuredGrid.classList.remove("resume-after-dismiss");
+
     modalTitle.textContent = d.title;
     modalTitle.style.removeProperty("color");
     modalTitle.removeAttribute("data-color");
@@ -1434,11 +1468,27 @@ Error generating stack: `+l.message+`
     var f = $("#missionClose");
     if (f) f.focus();
   }
+  function clearCarouselResumeIfOutside() {
+    if (!featuredGrid || !featuredGrid.classList.contains("resume-after-dismiss")) return;
+    var focusInside = featuredGrid.contains(document.activeElement);
+    var pointerInside = featuredGrid.matches(":hover");
+    if (!focusInside && !pointerInside) featuredGrid.classList.remove("resume-after-dismiss");
+  }
+  if (featuredGrid) {
+    featuredGrid.addEventListener("pointerleave", clearCarouselResumeIfOutside);
+    featuredGrid.addEventListener("focusout", function (e) {
+      if (!featuredGrid.contains(e.relatedTarget)) clearCarouselResumeIfOutside();
+    });
+  }
   function closeModal() {
     modal.hidden = true;
     document.body.style.overflow = "";
     var opener = document.querySelector("[data-lastopen]");
-    if (opener) { opener.removeAttribute("data-lastopen"); opener.focus(); }
+    if (opener) {
+      opener.removeAttribute("data-lastopen");
+      if (featuredGrid && featuredGrid.contains(opener)) featuredGrid.classList.add("resume-after-dismiss");
+      opener.focus();
+    }
   }
 
   function openDirectory() {
@@ -1512,7 +1562,7 @@ Error generating stack: `+l.message+`
   });
 
   /* ---------- countdown ---------- */
-  var EVENT_TIME = new Date("2026-10-08T09:00:00+05:30").getTime();
+  var EVENT_TIME = new Date("2026-10-13T09:00:00+05:30").getTime();
   function pad(n) { return (n < 10 ? "0" : "") + n; }
   function tick() {
     var D = $("#cd-d"), H = $("#cd-h"), M = $("#cd-m"), S = $("#cd-s"), note = $("#cd-note");
@@ -1573,10 +1623,10 @@ Error generating stack: `+l.message+`
 
   /* ---------- registration ---------- */
   var form = $("#regForm"), confirmPanel = $("#regSuccess");
-  var teamBlock = $("#teamFields"), partnerBlock = $("#partnerBlock"), partnerNote = $("#partnerNote");
   var modeBtns = $$(".mode-btn");
+  var partnerBlock = $("#partnerBlock"), partnerNote = $("#partnerNote");
   var mode = "solo";
-  var LS_KEY = "om26_registrations";
+  var LS_KEY = "rh26_registrations";
   var regs = [];
   try { regs = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch (e) { regs = []; }
 
@@ -1587,14 +1637,19 @@ Error generating stack: `+l.message+`
     year: { el: "#f-year", check: function (v) { return ["I", "II", "III"].indexOf(v) !== -1; } },
     department: { el: "#f-department", check: function (v) { return v.trim().length > 0; } },
     gender: { el: "#f-gender", check: function (v) { return ["Female", "Male"].indexOf(v) !== -1; } },
-    roll: { el: "#f-roll", check: function (v) { return v.trim().length >= 3; } },
+    roll: { el: "#f-roll", check: function (v) { return /^[A-Za-z0-9][A-Za-z0-9/-]{2,39}$/.test(v.trim()); } },
     domain: { el: "#f-domain", check: function (v) { return DOMAINS.some(function (d) { return d.title === v; }); } },
     agree: { el: "#f-agree", check: function (v) { return !!v; } },
     team: { el: "#f-team", check: function (v) { return v.trim().length >= 2; } },
     pname: { el: "#f-pname", check: function (v) { return v.trim().length >= 2; } },
     pyear: { el: "#f-pyear", check: function (v) { return ["I", "II", "III"].indexOf(v) !== -1; } },
-    proll: { el: "#f-proll", check: function (v) { return v.trim().length >= 3; } }
+    proll: { el: "#f-proll", check: function (v) { return /^[A-Za-z0-9][A-Za-z0-9/-]{2,39}$/.test(v.trim()); } },
+    heard: { el: "#f-heard", check: function (v) { return HEARD_ABOUT.indexOf(v) !== -1; } }
   };
+
+  var HEARD_ABOUT = ["Instagram", "WhatsApp", "Friend or senior", "Faculty", "Flyer / poster", "Other"];
+
+  var submitting = false;
 
   function setFieldError(el, bad) {
     var wrap = el.closest(".field");
@@ -1607,14 +1662,23 @@ Error generating stack: `+l.message+`
 
   modeBtns.forEach(function (btn) {
     btn.addEventListener("click", function () {
-      mode = btn.dataset.mode;
-      modeBtns.forEach(function (b) { b.setAttribute("aria-pressed", b === btn ? "true" : "false"); b.classList.toggle("selected", b === btn); });
+      mode = btn.getAttribute("data-mode");
       var isTeam = mode === "team";
-      teamBlock.style.display = "grid";
-      teamBlock.hidden = false;
-      partnerBlock.style.display = isTeam ? "block" : "none";
+      modeBtns.forEach(function (choice) {
+        var active = choice === btn;
+        choice.classList.toggle("selected", active);
+        choice.setAttribute("aria-pressed", String(active));
+      });
       partnerBlock.hidden = !isTeam;
+      partnerBlock.style.display = isTeam ? "block" : "none";
       partnerNote.classList.toggle("on", isTeam);
+      if (!isTeam) {
+        ["pname", "pyear", "proll"].forEach(function (key) {
+          var field = $(FIELDS[key].el);
+          if (field) setFieldError(field, false);
+        });
+      }
+      clearAlert();
     });
   });
 
@@ -1624,8 +1688,38 @@ Error generating stack: `+l.message+`
     $("#e-agree").style.display = "none";
   });
 
+  /* Maps an api/_lib field path back to the input that produced it. */
+  function fieldForPath(path) {
+    if (path === "agree") return $("#f-agree");
+    if (path === "heardAbout") return $("#f-heard");
+    if (path === "domain") return $("#f-domain");
+    if (path === "teamName") return $("#f-team");
+    if (path.indexOf("partner.") === 0) {
+      var pt = path.slice(8);
+      return $("#f-p" + (pt === "rollNumber" ? "roll" : pt === "fullName" ? "name" : pt));
+    }
+    if (path.indexOf("leader.") === 0) {
+      var lt = path.slice(7);
+      return $("#f-" + (lt === "rollNumber" ? "roll" : lt === "fullName" ? "name" : lt));
+    }
+    return null;
+  }
+
+  function renderFieldErrors(fieldErrors) {
+    if (!fieldErrors) return;
+    Object.keys(fieldErrors).forEach(function (path) {
+      var el = fieldForPath(path);
+      if (!el) return;
+      setFieldError(el, true);
+      var hint = $("#e-" + el.id.replace(/^f-/, ""));
+      if (hint && fieldErrors[path] && fieldErrors[path][0]) hint.textContent = fieldErrors[path][0];
+    });
+    if (fieldErrors.agree && fieldErrors.agree[0]) $("#e-agree").style.display = "block";
+  }
+
   form.addEventListener("submit", function (ev) {
     ev.preventDefault();
+    if (submitting) return;
     clearAlert();
     $("#e-agree").style.display = "none";
 
@@ -1639,6 +1733,7 @@ Error generating stack: `+l.message+`
       gender: $("#f-gender").value,
       roll: $("#f-roll").value.trim(),
       domain: $("#f-domain").value,
+      heard: $("#f-heard").value,
       agree: $("#f-agree").checked
     };
     var team = { team: $("#f-team").value.trim() };
@@ -1659,20 +1754,61 @@ Error generating stack: `+l.message+`
     if (!$("#f-agree").checked) { $("#e-agree").style.display = "block"; ok = false; }
     if (!ok) { showAlert("A few fields need attention — the message beneath each one tells you what."); return; }
 
-    if (regs.some(function (r) { return r.email === data.email; })) {
-      showAlert("This email is already on the ledger. Check your inbox for the earlier confirmation, or speak to the committee desk.");
-      return;
-    }
-    if (team && regs.some(function (r) { return r.team && r.team.team && r.team.team.toLowerCase() === team.team.toLowerCase(); })) {
-      showAlert('The team name "' + team.team + '" is already taken. Speak to the committee desk to reclaim it.');
-      return;
-    }
+    var payload = {
+      entryFormat: mode === "team" ? "duo" : "solo",
+      teamName: team.team,
+      leader: {
+        fullName: data.name,
+        email: data.email,
+        phone: data.phone,
+        year: data.year,
+        department: data.department,
+        gender: data.gender,
+        rollNumber: data.roll
+      },
+      partner: mode === "team"
+        ? { fullName: team.pname, year: team.pyear, rollNumber: team.proll }
+        : null,
+      domain: data.domain,
+      heardAbout: data.heard,
+      agree: data.agree
+    };
 
-    var id = "OM26-" + Math.random().toString(36).slice(2, 6).toUpperCase();
-    var record = data;
-    record.team = team;
-    record.id = id;
-    record.at = new Date().toISOString();
+    var button = form.querySelector('button[type="submit"]');
+    var originalLabel = button ? button.textContent : "";
+    submitting = true;
+    if (button) { button.setAttribute("aria-busy", "true"); button.textContent = "Sealing your entry..."; }
+
+    fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; })
+        .then(function (body) { return { status: res.status, body: body }; });
+    }).then(function (result) {
+      submitting = false;
+      if (button) { button.removeAttribute("aria-busy"); button.textContent = originalLabel; }
+
+      if (result.status === 201) {
+        finishRegistration(result.body.registrationId, data, team);
+        return;
+      }
+      if (result.status === 400 || result.status === 409) {
+        renderFieldErrors(result.body.fieldErrors);
+        showAlert(result.body.error || "Some details need attention before we can seal the entry.");
+        return;
+      }
+      showAlert(result.body.error || "The registry did not respond. Please try again in a moment.");
+    }).catch(function () {
+      submitting = false;
+      if (button) { button.removeAttribute("aria-busy"); button.textContent = originalLabel; }
+      showAlert("Could not reach the registry. Check your connection and try again.");
+    });
+  });
+
+  function finishRegistration(id, data, team) {
+    var record = { mode: data.mode, email: data.email, team: team, id: id, at: new Date().toISOString() };
     regs.push(record);
     try { localStorage.setItem(LS_KEY, JSON.stringify(regs)); } catch (e) {}
 
@@ -1681,25 +1817,29 @@ Error generating stack: `+l.message+`
       "= ".repeat(20),
       "Family ID: " + id,
       "",
-      "Pod: " + (mode === "solo" ? "SOLO" : "TEAM OF TWO"),
+      "Entry format: " + (data.mode === "team" ? "TEAM OF TWO" : "SOLO"),
       "Domain: " + data.domain,
-      "Capo (Team Lead): " + data.name,
+      (data.mode === "team" ? "Capo (Team Lead): " : "Participant: ") + data.name,
       "Year: " + data.year,
       "Department: " + data.department,
       "Gender: " + data.gender,
       "Roll No: " + data.roll,
       "Email: " + data.email,
-      "Phone: " + data.phone
+      "Phone: " + data.phone,
+      "Heard about: " + data.heard,
+      "Entry fee: Free — no payment required"
     ];
-    lines.push("", (mode === "solo" ? "Solo alias: " : "Team: ") + team.team);
-    if (mode === "team") lines.push("Soldato (Partner): " + team.pname + " (Year " + team.pyear + ", " + team.proll + ")");
+    lines.push("", (data.mode === "team" ? "Team: " : "Solo alias: ") + team.team);
+    if (data.mode === "team") lines.push("Partner: " + team.pname + " (Year " + team.pyear + ", " + team.proll + ")");
     lines.push("", "I confirm the details above and accept The Code of the Reverse Hackathon 2026.");
 
     var subject = "Registration — Reverse Hackathon 2026 — " + team.team;
     var mail = $("#mailBtn");
-    mail.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) +
-      "&body=" + encodeURIComponent(lines.join("\n"));
-    mail.setAttribute("aria-label", "Send registration email to " + CONTACT_EMAIL);
+    if (mail) {
+      mail.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) +
+        "&body=" + encodeURIComponent(lines.join("\n"));
+      mail.setAttribute("aria-label", "Send registration email to " + CONTACT_EMAIL);
+    }
 
     $("#regId").textContent = id;
     $("#detailText").textContent = lines.join("\n");
@@ -1707,7 +1847,7 @@ Error generating stack: `+l.message+`
     form.hidden = true;
     confirmPanel.hidden = false;
     try { confirmPanel.scrollIntoView({ behavior: reduced ? "auto" : "smooth", block: "start" }); } catch (e) {}
-  });
+  }
 
   function copyText(txt, done) {
     function fallback() {
@@ -1733,7 +1873,7 @@ Error generating stack: `+l.message+`
     copyText(txt, function (ok) {
       copyBtn.textContent = ok ? "COPIED ✔" : "COPY AGAIN";
       $("#copyNote").textContent = ok
-        ? "Copied. Send your details to " + CONTACT_EMAIL + " to seal the seat."
+        ? "Copied. Keep this summary for the check-in desk."
         : "Select the details below and copy them manually.";
       if (ok) setTimeout(function () { copyBtn.textContent = "Copy details"; }, 2600);
     });
@@ -1744,15 +1884,19 @@ Error generating stack: `+l.message+`
     revealDetail();
     copyText(txt, function (ok) {
       $("#copyNote").textContent = ok
-        ? "Copied. Send your details to " + CONTACT_EMAIL + " to seal the seat."
+        ? "Copied. Keep this summary for the check-in desk."
         : "Select the details below and copy them manually.";
     });
   });
 
   Object.keys(FIELDS).forEach(function (key) {
     var el = $(FIELDS[key].el);
-    if (el) el.addEventListener("input", function () { setFieldError(el, false); clearAlert(); });
+    if (!el) return;
+    var clear = function () { setFieldError(el, false); clearAlert(); };
+    el.addEventListener("input", clear);
+    if (el.tagName === "SELECT") el.addEventListener("change", clear);
   });
+
 })();
 </script>
 <button class="mission-chat-launcher" id="missionChatLauncher" type="button" aria-label="Open event assistant" aria-expanded="false" aria-controls="missionChatPanel">
@@ -1765,9 +1909,9 @@ Error generating stack: `+l.message+`
     <button class="mission-chat-close" id="missionChatClose" type="button" aria-label="Close assistant">×</button>
   </div>
   <div class="mission-chat-body">
-    <p class="mission-chat-message">Say <strong>hi</strong>, ask about <strong>theme, event, payment, format</strong>, or check who can participate.</p>
+    <p class="mission-chat-message">Say <strong>hi</strong>, ask about <strong>theme, event, free registration, format</strong>, or check who can participate.</p>
     <div class="mission-chat-quick" role="list">
-      <button type="button" data-chat-topic="payment">Payment</button>
+      <button type="button" data-chat-topic="fee">Entry fee</button>
       <button type="button" data-chat-topic="theme">Theme</button>
       <button type="button" data-chat-topic="event">Event</button>
       <button type="button" data-chat-topic="format">Format</button>
@@ -1792,13 +1936,13 @@ Error generating stack: `+l.message+`
     var chatInput = document.getElementById('missionChatInput');
     if (!launcher || !panel) return;
     var replies = {
-      greeting: 'Hi! Welcome to Reverse Hackathon 2026. I can help with the event, theme, payment, format, team size, and eligibility. How can I help you?',
-      payment: 'Payment instructions, if applicable, are provided during registration. If a payment fails or you need confirmation, contact Anesh directly at <a href="tel:+917339614244">+91 73396 14244</a>.',
+      greeting: 'Hi! Welcome to Reverse Hackathon 2026. I can help with the event, theme, free registration, format, team size, and eligibility. How can I help you?',
+      fee: 'Registration is free. There is no entry fee, and no payment or receipt is required.',
       theme: 'The event follows a DC-inspired cybersecurity mission theme: comic-book heroes, controlled environments, defensive thinking, and professional incident-response discipline.',
       event: 'Reverse Hackathon 2026 is a three-hour defensive cybersecurity sprint presented by The Whitehatians and the Department of Cyber Security at SRM Valliammai Engineering College.',
       format: 'Participants choose a cybersecurity domain, work through the assigned challenge format, document their evidence, and complete a final handover before the cutoff.',
-      size: 'You can register solo or as a team of two. One registration record is created for each participant pod.',
-      eligibility: 'Students from Year I to Year III can participate across eligible departments. You may enter solo or as a team of two.'
+      size: 'Register solo or with one teammate; each entry creates one registration record.',
+      eligibility: 'Students from Year I to Year III can participate solo or in teams of two.'
     };
     function setOpen(open) {
       panel.hidden = !open;
@@ -1821,7 +1965,7 @@ Error generating stack: `+l.message+`
       var text = question.toLowerCase();
       var key = '';
       if (/^(hi|hello|hey|hai|good morning|good afternoon|good evening)\b/.test(text)) key = 'greeting';
-      else if (/payment|fee|cost|pay|register fee/.test(text)) key = 'payment';
+      else if (/payment|fee|cost|pay|register fee/.test(text)) key = 'fee';
       else if (/theme|dc|comic|superhero/.test(text)) key = 'theme';
       else if (/event|hackathon|when|date|venue|where/.test(text)) key = 'event';
       else if (/format|round|challenge|how does|process/.test(text)) key = 'format';

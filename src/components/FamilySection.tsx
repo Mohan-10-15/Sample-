@@ -103,7 +103,7 @@ export default function FamilySection() {
             <span className="gold-text">steady hands</span>
           </>
         }
-        plain="The people behind OMERTÀ 2K26. Official duties come first; the house-titles are flavour only."
+        plain="The people behind Reverse Hackathon 2026. Official duties come first; the house-titles are flavour only."
       />
 
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

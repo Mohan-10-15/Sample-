@@ -96,42 +96,6 @@
   .btn-ghost {
     @apply inline-flex items-center justify-center gap-3 rounded-sm border border-gold/50 px-7 py-3.5 font-typewriter text-xs uppercase tracking-[0.25em] text-gold transition-colors duration-200 hover:border-gold hover:text-goldHi disabled:cursor-not-allowed disabled:opacity-50;
   }
-
-  .entry-hero {
-    isolation: isolate;
-  }
-  .entry-hero::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(90deg, transparent 0%, rgba(205, 170, 102, 0.05) 50%, transparent 100%);
-    mix-blend-mode: screen;
-  }
-
-  .standards-section {
-    isolation: isolate;
-  }
-  .standards-rail {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(201, 162, 39, 0.65) rgba(239, 230, 216, 0.08);
-  }
-  .standards-rail::-webkit-scrollbar {
-    width: 6px;
-  }
-  .standards-rail::-webkit-scrollbar-track {
-    background: rgba(239, 230, 216, 0.08);
-  }
-  .standards-rail::-webkit-scrollbar-thumb {
-    background: rgba(201, 162, 39, 0.65);
-    border-radius: 999px;
-  }
-  @media (max-width: 1023px) {
-    .standards-rail {
-      max-height: none;
-      overflow: visible;
-    }
-  }
 }
 
 /* Slow floating used by decorative smoke */

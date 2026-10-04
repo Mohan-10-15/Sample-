@@ -1,93 +1,185 @@
-# OMERTÀ 2K26 — Reverse Hackathon Website
+# Reverse Hackathon 2026 — Mission Deck
 
-A production-ready, single-page event site by the **Whitehat Club, Department of Cyber Security, SRM Valliammai Engineering College**. Teams inherit an already-built, deliberately vulnerable system and must find, patch and defend their fixes before a panel of judges — with a cinematic 1970s crime-drama aesthetic (original artwork only, no film content).
+Registration site for the Reverse Hackathon 2026, run by **The Whitehatians**, Department of
+Cyber Security, SRM Valliammai Engineering College. A three-hour defensive sprint: teams receive an
+already-built, deliberately vulnerable system and must find, patch and defend the fixes.
 
-## Tech Stack
+**Live site:** <https://reverse-hackthon2k26.vercel.app/>
 
-- Next.js 14 (App Router) · TypeScript · Tailwind CSS
-- Framer Motion (scroll reveals, hero animation)
-- react-hook-form + zod (client & server validation)
-- Google Sheets API (storage via a service account — no database or admin panel)
-- nodemailer (Gmail SMTP confirmation emails)
-- `@vercel/og` (Open Graph image) · lucide-react icons
+## What is in this repo
 
-## Local Setup
+| Path | What it is |
+| --- | --- |
+| `index.html` | The whole public site — markup, CSS and JS in one file. This is what visitors get. |
+| `admin.html` | Organiser dashboard. Asks for `ADMIN_KEY`, shows registration totals and Excel download. |
+| `hero-bg.jpg`, `superman-hero.jpg`, `about-bg.jpg`, `standards-bg.jpg`, `dc-contact-art.jpg`, `dc-contact-clear.jpg` / `.webp` / `.avif`, `srm-valliammai-logo.jpg`, `assets/superman-hero.png` / `.webp` / `.avif` | Section backgrounds and art. Modern browsers use the smaller AVIF/WebP variants; original files remain as fallbacks. |
+| `assets/villains/` | The 15 gallery cards, downloaded from the old CDN so the site no longer depends on a third-party host. |
+| `og-deck.png` | Open Graph preview image. |
+| `api/` | Vercel serverless functions (Node). Registration storage + organiser API. |
+| `scripts/check-site.mjs` | Pre-deploy check. Run it before every deploy. |
+| `dev-host.cjs` | Local-only helper that serves the static site and runs `api/` without Vercel. |
+| `src/`, `next.config.mjs`, `tailwind.config.ts` | An older Next.js draft with a different theme. **Not deployed** — see "Legacy files" below. |
 
-```bash
-npm install
-cp .env.example .env.local   # then fill in the values
-npm run dev                  # http://localhost:3000
-```
+The public site is a static HTML file plus serverless functions. There is no build step for the
+front end, and no framework.
 
-Production checks:
+## Event facts
 
-```bash
-npm run lint
-npx tsc --noEmit
-npm run build
-```
+- **Date:** Tuesday, 13 October 2026, 09:00 IST (gates 08:00, ledger closes 07:00)
+- **Format:** Solo or Duo; a Duo is one team lead plus exactly one partner (no larger teams)
+- **Eligibility:** DEP-CYS students, years I–III
+- **Entry fee:** None. Registration is free; no payment or receipt is required.
 
-## Required Environment Variables
+The date lives in six places inside `index.html` — meta description, the `content:` string in
+`.landing-art-frame::after`, the hero date line, the "ENTRY STATUS" badge, the contact block, and
+`EVENT_TIME` for the countdown. Change all six together.
 
-See `.env.example`. All values are missing from the repo on purpose — never commit secrets.
+## Tech
+
+- Static HTML/CSS/vanilla JS, jQuery only for the small chat widget
+- Vercel serverless functions (Node 18+, CommonJS)
+- MongoDB Atlas (free M0 tier) via the official `mongodb` driver
+- ExcelJS for the `.xlsx` export
+- No bundler, no transpiler, no framework runtime
+
+## Environment variables
+
+Set these in **Vercel → Settings → Environment Variables** (and in `.env.local` for local work).
+See `.env.example`. Never commit real values.
 
 | Variable | Purpose |
 | --- | --- |
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | Service account for Sheets |
-| `GOOGLE_PROJECT_ID` | GCP project id |
-| `GOOGLE_PRIVATE_KEY` | Service-account PEM key (keep `\n` escapes intact) |
-| `GOOGLE_SHEET_ID` | Id from your spreadsheet URL |
 | `SMTP_HOST`, `SMTP_PORT` | Gmail SMTP (`smtp.gmail.com`, `465`) |
-| `SMTP_USER`, `SMTP_PASS` | Gmail address + app password |
-| `MAIL_FROM` | Optional display sender |
+| `SMTP_USER`, `SMTP_PASS` | Mailbox + **App Password** (see below) |
+| `MAIL_FROM` | Optional display sender. Defaults to `SMTP_USER` |
+| `MAIL_NOTIFY_TO` | Optional. Comma-separated. CC/BCC yourself on every confirmation |
+| `MONGODB_URI` | Atlas connection string, e.g. `mongodb+srv://user:pass@cluster.mongodb.net` |
+| `MONGODB_DB` | Database name (default `reversehack2026`) |
+| `ADMIN_KEY` | Long random string that unlocks `/admin.html` and every `/api/admin/*` route |
 
-### Setting up the spreadsheet
+Generate a key with:
 
-Create a Google Sheet and share it (Editor) with your service-account email. Add this header row to sheet 1, column A1:
-
+```bash
+node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
 ```
-registrationId | teamName | leaderEmail | leaderPhone | leaderFullName | leaderDepartment | leaderYear | leaderRegisterNumber | member2Name | member2Email | member2Department | member2Year | member3Name | member3Email | member3Department | member3Year | member4Name | member4Email | member4Department | member4Year | track | heardAbout | tshirtSize | submittedAt
+
+> **Gmail needs an App Password, not your account password.** If 2-Step Verification is on (and it
+> should be), the real password is rejected by `smtp.gmail.com`. Go to
+> <https://myaccount.google.com/apppasswords>, generate a 16-character App Password, and paste that
+> into `SMTP_PASS`. Port 465 with `secure: true` is already handled.
+
+Confirmation mail is sent **after** the registration is committed to MongoDB and the response is
+built, so an SMTP outage can never lose an entry. If mail fails the registration still succeeds and
+the response reports `"emailSent": false`.
+
+### Creating the free MongoDB cluster
+
+1. Sign up at <https://www.mongodb.com/atlas/register> and choose the free **M0** tier.
+2. **Create a deployment** — region closest to the college (Chennai), free tier.
+3. **Database Access** → *Add New Database User* → set a username and password → role
+   **Read and write to any database**.
+4. **Network Access** → *Add IP Address*. Vercel Functions use dynamic outbound addresses by
+   default, so a single workstation IP will not reliably allow a production connection. For a
+   production database, use a stable egress option such as [Vercel Static IPs](https://vercel.com/docs/networking/static-ips)
+   where the team's plan supports it. Avoid `0.0.0.0/0` unless you deliberately accept the
+   expanded exposure; it allows connection attempts from every public IP.
+5. **Deploy** → green **Connect** button → **Drivers** → copy the connection string.
+
+No manual collection setup is needed: `api/_lib.js` creates the indexes on first write, including
+a unique index on the lowercased team name / Solo alias and another on participant emails.
+
+> M0 free tier is **5 GB shared across the whole cluster** and caps a document at 16 MB. Keep
+> registration records concise; do not store large media files in the database.
+
+## Registration (free)
+
+Registration is free; no UPI payment, transaction ID, receipt, or proof is required. `api/_lib.js`
+is the server-side validation source of truth, and the page mirrors field errors onto the matching input.
+
+The form collects the entry format (Solo or Duo), a unique team name or Solo alias, and the primary
+participant's name, email, phone, year, department, gender and register number. Duo entries also
+require the partner's name, year and register number. Every entry includes one of 15 domains, how
+the participant heard about the event, and agreement to the rules.
+
+### API
+
+| Route | Method | Auth | Purpose |
+| --- | --- | --- | --- |
+| `/api/register` | POST | none | Store one free registration. `201`, or `400` with `fieldErrors`, `409` on duplicate team/email, `403` after the deadline, `503` if Mongo is unreachable. |
+| `/api/admin/registrations` | GET | `x-admin-key` | Registration details and Solo/Duo/participant totals; legacy payment fields are excluded. |
+| `/api/admin/export` | GET | `x-admin-key` | Streams a styled `.xlsx`. |
+
+The admin key is compared with `crypto.timingSafeEqual`, so it cannot be probed byte by byte.
+
+## Organiser dashboard
+
+Open `/admin.html`, paste the `ADMIN_KEY`, and the dashboard shows registrations, participants,
+and Solo/Duo totals. You can filter the table and download a workbook with three sheets:
+
+- **Participants** — one row per human. This is what the check-in desk wants.
+- **Registrations** — one row per entry.
+- **Summary** — event and registration totals; no fee reconciliation is included.
+
+The key is held in `sessionStorage`, so it disappears when the tab closes.
+
+For direct database inspection, sign in to MongoDB Atlas and open **Data Explorer** → the database
+selected by `MONGODB_DB` (defaults to `reversehack2026` if unset) → the `registrations` collection.
+The website admin key and Atlas database credentials are separate; keep `MONGODB_URI` private.
+
+## Local development
+
+There is nothing to build. To browse the site:
+
+```bash
+python -m http.server 8080     # or any static server
 ```
 
-Duplicates are blocked by reading this sheet before every append (same team name or any member email already present → HTTP 409).
+The API needs Node, so use the bundled helper or `vercel dev`:
 
-## Deploy to Vercel
+```bash
+npm install
+# terminal 1 - static site + api/ on http://localhost:3100
+set MONGODB_URI=...&& set ADMIN_KEY=...&& node dev-host.cjs
+# or, with the Vercel CLI (closest to production):
+npx vercel dev
+```
 
-1. Push this repo to GitHub/GitLab/Bitbucket.
-2. On Vercel: **New Project** → import your repo. Framework preset auto-detects Next.js.
-3. Add all env vars from `.env.example` in **Settings → Environment Variables**.
-4. **Deploy.** That's it — the Open Graph image and favicon build automatically.
+`vercel dev` is the better option because it runs the functions exactly as Vercel will.
 
-## Before You Go Live
+## Deploy
 
-> **First, the dates.** The working dates below (event 13 March 2026, deadline 11 March 2026) are already in the past as of today, and the registration form **auto-seals after the deadline** (the button changes to "The book is sealed" and `/api/register` refuses requests). Before you can test the form, point `registrationOpenISO`/`registrationDeadlineISO` at a future date; set them back to your real campaign window before launch.
+`vercel.json` pins `framework: null` so Vercel serves `index.html` as a static file and does **not**
+try to build the leftover Next.js app. Keep the project's Framework Preset on **Other**.
 
-1. **Edit event facts** in `src/lib/site.ts` (single source of truth):
-   - `eventDateLabel` / `eventDateTimeISO` (today the countdown uses 13 March 2026)
-   - `registrationDeadlineLabel` / `registrationDeadlineISO`, `registrationOpenISO`
-   - `prizes[]` amounts (currently working placeholders)
-   - `contact.email`, `contact.instagram`, `contact.linkedin`
-   - `tracks[]` — keep one entry to hide the track picker, or add more
-   - `schedule[]` times (provisional)
-2. Replace the team photos in `public/team/` — use exactly these filenames:
+1. Push the repo.
+2. Vercel → **New Project** → import → preset **Other**.
+3. Add `MONGODB_URI`, `MONGODB_DB` and `ADMIN_KEY` under **Environment Variables**.
+4. Deploy. `/`, `/admin.html` and `/api/*` all work immediately.
 
-   ```
-   public/team/faculty-1.jpg        faculty-2.jpg
-   public/team/president.jpg        tech-head.jpg
-   public/team/events-head.jpg      marketing-head.jpg
-   ```
+## Before you go live
 
-   Until a photo exists, an initials placeholder avatar is shown automatically. Any format `jpg/jpeg/png/webp` works; names must match.
-3. Swap real names into the "Meet the Family" cards in `src/components/FamilySection.tsx` (roles and official titles are already primary; nicknames are flavour).
-4. Update `metadataBase` in `src/app/layout.tsx` to your production URL.
-5. Proofread dates/times printed on the site against the announcement you send out.
+1. **Confirm the free-entry policy** remains accurate in the registration form, confirmation email,
+   and event announcement; do not add UPI, transaction IDs, payment screenshots, or proof uploads.
+2. **Confirm the date** in all six places listed above.
+3. **Set `ADMIN_KEY`** to a real secret. Do not reuse the local value.
+4. **Contact email.** `CONTACT_EMAIL` in `index.html` is still
+   `registration@whitehatians.in`. The confirmation mailto button uses it. Change it to the
+   organiser mailbox (`SMTP_USER`) so replies land in the same inbox.
+5. Proofread the domain list and schedule against your announcement.
 
-## Notes
+## Deploy checklist
 
-- Storage is Google Sheets by design (simplest for a club to maintain). If you ever prefer a database + admin dashboard, swap `src/lib/gsheets.ts` for a Supabase client and add a password-protected `/admin` route — the form and API contract stay the same.
-- All prices/dates/names shown are working placeholders where marked in `src/lib/site.ts`; the code ships with zero Lorem Ipsum.
-- The design is an original homage to the aesthetic of classic 1970s crime dramas; it is unaffiliated with and unendorsed by any film studio.
-## Deployed Preview
+```bash
+npm install
+npm run check        # assets, inline JS, tags, ids, dates, branding, secrets
+```
 
-The live site is available at https://reversehack-2cw9n6ya.manus.space/. This repository contains the source used for that deployment.
+`npm run check` exits non-zero on any problem and is the fastest way to catch a missing image or a
+leftover reference before you push.
 
+## Legacy files
+
+`src/`, `next.config.mjs`, `tailwind.config.ts`, `postcss.config.mjs`, `tsconfig.json` and
+`future-of-creative-ai-summit.html` are from an earlier Next.js draft with a different theme. The
+deployed site does not use them and `vercel.json` prevents Vercel from building them. Delete them
+once you are comfortable — but note `npm run dev` currently starts that old app, not this site.

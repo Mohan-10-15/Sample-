@@ -41,7 +41,7 @@ const faqs = [
   },
   {
     q: "Is this event connected to the film?",
-    a: "No. OMERTÀ 2K26 is an original design by the Whitehat Club, styled after the cinematic mood of classic 1970s crime dramas. It is not affiliated with, licensed by, or endorsed by any film studio, and no copyrighted imagery is used.",
+    a: "No. Reverse Hackathon 2026 is an original design by the Whitehat Club, styled after the cinematic mood of classic 1970s crime dramas. It is not affiliated with, licensed by, or endorsed by any film studio, and no copyrighted imagery is used.",
   },
 ];
 

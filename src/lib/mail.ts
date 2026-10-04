@@ -43,7 +43,7 @@ export async function sendConfirmationEmail(
   const html = `
   <div style="font-family:Georgia,'Times New Roman',serif;background:#0A0A0A;color:#EFE6D8;padding:40px 24px;">
     <div style="max-width:560px;margin:0 auto;border:1px solid #C9A227;padding:32px;background:#141414;">
-      <p style="margin:0 0 6px;color:#C9A227;letter-spacing:3px;font-size:12px;">OMERTÀ 2K26</p>
+      <p style="margin:0 0 6px;color:#C9A227;letter-spacing:3px;font-size:12px;">Reverse Hackathon 2026</p>
       <h1 style="margin:0 0 18px;font-size:28px;color:#EFE6D8;">Welcome to the Family.</h1>
       <p style="line-height:1.6;color:#C9BBA3;">The Family does not forget a name — and now, neither will we. Your seat at the table is reserved.</p>
       <table style="width:100%;margin:20px 0;border-top:1px solid #333;border-bottom:1px solid #333;padding:12px 0;color:#EFE6D8;">
@@ -61,9 +61,9 @@ export async function sendConfirmationEmail(
 
   try {
     await transporter.sendMail({
-      from: `"OMERTÀ 2K26 — Whitehat Club" <${from}>`,
+      from: `"Reverse Hackathon 2026 — Whitehat Club" <${from}>`,
       to: input.leader.email,
-      subject: `${registrationId} — You are part of the Family | OMERTÀ 2K26`,
+      subject: `${registrationId} — You are part of the Family | Reverse Hackathon 2026`,
       html,
     });
     return true;

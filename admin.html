@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Mission Desk | Reverse Hackathon 2026</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%2309111c'/%3E%3Ctext x='16' y='23' font-family='monospace' font-size='18' font-weight='700' fill='%23f0b74a' text-anchor='middle'%3ERH%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --ink:#09111c; --navy:#0d1b2a; --paper:#f7f1df; --cream:#fbf6e8;
+    --red:#c8352c; --gold:#f0b74a; --cyan:#58d5ee; --muted:#9caaba;
+    --line:rgba(247,241,223,.18);
+    --serif:Georgia,"Times New Roman",serif;
+    --display:"Courier New",monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;font-family:var(--display);background:var(--ink);color:var(--muted);
+    line-height:1.5;overflow-x:hidden;
+    background-image:
+      radial-gradient(1000px 520px at 12% -8%,rgba(88,213,238,.09),transparent 60%),
+      radial-gradient(760px 420px at 92% 4%,rgba(240,183,74,.07),transparent 62%);
+    background-attachment:fixed;
+  }
+  .wrap{max-width:1280px;margin:0 auto;padding:26px 18px 70px}
+
+  header.top{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end;justify-content:space-between;
+    padding-bottom:16px;border-bottom:1px solid var(--line);margin-bottom:22px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-mark{width:40px;height:40px;flex:none;border:1px solid rgba(240,183,74,.4);border-radius:3px;
+    display:grid;place-items:center;color:var(--gold);font-size:14px;font-weight:700;letter-spacing:.06em;
+    background:rgba(240,183,74,.07)}
+  .brand h1{margin:0;color:var(--paper);font:600 20px var(--serif);letter-spacing:.01em}
+  .brand small{display:block;color:#7d929f;font-size:9px;letter-spacing:.16em;margin-top:3px}
+  .top-actions{display:flex;gap:9px;flex-wrap:wrap}
+
+  .btn{font:inherit;font-size:10px;letter-spacing:.12em;cursor:pointer;border-radius:2px;
+    padding:10px 14px;border:1px solid rgba(247,241,223,.24);background:rgba(6,19,32,.7);color:#dbe7ed;
+    text-decoration:none;display:inline-flex;align-items:center;gap:7px;transition:.16s}
+  .btn:hover{border-color:var(--cyan);color:#fff}
+  .btn.primary{background:var(--gold);border-color:var(--gold);color:var(--ink);font-weight:700}
+  .btn.primary:hover{filter:brightness(1.08)}
+  .btn[disabled]{opacity:.45;pointer-events:none}
+
+  /* ---- gate ---- */
+  .gate{max-width:520px;margin:8vh auto 0;border:1px solid rgba(240,183,74,.26);border-radius:4px;
+    padding:30px 26px;background:linear-gradient(180deg,rgba(240,183,74,.06),rgba(9,17,28,.6))}
+  .gate h2{margin:0 0 6px;color:var(--paper);font:600 22px var(--serif)}
+  .gate p{margin:0 0 18px;color:#8da2b2;font-size:12px}
+  .gate label{display:block;color:var(--gold);font-size:9px;letter-spacing:.14em;margin-bottom:7px}
+  .gate input{width:100%;font:inherit;font-size:13px;color:#f4f7fb;background:rgba(3,10,17,.8);
+    border:1px solid rgba(247,241,223,.2);border-radius:2px;padding:12px}
+  .gate input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(88,213,238,.1)}
+  .gate button{width:100%;margin-top:14px;justify-content:center}
+  .gate .err{margin:12px 0 0;color:#ff9d97;font-size:11px;display:none}
+  .gate .err.on{display:block}
+  .gate .hint{margin:16px 0 0;color:#6f8494;font-size:10px}
+
+  /* ---- stats ---- */
+  .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-bottom:20px}
+  .stat{border:1px solid var(--line);border-radius:3px;padding:14px 15px;background:rgba(6,19,32,.55)}
+  .stat span{display:block;color:#8da2b2;font-size:9px;letter-spacing:.13em}
+  .stat strong{display:block;margin-top:6px;color:var(--paper);font:700 26px var(--serif);line-height:1}
+
+  .toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:14px}
+  .toolbar input[type=search]{font:inherit;font-size:12px;color:#f4f7fb;background:rgba(3,10,17,.8);
+    border:1px solid rgba(247,241,223,.2);border-radius:2px;padding:10px 12px;min-width:230px;flex:1}
+  .toolbar input[type=search]:focus{outline:none;border-color:var(--cyan)}
+  .count{color:#7d929f;font-size:10px;letter-spacing:.1em;white-space:nowrap}
+
+  /* ---- table ---- */
+  .card{border:1px solid var(--line);border-radius:3px;overflow-x:auto;background:rgba(6,19,32,.4)}
+  table{width:100%;border-collapse:collapse;min-width:860px}
+  thead th{position:sticky;top:0;z-index:2;background:#0d1b2a;color:var(--gold);text-align:left;
+    font-size:9px;letter-spacing:.13em;padding:12px 12px;border-bottom:1px solid rgba(240,183,74,.3);white-space:nowrap}
+  tbody td{padding:12px;border-bottom:1px solid rgba(247,241,223,.08);font-size:11px;vertical-align:top}
+  tbody tr:nth-child(even){background:rgba(247,241,223,.02)}
+  tbody tr:hover{background:rgba(88,213,238,.05)}
+  td.id{color:var(--cyan);white-space:nowrap}
+  td.team{color:#f4f7fb;font-weight:700}
+  td.num{text-align:right;font-variant-numeric:tabular-nums}
+  .pill{display:inline-block;font-size:9px;letter-spacing:.1em;padding:3px 8px;border-radius:99px;
+    border:1px solid rgba(88,213,238,.4);color:var(--cyan)}
+  .pill.duo{border-color:rgba(240,183,74,.45);color:var(--gold)}
+  .empty{padding:46px 20px;text-align:center;color:#7d929f;font-size:12px}
+
+  .toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%);z-index:90;
+    background:#0d1b2a;border:1px solid rgba(200,53,44,.5);color:#ff9d97;
+    padding:11px 16px;border-radius:3px;font-size:11px;max-width:90vw}
+  .toast[hidden]{display:none}
+
+  @media (max-width:900px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+  @media (max-width:520px){
+    .stats{grid-template-columns:1fr}
+    .wrap{padding:18px 13px 60px}
+    .brand h1{font-size:17px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a class="brand" href="index.html">
+      <span class="brand-mark" aria-hidden="true">RH</span>
+      <span>
+        <h1>Mission Desk</h1>
+        <small>REVERSE HACKATHON 2026 &middot; REGISTRY CONTROL</small>
+      </span>
+    </a>
+    <div class="top-actions">
+      <a class="btn" href="index.html">View site</a>
+      <button class="btn" id="refreshBtn" type="button">Refresh</button>
+      <button class="btn primary" id="exportBtn" type="button">Download Excel</button>
+      <button class="btn" id="lockBtn" type="button" hidden>Lock</button>
+    </div>
+  </header>
+
+  <!-- key gate -->
+  <section class="gate" id="gate">
+    <h2>Organiser access</h2>
+    <p>Enter the <code>ADMIN_KEY</code> configured on the server. It is kept in this browser tab only.</p>
+    <label for="keyInput">ADMIN KEY</label>
+    <input id="keyInput" type="password" autocomplete="current-password" placeholder="Paste your admin key" spellcheck="false">
+    <button class="btn primary" id="unlockBtn" type="button">Unlock registry</button>
+    <p class="err" id="gateErr" role="alert"></p>
+    <p class="hint">No login account &mdash; this key is the whole lock. Never share it publicly.</p>
+  </section>
+
+  <!-- dashboard -->
+  <section id="dash" hidden>
+    <div class="stats">
+      <div class="stat"><span>REGISTRATIONS</span><strong id="sRegs">0</strong></div>
+      <div class="stat"><span>PARTICIPANTS</span><strong id="sParts">0</strong></div>
+      <div class="stat"><span>SOLO</span><strong id="sSolo">0</strong></div>
+      <div class="stat"><span>DUO</span><strong id="sDuo">0</strong></div>
+    </div>
+
+    <div class="toolbar">
+      <input type="search" id="search" placeholder="Filter by ID, team, name, email or domain" aria-label="Filter registrations">
+      <span class="count" id="count">&nbsp;</span>
+    </div>
+
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th><th>FORMAT</th><th>TEAM / ALIAS</th><th>LEAD / PARTICIPANT</th><th>PARTNER</th>
+            <th>DOMAIN</th><th>SUBMITTED</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <p class="empty" id="empty" hidden>No registrations yet.</p>
+    </div>
+  </section>
+</div>
+
+<p class="toast" id="toast" hidden role="status"></p>
+
+<script>
+(function () {
+  "use strict";
+
+  var KEY_STORE = "rh2026_admin_key";
+  var key = "";
+  var all = [];
+
+  var $ = function (s) { return document.querySelector(s); };
+  var gate = $("#gate"), dash = $("#dash"), rowsEl = $("#rows"), emptyEl = $("#empty");
+  var toastEl = $("#toast"), toastTimer = null;
+
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.hidden = false;
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () { toastEl.hidden = true; }, 4200);
+  }
+
+  function esc(v) {
+    return String(v === undefined || v === null ? "" : v)
+      .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+  }
+
+  function fmtDate(value) {
+    if (!value) return "\u2014";
+    var d = new Date(value);
+    if (isNaN(d.getTime())) return "\u2014";
+    return d.toLocaleString("en-GB", {
+      day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit"
+    });
+  }
+
+  function api(path, options) {
+    var opts = options || {};
+    opts.headers = Object.assign({ "x-admin-key": key }, opts.headers || {});
+    return fetch(path, opts).then(function (res) {
+      return res.json().catch(function () { return {}; }).then(function (body) {
+        if (!res.ok) throw new Error(body.error || "Request failed (" + res.status + ")");
+        return body;
+      });
+    });
+  }
+
+  function render() {
+    var term = $("#search").value.trim().toLowerCase();
+    var list = all;
+    if (term) {
+      list = all.filter(function (r) {
+        return [r.registrationId, r.teamName, r.leader && r.leader.fullName, r.leader && r.leader.email,
+          r.partner && r.partner.fullName, r.domain, r.heardAbout]
+          .join(" ").toLowerCase().indexOf(term) !== -1;
+      });
+    }
+
+    $("#count").textContent = list.length + " of " + all.length + " shown";
+    emptyEl.hidden = list.length !== 0;
+    rowsEl.hidden = list.length === 0;
+
+    rowsEl.innerHTML = list.map(function (r) {
+      var partner = r.partner ? r.partner.fullName : "\u2014";
+      var partnerExtra = r.partner ? " (" + esc(r.partner.year) + ", " + esc(r.partner.rollNumber) + ")" : "";
+      return "<tr>" +
+        '<td class="id">' + esc(r.registrationId) + "</td>" +
+        '<td><span class="pill' + (r.entryFormat === "duo" ? " duo" : "") + '">' +
+          (r.entryFormat === "duo" ? "DUO" : "SOLO") + "</span></td>" +
+        '<td class="team">' + esc(r.teamName) + "</td>" +
+        "<td>" + esc(r.leader.fullName) + "<br><small style='color:#7d929f'>" +
+          esc(r.leader.email) + "</small></td>" +
+        "<td>" + partner + partnerExtra + "</td>" +
+        "<td>" + esc(r.domain) + "</td>" +
+        "<td>" + esc(fmtDate(r.submittedAt)) + "</td>" +
+      "</tr>";
+    }).join("");
+  }
+
+  function load() {
+    return api("/api/admin/registrations").then(function (data) {
+      all = data.registrations || [];
+      $("#sRegs").textContent = data.totals.registrations;
+      $("#sParts").textContent = data.totals.participants;
+      $("#sSolo").textContent = data.totals.solo;
+      $("#sDuo").textContent = data.totals.duo;
+      render();
+    });
+  }
+
+  function unlock() {
+    key = $("#keyInput").value.trim();
+    if (!key) { $("#gateErr").textContent = "Enter the admin key."; $("#gateErr").classList.add("on"); return; }
+    $("#unlockBtn").disabled = true;
+    load().then(function () {
+      try { sessionStorage.setItem(KEY_STORE, key); } catch (e) {}
+      gate.hidden = true;
+      dash.hidden = false;
+      $("#lockBtn").hidden = false;
+      $("#gateErr").classList.remove("on");
+    }).catch(function (e) {
+      key = "";
+      $("#gateErr").textContent = e.message;
+      $("#gateErr").classList.add("on");
+    }).then(function () {
+      $("#unlockBtn").disabled = false;
+    });
+  }
+
+  function lock() {
+    key = "";
+    all = [];
+    try { sessionStorage.removeItem(KEY_STORE); } catch (e) {}
+    dash.hidden = true;
+    gate.hidden = false;
+    $("#lockBtn").hidden = true;
+    $("#keyInput").value = "";
+  }
+
+  /* ---- wiring ---- */
+  $("#unlockBtn").addEventListener("click", unlock);
+  $("#keyInput").addEventListener("keydown", function (e) { if (e.key === "Enter") unlock(); });
+  $("#lockBtn").addEventListener("click", lock);
+  $("#refreshBtn").addEventListener("click", function () {
+    if (!key) return;
+    $("#refreshBtn").disabled = true;
+    load().catch(function (e) { toast(e.message); }).then(function () { $("#refreshBtn").disabled = false; });
+  });
+  $("#search").addEventListener("input", render);
+
+  $("#exportBtn").addEventListener("click", function () {
+    if (!key) return;
+    var btn = this;
+    btn.disabled = true;
+    fetch("/api/admin/export", { headers: { "x-admin-key": key } })
+      .then(function (res) {
+        if (!res.ok) return res.json().then(function (b) { throw new Error(b.error || "Export failed."); });
+        var stamp = new Date().toISOString().slice(0, 10);
+        var disp = res.headers.get("content-disposition") || "";
+        var match = disp.match(/filename="?([^";]+)"?/);
+        return res.blob().then(function (blob) { return { blob: blob, name: match ? match[1] : "registrations-" + stamp + ".xlsx" }; });
+      })
+      .then(function (out) {
+        var url = URL.createObjectURL(out.blob);
+        var a = document.createElement("a");
+        a.href = url; a.download = out.name;
+        document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+        toast("Spreadsheet downloaded.");
+      })
+      .catch(function (e) { toast(e.message); })
+      .then(function () { btn.disabled = false; });
+  });
+
+  /* Re-unlock automatically when the key is still in this tab. */
+  try {
+    var saved = sessionStorage.getItem(KEY_STORE);
+    if (saved) { key = saved; $("#keyInput").value = saved; unlock(); }
+  } catch (e) {}
+})();
+</script>
+</body>
+</html>

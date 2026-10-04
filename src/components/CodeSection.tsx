@@ -1,98 +1,119 @@
 import Reveal from "./Reveal";
-import { WaxSeal } from "./motifs";
+import SectionHeading from "./SectionHeading";
+import { OrnateCorners, WaxSeal } from "./motifs";
 import { siteConfig } from "@/lib/site";
 
-const standards = [
+const clauses = [
   {
-    numeral: "01",
-    title: "Eligibility",
-    plain: "Who gets a seat",
-    body: `Open to all full-time students of ${siteConfig.college}, from any department and year. Register solo or with a team of up to ${siteConfig.teamSize.max} participants.`,
+    numeral: "I.",
+    flavor: "Of Those Who Sit at the Table",
+    plain: "Eligibility, plainly:",
+    items: [
+      "Open to all full-time students of SRM Valliammai Engineering College, any department and year.",
+      `Teams of ${siteConfig.teamSize.min}–${siteConfig.teamSize.max}. One Capo (team lead) registers the team and answers for it.`,
+      "Only registered teams receive the vulnerable build and the credentials to the sandbox.",
+      "No prior security experience is required — fresh blood is welcome at this table.",
+    ],
   },
   {
-    numeral: "02",
-    title: "The sandbox",
-    plain: "Where the operation happens",
-    body: "Only the provided application and credentials are in scope. External hosts, the scoring platform, and other teams' systems are off limits.",
+    numeral: "II.",
+    flavor: "Of the Hunt",
+    plain: "Rules of engagement, plainly:",
+    items: [
+      "Attacks are confined to the provided application inside the sandbox. Attacking other teams, the scoring platform or any external host forfeits the day.",
+      "Each team works alone. No sharing of findings, patches, or progress with any other team.",
+      "The internet stays on for documentation and research. Crafted exploits are aimed at the target alone.",
+      "One team, one registration. A team that registers twice is turned away from the door.",
+    ],
   },
   {
-    numeral: "03",
-    title: "The hunt",
-    plain: "How the work is done",
-    body: "Research, test, document, and patch with discipline. The internet stays on for documentation, but every exploit must stay aimed at the assigned target.",
+    numeral: "III.",
+    flavor: "Of the Verdict",
+    plain: "Judging criteria, plainly:",
+    items: [
+      "Findings — the number and severity of vulnerabilities discovered and correctly patched.",
+      "Craft — the quality, safety and minimalism of each fix. A working-but-ugly patch is a story half told.",
+      "Defence — the ten-minute review before the judges, where teams explain what they found and why.",
+      "Records — the written summary of your hunt and your healing, submitted at the handover.",
+    ],
   },
   {
-    numeral: "04",
-    title: "The verdict",
-    plain: "How the council scores",
-    body: "Judges weigh findings, severity, patch quality, clarity of reasoning, and the final defence. A clean explanation matters as much as a clever exploit.",
-  },
-  {
-    numeral: "05",
-    title: "Conduct",
-    plain: "The standard we keep",
-    body: "Respect competitors, mentors, organisers, and staff. Report anything unfair immediately. The House Committee's decision is final.",
+    numeral: "IV.",
+    flavor: "Of Conduct",
+    plain: "Code of conduct, plainly:",
+    items: [
+      "Respect every member of the Family — competitors, organizers, mentors and staff.",
+      "No disruptive behaviour, no harassment, and no borrowing of favours between tables.",
+      "Report anything unfair to a steward immediately; silence helps no one.",
+      "The House Committee's word is final.",
+    ],
   },
 ];
 
 export default function CodeSection() {
   return (
-    <section
-      id="code"
-      className="standards-section relative overflow-hidden scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28 lg:px-14"
-      style={{
-        backgroundImage:
-          "linear-gradient(90deg, rgba(8,18,22,.88) 0%, rgba(8,18,22,.72) 42%, rgba(8,18,22,.5) 100%), url('/Sample-/batman-standards.png')",
-        backgroundPosition: "center right",
-        backgroundSize: "cover",
-      }}
-    >
-      <div aria-hidden className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(8,18,22,.72),rgba(8,18,22,.35)_35%,rgba(8,18,22,.72))]" />
-      <div className="relative mx-auto grid min-h-[78vh] max-w-7xl items-start gap-12 lg:grid-cols-[minmax(0,.9fr)_minmax(0,1.1fr)] lg:gap-20">
-        <div className="lg:sticky lg:top-24 lg:self-start">
-          <Reveal>
-            <p className="eyebrow">Mission standards</p>
-            <h2 className="mt-6 max-w-xl font-head text-5xl font-bold leading-[.95] text-parchment sm:text-6xl lg:text-7xl">
-              More than a challenge.
-              <span className="gold-text mt-2 block">A controlled operation.</span>
-            </h2>
-            <p className="mt-8 max-w-md text-lg leading-relaxed text-parchment/70">
-              Reverse Hackathon is built around clear boundaries, fair play, and the judgement to know what to break — and what to protect.
-            </p>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-parchment/60">
-              Read the standards before you enter the room. Every participant signs the same brief, receives the same target, and earns their result in the open.
-            </p>
-            <div className="mt-10 flex items-center gap-4 text-gold">
-              <span className="h-px w-12 bg-gold/70" aria-hidden />
-              <span className="font-typewriter text-[11px] uppercase tracking-[0.25em]">Built for disciplined curiosity</span>
-            </div>
-            <div className="mt-14 flex items-center gap-5 border-l border-gold/40 pl-5">
-              <WaxSeal className="h-20 w-20 shrink-0" />
-              <div>
-                <p className="font-typewriter text-[10px] uppercase tracking-[0.25em] text-gold">The standard</p>
-                <p className="mt-2 font-head text-2xl font-semibold text-parchment">Creative energy, backed by structure.</p>
-              </div>
-            </div>
-          </Reveal>
-        </div>
+    <section id="code" className="relative mx-auto max-w-6xl scroll-mt-20 px-5 py-20 sm:px-8 sm:py-28">
+      <SectionHeading
+        eyebrow="The Family Code"
+        title={
+          <>
+            Every house has its laws.
+            <br />
+            <span className="gold-text">These are ours.</span>
+          </>
+        }
+        plain="Rules and eligibility, in plain words — registered teams agree to uphold every clause."
+      />
 
-        <Reveal>
-          <div className="standards-rail max-h-[78vh] overflow-y-auto overscroll-contain pr-2 sm:pr-4" aria-label="Operation standards">
-            {standards.map((standard) => (
-              <article key={standard.numeral} className="standards-row border-t border-parchment/15 py-7 first:border-t-0 first:pt-0 sm:py-9">
-                <div className="grid gap-4 sm:grid-cols-[54px_1fr] sm:gap-5">
-                  <span className="font-typewriter text-sm tracking-[0.18em] text-gold">{standard.numeral}</span>
-                  <div>
-                    <h3 className="font-head text-3xl font-bold text-parchment sm:text-4xl">{standard.title}</h3>
-                    <p className="mt-1 font-typewriter text-[10px] uppercase tracking-[0.22em] text-gold/80">{standard.plain}</p>
-                    <p className="mt-4 max-w-2xl text-lg leading-relaxed text-parchment/70">{standard.body}</p>
+      <Reveal>
+        <div className="ledger relative rounded-sm p-8 sm:p-12 lg:p-16">
+          {/* Ornate inner border */}
+          <div className="pointer-events-none absolute inset-2 rounded-sm border border-goldDim/60 sm:inset-3" />
+          <OrnateCorners className="pointer-events-none absolute inset-2 text-goldDim sm:inset-3" />
+
+          <div className="relative">
+            <p className="font-typewriter text-[11px] uppercase tracking-[0.3em] text-ink/70 sm:text-xs">
+              Registered this day of our Lord, Anno 2026
+            </p>
+            <h3 className="mt-2 font-head text-3xl font-bold text-ink sm:text-4xl">
+              The Laws of the House
+            </h3>
+            <div className="mt-4 h-px w-full bg-ink/20" />
+
+            <div className="mt-10 grid gap-10 lg:grid-cols-2">
+              {clauses.map((clause) => (
+                <div key={clause.numeral}>
+                  <div className="flex items-baseline gap-2">
+                    <span className="font-display text-xl text-oxblood">{clause.numeral}</span>
+                    <h4 className="font-head text-2xl font-bold text-ink">{clause.flavor}</h4>
                   </div>
+                  <p className="mt-1 font-typewriter text-xs uppercase tracking-[0.2em] text-ink/60">
+                    {clause.plain}
+                  </p>
+                  <ul className="mt-4 space-y-3">
+                    {clause.items.map((item) => (
+                      <li key={item} className="flex gap-3 leading-relaxed text-ink/90">
+                        <span aria-hidden className="mt-[9px] h-1.5 w-1.5 shrink-0 rotate-45 bg-goldDim" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </article>
-            ))}
+              ))}
+            </div>
+
+            <div className="mt-12 flex flex-wrap items-center gap-6 rounded-sm border border-ink/20 bg-ink/5 p-6">
+              <p className="font-typewriter text-xs uppercase tracking-[0.22em] text-ink/75">
+                Sealed under oath —
+                <span className="mt-1 block text-ink/55 normal-case tracking-normal">
+                  {siteConfig.organizer} · {siteConfig.college}
+                </span>
+              </p>
+              <WaxSeal className="ml-auto h-24 w-24 drop-shadow-[0_10px_18px_rgba(61,8,16,0.45)]" />
+            </div>
           </div>
-        </Reveal>
-      </div>
+        </div>
+      </Reveal>
     </section>
   );
 }

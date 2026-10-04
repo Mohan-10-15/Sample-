@@ -32,7 +32,7 @@ const defaultValues = (): RegistrationInput => ({
     year: "I",
     registerNumber: "",
   },
-  members: [],
+  members: [{ fullName: "", email: "", department: "", year: "I" }],
   track: siteConfig.tracks[0]?.id ?? "appsense",
   heardAbout: "",
   tshirtSize: undefined,
@@ -215,7 +215,7 @@ export default function RegistrationSection() {
             <span className="gold-text">Family&apos;s book</span>
           </>
         }
-        plain="Register solo or with a team. Every entry needs a unique team name or solo alias so the registry can identify your seat."
+        plain="Every team registers once. The Capo (team lead) signs for the whole family — duplicate teams and emails are refused at the door."
       />
 
       {isClosed ? (
@@ -248,21 +248,18 @@ export default function RegistrationSection() {
               <div className="mt-5 grid gap-6 sm:grid-cols-2">
                 <div>
                   <label htmlFor="teamName" className="field-label">
-                    Team name / solo alias <span aria-hidden className="text-gold">*</span>
+                    Team name <span aria-hidden className="text-gold">*</span>
                   </label>
                   <input
                     id="teamName"
                     className="field"
-                    placeholder="e.g. Batman_01 or The Silent Fixers"
+                    placeholder="e.g. The Silent Fixers"
                     autoComplete="organization"
                     aria-invalid={!!errors.teamName}
                     aria-describedby={errors.teamName ? "teamName-error" : undefined}
                     {...register("teamName")}
                   />
                   <FieldError id="teamName-error" message={errors.teamName?.message} />
-                  <p className="mt-2 text-xs leading-relaxed text-parchment/45">
-                    Registering solo? Use any unique alias for your entry.
-                  </p>
                 </div>
                 <div>
                   <label htmlFor="track" className="field-label">
@@ -412,11 +409,11 @@ export default function RegistrationSection() {
               <legend className="flex items-baseline justify-between gap-3 font-head text-2xl font-bold text-gold">
                 <span className="flex items-baseline gap-3">
                   <span aria-hidden className="font-display text-base text-gold/60">III.</span>
-                  The Crew — optional team members
+                  The Crew — team members
                 </span>
               </legend>
               <p className="mt-2 font-typewriter text-xs uppercase tracking-[0.22em] text-parchment/55">
-                {memberCount} of {siteConfig.teamSize.max} seats filled — register solo or add up to {siteConfig.teamSize.max - 1} teammates.
+                {memberCount} of {siteConfig.teamSize.max} seats filled — the Capo counts as one.
               </p>
 
               <div className="mt-6 space-y-8">
@@ -545,7 +542,7 @@ export default function RegistrationSection() {
                   className="mt-6 inline-flex items-center gap-2 rounded-sm border border-gold/40 px-4 py-2.5 font-typewriter text-[11px] uppercase tracking-[0.2em] text-gold transition-colors hover:border-gold hover:text-goldHi"
                 >
                   <UserPlus className="h-4 w-4" aria-hidden />
-                  Add a teammate
+                  Add a member
                 </button>
               ) : (
                 <p className="mt-6 font-typewriter text-xs uppercase tracking-[0.2em] text-parchment/50">

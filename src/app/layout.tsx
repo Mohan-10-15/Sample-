@@ -34,15 +34,15 @@ const typewriter = Courier_Prime({
   display: "swap",
 });
 
-const title = `OMERTÀ 2K26 — Reverse Hackathon | ${siteConfig.college}`;
+const title = `Reverse Hackathon 2026 — Reverse Hackathon | ${siteConfig.college}`;
 const description =
   "A reverse hackathon by the Whitehat Club, Department of Cyber Security, SRM Valliammai Engineering College. Teams receive an already-built, deliberately vulnerable system — and must find, patch and defend it before the Family. Form your family, register today.";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://omerta2k26.vercel.app"),
+  metadataBase: new URL("https://reverse-hack.vercel.app"),
   title,
   description,
-  applicationName: "OMERTÀ 2K26",
+  applicationName: "Reverse Hackathon 2026",
   keywords: [
     "reverse hackathon",
     "hackathon",
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     "Whitehat Club",
     "SRM Valliammai",
     "Chennai",
-    "OMERTA 2K26",
+    "Reverse Hackathon 2026",
     "CTF",
     "application security",
   ],
@@ -59,7 +59,7 @@ export const metadata: Metadata = {
     locale: "en_IN",
     title,
     description,
-    siteName: "OMERTÀ 2K26",
+    siteName: "Reverse Hackathon 2026",
     url: "/",
     images: ["/og.png"],
   },

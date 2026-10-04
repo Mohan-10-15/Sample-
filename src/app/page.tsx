@@ -1,4 +1,3 @@
-// Reverse Hackathon 2026 source synced from deployed preview: 2026-09-22
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Contract from "@/components/Contract";

@@ -83,7 +83,7 @@ const tree = h(
           display: "flex",
         },
       },
-      "OMERTÀ",
+      "RH",
     ),
     h(
       "div",
@@ -98,7 +98,7 @@ const tree = h(
           display: "flex",
         },
       },
-      "2K26",
+      "2026",
     ),
   ),
   // Organizer eyebrow

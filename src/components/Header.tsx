@@ -27,8 +27,8 @@ export default function Header() {
             O
           </span>
           <span className="font-display text-lg font-bold tracking-[0.2em] text-parchment">
-            OMERTÀ
-            <span className="ml-2 text-sm font-normal tracking-[0.3em] text-gold">2K26</span>
+            RH
+            <span className="ml-2 text-sm font-normal tracking-[0.3em] text-gold">2026</span>
           </span>
         </a>
 
@@ -46,7 +46,7 @@ export default function Header() {
             href="#register"
             className="rounded-sm border border-gold/70 px-4 py-2 font-typewriter text-[11px] uppercase tracking-[0.22em] text-gold transition-colors hover:bg-gold hover:text-noir"
           >
-            Lock your seat
+            Register
           </a>
         </nav>
 
@@ -86,7 +86,7 @@ export default function Header() {
                 onClick={() => setOpen(false)}
                 className="mt-1 block rounded-sm border border-gold/70 px-2 py-2.5 text-center font-typewriter text-xs uppercase tracking-[0.22em] text-gold"
               >
-                Lock your seat
+                Join the Family — Register
               </a>
             </li>
           </ul>

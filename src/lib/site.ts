@@ -1,5 +1,5 @@
 // =============================================================================
-// OMERTÀ 2K26 — SITE CONFIGURATION
+// Reverse Hackathon 2026 — SITE CONFIGURATION
 // -----------------------------------------------------------------------------
 // Every editable event value lives in this one file. Edit here and the whole
 // site, form, countdown and confirmation emails update together.
@@ -15,8 +15,8 @@
 // =============================================================================
 
 export const siteConfig = {
-  eventName: "OMERTÀ 2K26",
-  eventNameAccent: "2K26",
+  eventName: "Reverse Hackathon 2026",
+  eventNameAccent: "2026",
   tagline:
     "They hand you the system. You find the weakness, mend the wound, and answer for it before the Family.",
   /** Single working date — EDIT-ME: DD MMMM YYYY */
@@ -41,7 +41,7 @@ export const siteConfig = {
   organizer: "Whitehat Club, Department of Cyber Security",
   college: "SRM Valliammai Engineering College",
 
-  teamSize: { min: 1, max: 4 as const },
+  teamSize: { min: 2, max: 4 as const },
 
   /** EDIT-ME: The Cut (prizes). Update amounts/currencies freely. */
   prizes: [

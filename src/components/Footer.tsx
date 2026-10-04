@@ -32,10 +32,10 @@ export default function Footer() {
               <Crest className="h-14 w-12" />
               <div>
                 <p className="font-display text-xl font-bold tracking-[0.18em] text-parchment">
-                  OMERTÀ
+                  RH
                 </p>
                 <p className="font-typewriter text-[10px] uppercase tracking-[0.3em] text-gold">
-                  2K26 · Reverse Hackathon
+                  2026 · Reverse Hackathon
                 </p>
               </div>
             </div>
@@ -95,12 +95,12 @@ export default function Footer() {
               The Statement
             </h3>
             <p className="mt-5 max-w-sm leading-relaxed text-parchment/60">
-              OMERTÀ 2K26 is an original design by the Whitehat Club, Department of Cyber Security,{" "}
+              Reverse Hackathon 2026 is an original design by the Whitehat Club, Department of Cyber Security,{" "}
               {siteConfig.college}, drawn from the mood of classic 1970s crime dramas. It is not
               affiliated with, licensed by, or endorsed by any film studio; all artwork is original.
             </p>
             <p className="mt-5 font-typewriter text-[11px] uppercase tracking-[0.25em] text-parchment/40">
-              Sealed under oath · Anno 2K26
+              Sealed under oath · Anno 2026
             </p>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function Footer() {
             {siteConfig.organizer} · {siteConfig.college}
           </p>
           <p className="font-typewriter text-[11px] tracking-[0.22em] text-parchment/45">
-            © 2026 OMERTÀ 2K26 — The Family remembers.
+            © 2026 Reverse Hackathon 2026 — The Family remembers.
           </p>
         </div>
       </div>
