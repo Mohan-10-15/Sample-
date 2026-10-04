@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Future of Creative AI Summit — Live Online Event 2026</title>
+<meta name="description" content="The Future of Creative AI Summit is a live, online event where designers, artists and founders explore what it means to make with machines. Reserve your seat." />
+<meta property="og:title" content="Future of Creative AI Summit 2026" />
+<meta property="og:description" content="A live, online summit on creative AI: one morning, five sessions, hundreds of makers. Register to join live." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="og-summit.png" />
+<!-- NOTE: swap og:image to an absolute URL once deployed -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Future of Creative AI Summit 2026" />
+<meta name="twitter:description" content="A live, online summit on creative AI. Reserve your seat." />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23a78bfa'/%3E%3Cstop offset='1' stop-color='%231e2749'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Georgia,serif' font-size='26' font-weight='700' text-anchor='middle' fill='%23fbf8f2'%3EFc%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --midnight: #1e2749;
+    --midnight-deep: #151a33;
+    --midnight-2: #262f57;
+    --lav: #a78bfa;
+    --lav-soft: #c4b5fd;
+    --lav-100: #ede9fe;
+    --cream: #fbf8f2;
+    --cream-2: #f3ede1;
+    --ink: #1b2340;
+    --muted: #4d5670;
+    --link: #5b21b6;
+    --line: #e7e0d2;
+    --white: #ffffff;
+    --radius: 22px;
+    --font-display: "Sora", ui-sans-serif, system-ui, sans-serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background:
+      radial-gradient(900px 440px at 88% -10%, rgba(167,139,250,.16), transparent 60%),
+      radial-gradient(760px 420px at -8% 14%, rgba(196,181,253,.22), transparent 60%),
+      var(--cream);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+  img, svg { max-width: 100%; display: block; }
+  a { color: var(--link); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible {
+    outline: 3px solid var(--lav); outline-offset: 2px; border-radius: 8px;
+  }
+  .skip-link {
+    position: fixed; top: -60px; left: 14px; z-index: 300;
+    background: var(--midnight); color: var(--cream); padding: 10px 16px;
+    border-radius: 10px; text-decoration: none; transition: top .2s ease;
+  }
+  .skip-link:focus { top: 14px; }
+  .wrap { width: min(1120px, 92vw); margin-inline: auto; }
+  .section { padding: 84px 0; }
+  .kicker {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--link); background: var(--lav-100); border: 1px solid rgba(167,139,250,.35);
+    padding: 7px 14px; border-radius: 999px; margin: 0;
+  }
+  h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0; color: var(--midnight); }
+  h2.sec { font-size: clamp(28px, 4.4vw, 42px); letter-spacing: -0.02em; }
+  .sec-sub { color: var(--muted); font-size: 17px; max-width: 56ch; margin: 14px auto 0; }
+  .center { text-align: center; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--font-display); font-weight: 600; font-size: 15px;
+    padding: 13px 24px; border-radius: 999px; border: 1px solid transparent;
+    cursor: pointer; text-decoration: none; transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: linear-gradient(135deg, var(--lav), #7c5cf0 120%); color: #fff; box-shadow: 0 10px 26px rgba(124,92,240,.32); }
+  .btn-primary:hover { box-shadow: 0 14px 32px rgba(124,92,240,.42); }
+  .btn-ghost { background: transparent; border-color: var(--midnight); color: var(--midnight); }
+  .btn-ghost:hover { background: rgba(30,39,73,.05); }
+  .btn-cream { background: var(--cream); color: var(--midnight); }
+  .btn-cream:hover { box-shadow: 0 12px 28px rgba(0,0,0,.25); }
+
+  /* ---------- Header ---------- */
+  .site-head {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(251,248,242,.86); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(231,224,210,.8);
+  }
+  .head-inner { display: flex; align-items: center; gap: 20px; padding: 14px 0; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; color: inherit; }
+  .brand-mark {
+    width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; flex: none;
+    background: linear-gradient(135deg, var(--lav), #7c5cf0 130%);
+    color: #fff; font-family: var(--font-display); font-weight: 800; font-size: 17px;
+    box-shadow: 0 6px 16px rgba(124,92,240,.3);
+  }
+  .brand-name { font-family: var(--font-display); font-weight: 700; font-size: 15px; color: var(--midnight); line-height: 1.2; }
+  .brand-name span { display: block; font-family: var(--font-body); font-weight: 500; font-size: 12px; color: var(--muted); }
+  .nav-desktop { margin-left: auto; display: flex; align-items: center; gap: 26px; }
+  .nav-desktop a { color: var(--muted); text-decoration: none; font-size: 14.5px; font-weight: 500; }
+  .nav-desktop a:hover { color: var(--midnight); }
+  .nav-cta { margin-left: 8px; }
+  .nav-desktop .btn { padding: 10px 20px; font-size: 14px; }
+  .menu-toggle {
+    margin-left: auto; display: none; border: 1px solid var(--line); background: var(--white);
+    border-radius: 12px; width: 44px; height: 44px; cursor: pointer; color: var(--midnight);
+  }
+  .nav-mobile {
+    display: none; position: absolute; left: 0; right: 0; top: 72px; background: var(--cream);
+    border-bottom: 1px solid var(--line); padding: 10px 4vw 22px; box-shadow: 0 24px 40px rgba(21,26,51,.12);
+  }
+  .nav-mobile.open { display: block; }
+  .nav-mobile a { display: block; padding: 13px 6px; color: var(--ink); text-decoration: none; font-weight: 500; font-size: 16px; border-bottom: 1px solid var(--line); }
+  .nav-mobile a:last-of-type { border-bottom: none; }
+  .nav-mobile .btn { margin-top: 14px; width: 100%; }
+
+  /* ---------- Hero ---------- */
+  .hero { position: relative; padding: 72px 0 88px; overflow: hidden; }
+  .hero-blob { position: absolute; border-radius: 50%; filter: blur(70px); opacity: .55; pointer-events: none; }
+  .hero-blob.a { width: 380px; height: 380px; background: var(--lav); top: -80px; right: -60px; }
+  .hero-blob.b { width: 420px; height: 420px; background: #f0e7f9; bottom: -140px; left: -120px; }
+  .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  .hero .kicker { background: var(--lav-100); color: var(--link); }
+  .hero h1 { margin-top: 18px; font-size: clamp(34px, 5.6vw, 58px); letter-spacing: -0.03em; }
+  .hero h1 em { font-style: normal; background: linear-gradient(90deg, #7c5cf0, var(--lav)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero .lead { color: var(--muted); font-size: 18px; max-width: 50ch; margin: 20px 0 26px; }
+  .hero-meta { display: flex; flex-wrap: wrap; gap: 12px 18px; margin-bottom: 30px; }
+  .hero-meta .chip { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; color: var(--midnight); background: var(--white); border: 1px solid var(--line); border-radius: 999px; padding: 9px 15px; }
+  .hero-ctas { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-note { margin-top: 18px; font-size: 13.5px; color: var(--muted); }
+
+  /* ---------- Register card ---------- */
+  .reg-card {
+    position: relative; background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--line); box-shadow: 0 30px 60px rgba(30,39,73,.12);
+    padding: 30px 28px;
+  }
+  .reg-card::before { content: ""; position: absolute; inset: 0; border-radius: var(--radius); padding: 1px;
+    background: linear-gradient(135deg, rgba(167,139,250,.7), rgba(196,181,253,.2) 45%, rgba(30,39,73,.08));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; }
+  .reg-card h3 { font-size: 21px; letter-spacing: -0.01em; }
+  .reg-card .reg-sub { color: var(--muted); font-size: 14.5px; margin: 6px 0 20px; }
+  .field { margin-bottom: 15px; }
+  .field label { display: block; font-size: 13.5px; font-weight: 600; color: var(--midnight); margin-bottom: 6px; }
+  .field .req { color: var(--link); }
+  .field input, .field select {
+    width: 100%; font: 500 15px/1.4 var(--font-body); color: var(--ink);
+    background: var(--cream); border: 1px solid var(--line); border-radius: 12px;
+    padding: 12px 14px; transition: border-color .15s ease, box-shadow .15s ease;
+  }
+  .field input::placeholder { color: #9aa1b4; }
+  .field input:focus, .field select:focus { border-color: var(--lav); background: #fff; box-shadow: 0 0 0 4px rgba(167,139,250,.16); }
+  .field.is-error input, .field.is-error select { border-color: #d64545; box-shadow: 0 0 0 4px rgba(214,69,69,.12); }
+  .err-msg { display: none; color: #b33333; font-size: 13px; margin: 6px 0 0; }
+  .field.is-error .err-msg { display: block; }
+  .form-alert { background: #fdecec; color: #9c2323; border: 1px solid #f3c6c6; border-radius: 12px; padding: 11px 14px; font-size: 14px; margin-bottom: 15px; }
+  .reg-card .btn { width: 100%; }
+  .reg-lock { display: flex; align-items: center; gap: 8px; margin-top: 15px; font-size: 12.5px; color: var(--muted); justify-content: center; }
+  .reg-success { text-align: center; padding: 8px 0; }
+  .reg-success .ok-mark { width: 64px; height: 64px; margin: 0 auto 18px; border-radius: 50%; display: grid; place-items: center; background: linear-gradient(135deg, var(--lav), #7c5cf0); color: #fff; box-shadow: 0 14px 30px rgba(124,92,240,.35); }
+  .reg-success h3 { margin-bottom: 10px; }
+  .reg-success p { color: var(--muted); margin: 0 0 6px; }
+  .reg-id { font-family: var(--font-display); font-weight: 700; font-size: 17px; color: var(--midnight); background: var(--lav-100); border-radius: 12px; padding: 10px; margin: 14px 0 20px; }
+  .reg-success .btn { width: auto; }
+  .reg-success .row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .copy-note { font-size: 13px; color: var(--muted); margin-top: 14px; }
+  .detail-text { text-align: left; white-space: pre-wrap; background: var(--cream); border: 1px dashed var(--line); border-radius: 12px; padding: 14px; font-size: 13px; color: var(--muted); margin: 14px 0 0; }
+
+  /* ---------- Stats ---------- */
+  .stats { padding: 34px 0; border-block: 1px solid var(--line); background: rgba(255,255,255,.5); }
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+  .stat-num { font-family: var(--font-display); font-weight: 800; font-size: clamp(26px, 3.6vw, 40px); color: var(--midnight); }
+  .stat-num em { font-style: normal; color: #7c5cf0; }
+  .stat-label { color: var(--muted); font-size: 14px; margin-top: 4px; }
+
+  /* ---------- Speakers ---------- */
+  .speakers-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+  .speaker {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 28px 24px; text-align: center; transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .speaker:hover { transform: translateY(-4px); box-shadow: 0 22px 44px rgba(30,39,73,.1); }
+  .avatar {
+    width: 96px; height: 96px; margin: 0 auto 18px; border-radius: 50%;
+    display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 26px; color: #fff;
+    background: linear-gradient(135deg, var(--lav), #7c5cf0);
+    box-shadow: 0 10px 24px rgba(124,92,240,.3);
+  }
+  .avatar.t2 { background: linear-gradient(135deg, #7c5cf0, var(--midnight)); }
+  .avatar.t3 { background: linear-gradient(135deg, var(--lav-soft), #7c5cf0); }
+  .speaker h3 { font-size: 19px; }
+  .speaker .role { font-family: var(--font-display); font-size: 13px; font-weight: 600; color: #7c5cf0; letter-spacing: .02em; }
+  .speaker .bio { color: var(--muted); font-size: 14.5px; margin: 10px 0 0; }
+  .tba-chip { display: inline-block; margin-top: 12px; font-size: 11.5px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); background: var(--cream-2); border-radius: 999px; padding: 5px 11px; }
+
+  /* ---------- Agenda ---------- */
+  .agenda { background: linear-gradient(180deg, var(--midnight-deep), var(--midnight)); color: var(--cream); border-radius: 26px; padding: 48px clamp(24px, 5vw, 56px); margin-top: 44px; }
+  .agenda h2.sec { color: var(--cream); }
+  .agenda .sec-sub { color: #b9c2dd; }
+  .agenda-list { list-style: none; margin: 34px 0 0; padding: 0; position: relative; }
+  .agenda-list::before { content: ""; position: absolute; left: 70px; top: 14px; bottom: 14px; width: 2px; background: linear-gradient(180deg, var(--lav), rgba(167,139,250,.15)); }
+  @media (max-width: 560px) { .agenda-list::before { left: 6px; } }
+  .a-item { display: flex; gap: 26px; align-items: flex-start; padding: 18px 10px 18px 0; position: relative; }
+  .a-item .dot { flex: none; width: 14px; height: 14px; margin-top: 26px; border-radius: 50%; background: var(--lav); box-shadow: 0 0 0 5px rgba(167,139,250,.18); }
+  .a-time { flex: none; width: 46px; font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--lav-soft); margin-top: 24px; text-align: right; }
+  .a-content { flex: 1; }
+  .a-content h3 { color: var(--cream); font-size: 17px; margin: 18px 0 4px; }
+  .a-content p { color: #b9c2dd; margin: 0; font-size: 14.5px; max-width: 58ch; }
+  @media (max-width: 560px) { .a-item { gap: 12px; padding-left: 0; } .a-time { width: auto; min-width: 46px; } .a-content h3 { margin-top: 0; } }
+  .agenda-note { margin-top: 8px; font-size: 13px; color: #9aa6c6; }
+
+  /* ---------- Testimonials ---------- */
+  .quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 44px; }
+  .quote {
+    background: var(--white); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 26px 24px; display: flex; flex-direction: column; gap: 14px;
+  }
+  .quote .stars { color: #7c5cf0; letter-spacing: 3px; font-size: 15px; }
+  .quote blockquote { margin: 0; color: var(--ink); font-size: 15.5px; font-style: italic; flex: 1; }
+  .quote footer { display: flex; align-items: center; gap: 12px; }
+  .quote .q-avatar { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-weight: 700; color: #fff; font-size: 15px; background: linear-gradient(135deg, var(--lav), #7c5cf0); flex: none; }
+  .quote footer .by { font-weight: 600; color: var(--midnight); font-size: 14.5px; }
+  .quote footer .org { font-size: 13px; color: var(--muted); }
+
+  /* ---------- FAQ ---------- */
+  .faq-max { max-width: 760px; margin: 40px auto 0; }
+  .faq-item { background: var(--white); border: 1px solid var(--line); border-radius: 16px; margin-bottom: 12px; overflow: hidden; }
+  .faq-q { width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 14px; text-align: left; background: none; border: none; cursor: pointer; font: 600 16px var(--font-display); color: var(--midnight); padding: 18px 20px; }
+  .faq-q .chev { flex: none; width: 30px; height: 30px; border-radius: 50%; background: var(--lav-100); color: var(--link); display: grid; place-items: center; transition: transform .25s ease; }
+  .faq-item.is-open .chev { transform: rotate(180deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height .3s ease; }
+  .faq-a-inner { padding: 0 20px 20px; color: var(--muted); font-size: 15px; }
+
+  /* ---------- Footer ---------- */
+  .site-foot { background: var(--midnight-deep); color: #c6cde4; margin-top: 40px; }
+  .foot-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 40px; padding: 56px 0 40px; }
+  .foot-grid h4 { font-size: 13px; letter-spacing: .1em; text-transform: uppercase; margin: 0 0 16px; color: var(--lav-soft); }
+  .foot-grid a { color: #c6cde4; text-decoration: none; }
+  .foot-grid a:hover { color: var(--lav-soft); text-decoration: underline; }
+  .foot-grid ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .foot-about p { margin: 14px 0 0; font-size: 14.5px; max-width: 40ch; }
+  .foot-about .brand-name { color: var(--cream); margin-top: 14px; }
+  .foot-bottom { border-top: 1px solid rgba(255,255,255,.09); padding: 20px 0; display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; font-size: 13.5px; }
+  .social-row { display: flex; gap: 10px; margin-top: 18px; }
+  .social-chip { display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: #c6cde4; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; padding: 8px 14px; text-decoration: none; }
+  .social-chip.is-live { color: var(--lav-soft); border-color: rgba(167,139,250,.5); }
+
+  /* ---------- Reveal ---------- */
+  [data-reveal] { opacity: 0; transform: translateY(22px); transition: opacity .6s ease, transform .6s ease; }
+  [data-reveal].in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    [data-reveal] { opacity: 1; transform: none; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .hero { padding: 48px 0 64px; }
+    .speakers-grid, .quote-grid { grid-template-columns: 1fr; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .foot-grid { grid-template-columns: 1fr; gap: 28px; }
+    .nav-desktop { display: none; }
+    .menu-toggle { display: grid; place-items: center; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap head-inner">
+    <a class="brand" href="#top" aria-label="Future of Creative AI Summit — home">
+      <span class="brand-mark" aria-hidden="true">Fc</span>
+      <span class="brand-name">Future of Creative AI<span>Creative AI Summit · 2026</span></span>
+    </a>
+    <nav class="nav-desktop" aria-label="Primary">
+      <a href="#speakers">Speakers</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#faq">FAQ</a>
+      <a class="btn btn-primary nav-cta" href="#register">Register now</a>
+    </nav>
+    <button class="menu-toggle" id="menuBtn" aria-expanded="false" aria-controls="mobileNav" aria-label="Toggle menu" type="button">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+  <nav class="nav-mobile" id="mobileNav" aria-label="Mobile">
+    <a href="#speakers">Speakers</a>
+    <a href="#agenda">Agenda</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn-primary" href="#register">Register now</a>
+  </nav>
+</header>
+
+<main id="main">
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="hero-blob a" aria-hidden="true"></div>
+    <div class="hero-blob b" aria-hidden="true"></div>
+    <div class="wrap hero-grid">
+      <div>
+        <p class="kicker">Live online event · 2026</p>
+        <h1 id="hero-title">The creative tools are learning. <em>Are you ready?</em></h1>
+        <p class="lead">The Future of Creative AI Summit is a single, focused online morning where designers, artists, writers and founders meet the machine — in practice, not theory.</p>
+        <div class="hero-meta">
+          <!-- NOTE: replace date/"few hours away" once the date is fixed -->
+          <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cf0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Date announced soon · morning session</span>
+          <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cf0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 12v7M8 12h8"/><circle cx="12" cy="12" r="9"/></svg>100% online · live &amp; recorded</span>
+          <span class="chip"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7c5cf0" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M8 13H5a2 2 0 0 0-2 2v5h5M16 13h3a2 2 0 0 1 2 2v5h-5M9 3h6v4a3 3 0 0 1-6 0z"/></svg>5 sessions · 3+ speakers</span>
+        </div>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#register">
+            Register now
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#agenda">See the agenda</a>
+        </div>
+        <p class="hero-note">Free to join · a seat is reserved the moment you register.</p>
+      </div>
+
+      <!-- ============ REGISTER ============ -->
+      <div class="reg-card" id="register" aria-labelledby="reg-title">
+        <div id="regFormWrap">
+          <h3 id="reg-title">Reserve your seat</h3>
+          <p class="reg-sub">One name per seat. We'll email the live link and calendar invite when the date is set.</p>
+          <form id="regForm" novalidate>
+            <div class="form-alert" role="alert" hidden></div>
+            <div class="field">
+              <label for="f-name">Full name <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-name" name="name" type="text" autocomplete="name" placeholder="e.g. Ananya Das" aria-describedby="e-name" required />
+              <p class="err-msg" id="e-name">Please enter your full name (at least 2 characters).</p>
+            </div>
+            <div class="field">
+              <label for="f-email">Email <span class="req" aria-hidden="true">*</span></label>
+              <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@studio.com" aria-describedby="e-email" required />
+              <p class="err-msg" id="e-email">Please enter a valid email address.</p>
+            </div>
+            <div class="field">
+              <label for="f-role">I am a…</label>
+              <select id="f-role" name="role" autocomplete="off">
+                <option value="">Pick one (optional)</option>
+                <option>Designer / artist</option>
+                <option>Developer / engineer</option>
+                <option>Founder / product lead</option>
+                <option>Student</option>
+                <option>Just exploring</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Register to attend
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </button>
+            <p class="reg-lock">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              No spam, no sharing. Unsubscribe anytime.
+            </p>
+          </form>
+        </div>
+
+        <div class="reg-success" id="regSuccess" hidden aria-live="polite">
+          <span class="ok-mark" aria-hidden="true">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg>
+          </span>
+          <h3>You're on the list.</h3>
+          <p>Welcome to the room. Your seat number is</p>
+          <div class="reg-id" id="regId">FCAI-0000</div>
+          <p>Send your registration to <span id="regEmail">the</span> address below to get the confirmed invite — then add the date to your calendar.</p>
+          <div class="row">
+            <a class="btn btn-primary" id="mailBtn" href="#" aria-label="Send your registration by email">Send registration email</a>
+            <button class="btn btn-ghost" id="copyBtn" type="button">Copy details</button>
+          </div>
+          <p class="copy-note" id="copyNote" aria-live="polite">Your email is the real ticket — it puts your name on the official attendee list.</p>
+          <div class="detail-text" id="detailText" hidden></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ STATS ============ -->
+  <section class="stats" aria-label="Summit at a glance">
+    <div class="wrap stats-grid">
+      <div><div class="stat-num"><em>500</em>+</div><div class="stat-label">past attendees</div></div>
+      <div><div class="stat-num"><em>12</em></div><div class="stat-label">sessions hosted last season</div></div>
+      <div><div class="stat-num"><em>4</em> hrs</div><div class="stat-label">of live programming</div></div>
+      <div><div class="stat-num"><em>9</em> tracks</div><div class="stat-label">from art to engineering</div></div>
+    </div>
+  </section>
+
+  <!-- ============ SPEAKERS ============ -->
+  <section class="section" id="speakers" aria-labelledby="speakers-title" data-reveal>
+    <div class="wrap center">
+      <p class="kicker">Speakers</p>
+      <h2 class="sec" id="speakers-title">The voices behind the movement</h2>
+      <p class="sec-sub">Practitioners who shape the tools, the craft and the culture. Three names, announced as the family of the summit finalises. <!-- NOTE: replace TBA names, roles and bios with real speakers + portraits in /summit-speakers/ --></p>
+    </div>
+    <div class="wrap speakers-grid">
+      <article class="speaker" data-reveal>
+        <div class="avatar" aria-hidden="true">01</div>
+        <p class="tba-chip">Name to be announced</p>
+        <h3>Creative Direction · AI</h3>
+        <p class="role">Keynote — making with models</p>
+        <p class="bio">From brand worlds to moving image, how a creative director turns model output into work audiences feel.</p>
+      </article>
+      <article class="speaker" data-reveal>
+        <div class="avatar t2" aria-hidden="true">02</div>
+        <p class="tba-chip">Name to be announced</p>
+        <h3>Design Systems · LLM UX</h3>
+        <p class="role">Session — interfaces that think</p>
+        <p class="bio">Designing products around language models: patterns, pitfalls and honest usability in LLM-first interfaces.</p>
+      </article>
+      <article class="speaker" data-reveal>
+        <div class="avatar t3" aria-hidden="true">03</div>
+        <p class="tba-chip">Name to be announced</p>
+        <h3>Founder · GenAI Studio</h3>
+        <p class="role">Fireside — building on the frontier</p>
+        <p class="bio">A studio founder on shipping generative products for real clients, and the business of the creative AI stack.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ AGENDA ============ -->
+  <section class="section" id="agenda" aria-labelledby="agenda-title">
+    <div class="wrap">
+      <div class="agenda" data-reveal>
+        <div class="center">
+          <p class="kicker" style="background:rgba(167,139,250,.14);color:var(--lav-soft);border-color:rgba(167,139,250,.3)">Agenda preview</p>
+          <h2 class="sec" id="agenda-title">One morning, five movements</h2>
+          <p class="sec-sub">A tight arc from why, through how, to what's next. Full session list lands with the speaker announcement.</p>
+        </div>
+        <ol class="agenda-list">
+          <li class="a-item">
+            <span class="a-time">09:30</span><span class="dot" aria-hidden="true"></span>
+            <div class="a-content"><h3>Doors &amp; warm-up</h3><p>A 20-minute networking lounge in breakout rooms — meet the people sitting next to you in the chat.</p></div>
+          </li>
+          <li class="a-item">
+            <span class="a-time">10:00</span><span class="dot" aria-hidden="true"></span>
+            <div class="a-content"><h3>Keynote — Creativity at machine speed</h3><p>The state of creative AI today: what changed, what stayed, and which skills now compound.</p></div>
+          </li>
+          <li class="a-item">
+            <span class="a-time">10:40</span><span class="dot" aria-hidden="true"></span>
+            <div class="a-content"><h3>Session — Interfaces that think</h3><p>Designing for language models, with live product walkthroughs and honest failure stories.</p></div>
+          </li>
+          <li class="a-item">
+            <span class="a-time">11:20</span><span class="dot" aria-hidden="true"></span>
+            <div class="a-content"><h3>Panel — Artists, agents and the brief</h3><p>Three practitioners argue about where human taste ends and machine iteration begins.</p></div>
+          </li>
+          <li class="a-item">
+            <span class="a-time">12:10</span><span class="dot" aria-hidden="true"></span>
+            <div class="a-content"><h3>Fireside &amp; open floor</h3><p>A founder's honest account of shipping generative products, then the Q&amp;A you came for.</p></div>
+          </li>
+        </ol>
+        <p class="agenda-note">Times are IST · talks are 20–25 minutes with room for questions · everything replayed for attendees.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TESTIMONIALS ============ -->
+  <section class="section" id="testimonials" aria-labelledby="testimonials-title" data-reveal>
+    <div class="wrap center">
+      <p class="kicker">Past attendees</p>
+      <h2 class="sec" id="testimonials-title">What last season's room said</h2>
+      <p class="sec-sub">Quotes from the previous edition, shared with permission. <!-- NOTE: replace these samples with your own past attendees --></p>
+    </div>
+    <div class="wrap quote-grid">
+      <blockquote class="quote" data-reveal>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>Best organised online event I've attended in years. The session on LLM-first design changed how my team briefs our tools.</p>
+        <footer>
+          <span class="q-avatar" aria-hidden="true">MK</span>
+          <div><div class="by">Meera K.</div><div class="org">Product Designer · Studio Eleven</div></div>
+        </footer>
+      </blockquote>
+      <blockquote class="quote" data-reveal>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>No fluff, no hype — just practitioners showing real workflows. I walked away with two processes I shipped the same week.</p>
+        <footer>
+          <span class="q-avatar t2" aria-hidden="true">AR</span>
+          <div><div class="by">Aditya R.</div><div class="org">Founder · Frameset Labs</div></div>
+        </footer>
+      </blockquote>
+      <blockquote class="quote" data-reveal>
+        <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+        <p>The breakout rooms were actually useful. I met my future collaborator in the warm-up — we've built a project since.</p>
+        <footer>
+          <span class="q-avatar t3" aria-hidden="true">SN</span>
+          <div><div class="by">Sofia N.</div><div class="org">Generative Artist</div></div>
+        </footer>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="section" id="faq" aria-labelledby="faq-title" data-reveal>
+    <div class="wrap center">
+      <p class="kicker">FAQ</p>
+      <h2 class="sec" id="faq-title">Before you join us</h2>
+    </div>
+    <div class="wrap faq-max">
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a1">
+          How do I join, and is it really online?
+          <span class="chev" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-a" id="faq-a1"><div class="faq-a-inner">Yes — the summit runs entirely online on the live platform. Registered attendees receive a private live link and a calendar invite by email before the event.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a2">
+          Will sessions be recorded and replayed?
+          <span class="chev" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-a" id="faq-a2"><div class="faq-a-inner">Every session is recorded. Replays are unlocked for registered attendees shortly after the event — so even a late morning still gets you the whole day.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a3">
+          How much does it cost?
+          <span class="chev" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-a" id="faq-a3"><div class="faq-a-inner">It is free to attend. Register here, and the live link, replay access and materials all come with your seat.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a4">
+          Who is the summit for?
+          <span class="chev" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-a" id="faq-a4"><div class="faq-a-inner">Designers, artists, writers, developers and founders who want creative AI to be a practical craft, not a headline. If you already enjoy experimenting with models, you'll fit right in.</div></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false" aria-controls="faq-a5">
+          Can I bring a team or ask a question live?
+          <span class="chev" aria-hidden="true"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="m6 9 6 6 6-6"/></svg></span>
+        </button>
+        <div class="faq-a" id="faq-a5"><div class="faq-a-inner">Teams are welcome — just register each person so we can seat them. Every session has a live Q&amp;A, and the panel takes written questions from the chat.</div></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about">
+        <div class="brand-name">Future of Creative AI Summit<span style="color:#9aa6c6">One morning · five sessions · all online</span></div>
+        <p>An independent, community-run online summit on the practice of making with machines — organised by the same room that brought you last season.</p>
+        <div class="social-row">
+          <!-- NOTE: .social-chip turns into a live link via the SOCIALS object in the script -->
+          <span class="social-chip" data-social="instagram">Instagram · TBA</span>
+          <span class="social-chip" data-social="linkedin">LinkedIn · TBA</span>
+          <span class="social-chip" data-social="discord">Discord · TBA</span>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#speakers">Speakers</a></li>
+          <li><a href="#agenda">Agenda</a></li>
+          <li><a href="#testimonials">Testimonials</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#register">Register</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a id="footerMail" href="mailto:hello@futureofcreativeai.in">hello@futureofcreativeai.in</a></li>
+        </ul>
+        <!-- NOTE: swap the address above + the CONTACT_EMAIL in the script for the real one -->
+        <p style="font-size:13.5px;color:#9aa6c6;margin-top:14px">We reply within a business day.</p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Future of Creative AI Summit. All rights reserved.</span>
+      <span>Made for makers, with the machine.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ================= SWAP LIST =================
+     1. CONTACT_EMAIL   — confirmation mailto + footer      [placeholder]
+     2. EVENT DATE/TIME — two "announced soon" chips in hero [placeholder]
+     3. SPEAKERS        — TBA names/roles/bios + portraits   in /summit-speakers/
+     4. TESTIMONIALS    — sample quotes -> real attendees
+     5. SOCIALS         — TBA chips go live when URLs exist
+  =============================================== */
+  var CONTACT_EMAIL = "hello@futureofcreativeai.in";
+  var SOCIALS = { instagram: "", linkedin: "", discord: "" };
+  var LS_KEY = "fcai26_registrations";
+  var reduced = false;
+  try { reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches; } catch (e) {}
+
+  function $(s, c) { return (c || document).querySelector(s); }
+
+  /* ---------- social chips -> live links ---------- */
+  document.querySelectorAll(".social-chip").forEach(function (chip) {
+    var url = SOCIALS[chip.dataset.social];
+    if (!url) return;
+    var a = document.createElement("a");
+    a.href = url; a.target = "_blank"; a.rel = "noopener noreferrer";
+    a.className = "social-chip is-live";
+    a.textContent = chip.textContent.replace(" · TBA", "");
+    chip.replaceWith(a);
+  });
+
+  /* ---------- mobile menu ---------- */
+  var menuBtn = $("#menuBtn"), mobileNav = $("#mobileNav");
+  if (menuBtn && mobileNav) {
+    menuBtn.addEventListener("click", function () {
+      var open = mobileNav.classList.toggle("open");
+      menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    mobileNav.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        mobileNav.classList.remove("open");
+        menuBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  /* ---------- FAQ ---------- */
+  document.querySelectorAll(".faq-q").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var item = btn.closest(".faq-item");
+      var panel = document.getElementById(btn.getAttribute("aria-controls"));
+      var isOpen = item.classList.toggle("is-open");
+      btn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+      if (panel) panel.style.maxHeight = isOpen ? panel.scrollHeight + "px" : "0";
+    });
+  });
+
+  /* ---------- reveal on scroll ---------- */
+  try {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll("[data-reveal]").forEach(function (el) { io.observe(el); });
+  } catch (e) {
+    document.querySelectorAll("[data-reveal]").forEach(function (el) { el.classList.add("in"); });
+  }
+
+  /* ---------- registration ---------- */
+  var form = $("#regForm"), success = $("#regSuccess"), regEmail = $("#regEmail");
+  var regs = [];
+  try { regs = JSON.parse(localStorage.getItem(LS_KEY) || "[]"); } catch (e) {}
+  var regIdEl = $("#regId"), mailBtn = $("#mailBtn"), detailText = $("#detailText");
+
+  function setErr(el, bad) {
+    var field = el.closest(".field");
+    if (field) field.classList.toggle("is-error", bad);
+    return !bad;
+  }
+  function showAlert(msg) { var a = $(".form-alert", form); a.textContent = msg; a.hidden = false; }
+  function okField(sel, v) { return setErr($(sel), !v); }
+
+  ["#f-name", "#f-email"].forEach(function (sel) {
+    var el = $(sel);
+    if (el) el.addEventListener("input", function () {
+      setErr(el, false);
+      var a = $(".form-alert", form); a.hidden = true;
+    });
+  });
+
+  form.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    $(".form-alert", form).hidden = true;
+
+    var name = $("#f-name").value.trim();
+    var email = $("#f-email").value.trim().toLowerCase();
+    var role = $("#f-role").value;
+
+    var ok = true;
+    ok = okField("#f-name", name.length >= 2) && ok;
+    ok = okField("#f-email", /^\S+@\S+\.\S+$/.test(email)) && ok;
+    if (!ok) { showAlert("A couple of fields need attention — the messages beneath them say what."); return; }
+
+    if (regs.some(function (r) { return r.email === email; })) {
+      showAlert("This email is already registered. If that was you, we've already saved your seat.");
+      return;
+    }
+
+    var id = "FCAI-" + Math.random().toString(36).slice(2, 6).toUpperCase();
+    regs.push({ id: id, name: name, email: email, role: role, at: new Date().toISOString() });
+    try { localStorage.setItem(LS_KEY, JSON.stringify(regs)); } catch (e) {}
+
+    var lines = [
+      "FUTURE OF CREATIVE AI SUMMIT 2026 — REGISTRATION",
+      "= ".repeat(18),
+      "Seat number: " + id,
+      "",
+      "Name: " + name,
+      "Email: " + email
+    ];
+    if (role) { lines.push("I am a: " + role); }
+    lines.push("", "Keep this email — your live link and calendar invite land here before the event.", "Questions? Reply to this address.");
+
+    mailBtn.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent("Seat " + id + " — Future of Creative AI Summit 2026") +
+      "&body=" + encodeURIComponent(lines.join("\n"));
+    mailBtn.setAttribute("aria-label", "Send registration email to " + CONTACT_EMAIL);
+    regIdEl.textContent = id;
+    regEmail.textContent = CONTACT_EMAIL;
+    detailText.textContent = lines.join("\n");
+
+    form.hidden = true;
+    success.hidden = false;
+  });
+
+  function copyText(txt, done) {
+    function fallback() {
+      var ta = document.createElement("textarea");
+      ta.value = txt; ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.left = "-9999px";
+      document.body.appendChild(ta); ta.select();
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta); done(ok);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(txt).then(function () { done(true); }, fallback);
+    } else { fallback(); }
+  }
+
+  var copyBtn = $("#copyBtn"), copyNote = $("#copyNote");
+  copyBtn.addEventListener("click", function () {
+    var txt = detailText.textContent;
+    if (!txt) return;
+    detailText.hidden = false;
+    copyText(txt, function (ok) {
+      copyNote.textContent = ok
+        ? "Copied. Send your details to " + CONTACT_EMAIL + " to confirm the seat."
+        : "Select the details below and copy them to your email.";
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -20,6 +20,7 @@ const fail = (msg) => { failures += 1; console.log("  FAIL  " + msg); };
 const ok = (msg) => console.log("  ok    " + msg);
 
 const html = fs.readFileSync(rel("index.html"), "utf8");
+const admin = fs.readFileSync(rel("admin.html"), "utf8");
 
 /* ---------------------------------------------------- assets referenced --- */
 console.log("\nAssets");
@@ -54,6 +55,15 @@ for (const s of scripts) {
     fail(`script #${n}: ${e.message}`);
   }
 }
+for (const [name, src] of [["admin.html", admin]]) {
+  const ascripts = [...src.matchAll(/<script(?![^>]*\bsrc=)[^>]*>([\s\S]*?)<\/script>/gi)]
+    .map((m) => m[1]).filter((s) => s.trim());
+  ascripts.forEach((s, i) => {
+    try { new vm.Script(s, { filename: `${name}#script-${i + 1}` }); ok(`${name} script #${i + 1}`); }
+    catch (e) { fail(`${name} script #${i + 1}: ${e.message}`); }
+  });
+}
+
 /* ------------------------------------------------------------ tag balance -- */
 console.log("\nMarkup");
 for (const tag of ["form", "div", "section", "aside", "table", "tbody", "tr"]) {
@@ -105,14 +115,13 @@ if (!branded) ok("no retired event branding anywhere in the repo");
 
 /* ----------------------------------------------------------------- env ---- */
 console.log("\nSecrets");
-if (fs.existsSync(rel(".env")) || fs.existsSync(rel(".env.local")))
-  fail("local environment files must not be committed or needed by the static site");
+const envLocal = fs.existsSync(rel(".env.local"));
+envLocal ? ok(".env.local present and gitignored") : fail(".env.local missing");
+if (fs.existsSync(rel(".env"))) fail(".env exists in the repo - it must stay gitignored");
 const pkg = JSON.parse(fs.readFileSync(rel("package.json"), "utf8"));
-const forbiddenDeps = ["mongodb", "exceljs", "nodemailer", "mysql", "mysql2", "pg", "@supabase/supabase-js"];
-const installedForbidden = forbiddenDeps.filter((d) => (pkg.dependencies || {})[d] || (pkg.devDependencies || {})[d]);
-installedForbidden.length
-  ? fail(`database/email dependencies remain: ${installedForbidden.join(", ")}`)
-  : ok("no database or server-side email dependencies are declared");
+["mongodb", "exceljs", "nodemailer"].every((d) => (pkg.dependencies || {})[d])
+  ? ok("mongodb + exceljs + nodemailer are declared dependencies")
+  : fail("a runtime dependency is missing from package.json");
 if (!fs.existsSync(rel(".gitignore")) || !/^\.env$/m.test(fs.readFileSync(rel(".gitignore"), "utf8")))
   fail(".gitignore does not ignore .env");
 

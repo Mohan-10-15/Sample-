@@ -1,39 +1,192 @@
 # Reverse Hackathon 2026 — Mission Deck
 
-Static public website for the Reverse Hackathon 2026, run by **The Whitehatians**, Department of Cyber Security, SRM Valliammai Engineering College.
+Registration site for the Reverse Hackathon 2026, run by **The Whitehatians**, Department of
+Cyber Security, SRM Valliammai Engineering College. A three-hour defensive sprint: teams receive an
+already-built, deliberately vulnerable system and must find, patch and defend the fixes.
 
-**Live site:** <https://reverse-hack.vercel.app/>
+**Live site:** <https://reverse-hackthon2k26.vercel.app/>
 
-## Current scope
+## What is in this repo
 
-This repository currently contains the public static mission deck only. Registration persistence, team login, admin dashboards, email delivery, and participant data storage are intentionally **disabled** until a secure backend is selected. The registration form validates the fields locally and clearly reports that online registration is unavailable; it never pretends to save a record.
-
-No database credentials, API keys, serverless API handlers, or database dependencies are included in this repository.
-
-## Files
-
-| Path | Purpose |
+| Path | What it is |
 | --- | --- |
-| `index.html` | Complete static website with inline CSS and JavaScript. |
-| `assets/` | Local artwork and event assets. |
-| `scripts/check-site.mjs` | Static content and secret-safety checks. |
-| `vercel.json` | Static Vercel deployment configuration. |
+| `index.html` | The whole public site — markup, CSS and JS in one file. This is what visitors get. |
+| `admin.html` | Organiser dashboard. Asks for `ADMIN_KEY`, shows registration totals and Excel download. |
+| `hero-bg.jpg`, `superman-hero.jpg`, `about-bg.jpg`, `standards-bg.jpg`, `dc-contact-art.jpg`, `dc-contact-clear.jpg` / `.webp` / `.avif`, `srm-valliammai-logo.jpg`, `assets/superman-hero.png` / `.webp` / `.avif` | Section backgrounds and art. Modern browsers use the smaller AVIF/WebP variants; original files remain as fallbacks. |
+| `assets/villains/` | The 15 gallery cards, downloaded from the old CDN so the site no longer depends on a third-party host. |
+| `og-deck.png` | Open Graph preview image. |
+| `api/` | Vercel serverless functions (Node). Registration storage + organiser API. |
+| `scripts/check-site.mjs` | Pre-deploy check. Run it before every deploy. |
+| `dev-host.cjs` | Local-only helper that serves the static site and runs `api/` without Vercel. |
+| `src/`, `next.config.mjs`, `tailwind.config.ts` | An older Next.js draft with a different theme. **Not deployed** — see "Legacy files" below. |
 
-## Local preview
+The public site is a static HTML file plus serverless functions. There is no build step for the
+front end, and no framework.
 
-Any static web server can preview the site:
+## Event facts
+
+- **Date:** Tuesday, 13 October 2026, 09:00 IST (gates 08:00, ledger closes 07:00)
+- **Format:** Solo or Duo; a Duo is one team lead plus exactly one partner (no larger teams)
+- **Eligibility:** DEP-CYS students, years I–III
+- **Entry fee:** None. Registration is free; no payment or receipt is required.
+
+The date lives in six places inside `index.html` — meta description, the `content:` string in
+`.landing-art-frame::after`, the hero date line, the "ENTRY STATUS" badge, the contact block, and
+`EVENT_TIME` for the countdown. Change all six together.
+
+## Tech
+
+- Static HTML/CSS/vanilla JS, jQuery only for the small chat widget
+- Vercel serverless functions (Node 18+, CommonJS)
+- MongoDB Atlas (free M0 tier) via the official `mongodb` driver
+- ExcelJS for the `.xlsx` export
+- No bundler, no transpiler, no framework runtime
+
+## Environment variables
+
+Set these in **Vercel → Settings → Environment Variables** (and in `.env.local` for local work).
+See `.env.example`. Never commit real values.
+
+| Variable | Purpose |
+| --- | --- |
+| `SMTP_HOST`, `SMTP_PORT` | Gmail SMTP (`smtp.gmail.com`, `465`) |
+| `SMTP_USER`, `SMTP_PASS` | Mailbox + **App Password** (see below) |
+| `MAIL_FROM` | Optional display sender. Defaults to `SMTP_USER` |
+| `MAIL_NOTIFY_TO` | Optional. Comma-separated. CC/BCC yourself on every confirmation |
+| `MONGODB_URI` | Atlas connection string, e.g. `mongodb+srv://user:pass@cluster.mongodb.net` |
+| `MONGODB_DB` | Database name (default `reversehack2026`) |
+| `ADMIN_KEY` | Long random string that unlocks `/admin.html` and every `/api/admin/*` route |
+
+Generate a key with:
 
 ```bash
-python3 -m http.server 8080
+node -e "console.log(require('crypto').randomBytes(24).toString('hex'))"
 ```
 
-## Validation
+> **Gmail needs an App Password, not your account password.** If 2-Step Verification is on (and it
+> should be), the real password is rejected by `smtp.gmail.com`. Go to
+> <https://myaccount.google.com/apppasswords>, generate a 16-character App Password, and paste that
+> into `SMTP_PASS`. Port 465 with `secure: true` is already handled.
+
+Confirmation mail is sent **after** the registration is committed to MongoDB and the response is
+built, so an SMTP outage can never lose an entry. If mail fails the registration still succeeds and
+the response reports `"emailSent": false`.
+
+### Creating the free MongoDB cluster
+
+1. Sign up at <https://www.mongodb.com/atlas/register> and choose the free **M0** tier.
+2. **Create a deployment** — region closest to the college (Chennai), free tier.
+3. **Database Access** → *Add New Database User* → set a username and password → role
+   **Read and write to any database**.
+4. **Network Access** → *Add IP Address*. Vercel Functions use dynamic outbound addresses by
+   default, so a single workstation IP will not reliably allow a production connection. For a
+   production database, use a stable egress option such as [Vercel Static IPs](https://vercel.com/docs/networking/static-ips)
+   where the team's plan supports it. Avoid `0.0.0.0/0` unless you deliberately accept the
+   expanded exposure; it allows connection attempts from every public IP.
+5. **Deploy** → green **Connect** button → **Drivers** → copy the connection string.
+
+No manual collection setup is needed: `api/_lib.js` creates the indexes on first write, including
+a unique index on the lowercased team name / Solo alias and another on participant emails.
+
+> M0 free tier is **5 GB shared across the whole cluster** and caps a document at 16 MB. Keep
+> registration records concise; do not store large media files in the database.
+
+## Registration (free)
+
+Registration is free; no UPI payment, transaction ID, receipt, or proof is required. `api/_lib.js`
+is the server-side validation source of truth, and the page mirrors field errors onto the matching input.
+
+The form collects the entry format (Solo or Duo), a unique team name or Solo alias, and the primary
+participant's name, email, phone, year, department, gender and register number. Duo entries also
+require the partner's name, year and register number. Every entry includes one of 15 domains, how
+the participant heard about the event, and agreement to the rules.
+
+### API
+
+| Route | Method | Auth | Purpose |
+| --- | --- | --- | --- |
+| `/api/register` | POST | none | Store one free registration. `201`, or `400` with `fieldErrors`, `409` on duplicate team/email, `403` after the deadline, `503` if Mongo is unreachable. |
+| `/api/admin/registrations` | GET | `x-admin-key` | Registration details and Solo/Duo/participant totals; legacy payment fields are excluded. |
+| `/api/admin/export` | GET | `x-admin-key` | Streams a styled `.xlsx`. |
+
+The admin key is compared with `crypto.timingSafeEqual`, so it cannot be probed byte by byte.
+
+## Team workspace and scoring
+
+- `/user.html` is the team login and workspace. The team name is the username; registration creates a password hash and never stores the plain password.
+- Teams can update their problem statement and solution after logging in. The mission desk mark is visible to the team but cannot be edited there.
+- `/admin.html` is the organiser control room. It lists team members, domain, problem statement, solution and provides a 0–100 mark input per team.
+- Add a long random `SESSION_SECRET` environment variable in Vercel for signing team login cookies. If it is omitted, the server falls back to `ADMIN_KEY`; set both explicitly in production.
+
+## Organiser dashboard
+
+Open `/admin.html`, paste the `ADMIN_KEY`, and the dashboard shows registrations, participants,
+and Solo/Duo totals. You can filter the table and download a workbook with three sheets:
+
+- **Participants** — one row per human. This is what the check-in desk wants.
+- **Registrations** — one row per entry.
+- **Summary** — event and registration totals; no fee reconciliation is included.
+
+The key is held in `sessionStorage`, so it disappears when the tab closes.
+
+For direct database inspection, sign in to MongoDB Atlas and open **Data Explorer** → the database
+selected by `MONGODB_DB` (defaults to `reversehack2026` if unset) → the `registrations` collection.
+The website admin key and Atlas database credentials are separate; keep `MONGODB_URI` private.
+
+## Local development
+
+There is nothing to build. To browse the site:
+
+```bash
+python -m http.server 8080     # or any static server
+```
+
+The API needs Node, so use the bundled helper or `vercel dev`:
 
 ```bash
 npm install
-npm run check
+# terminal 1 - static site + api/ on http://localhost:3100
+set MONGODB_URI=...&& set ADMIN_KEY=...&& node dev-host.cjs
+# or, with the Vercel CLI (closest to production):
+npx vercel dev
 ```
 
-## Future backend
+`vercel dev` is the better option because it runs the functions exactly as Vercel will.
 
-When registration is needed, add a server-side backend deliberately. Keep all credentials in the hosting provider's private environment variables; never put them in `index.html`, client-side JavaScript, or GitHub. The future implementation must provide persistent storage, secure password hashing, duplicate prevention, authenticated sessions, and an organiser-only dashboard.
+## Deploy
+
+`vercel.json` pins `framework: null` so Vercel serves `index.html` as a static file and does **not**
+try to build the leftover Next.js app. Keep the project's Framework Preset on **Other**.
+
+1. Push the repo.
+2. Vercel → **New Project** → import → preset **Other**.
+3. Add `MONGODB_URI`, `MONGODB_DB` and `ADMIN_KEY` under **Environment Variables**.
+4. Deploy. `/`, `/admin.html` and `/api/*` all work immediately.
+
+## Before you go live
+
+1. **Confirm the free-entry policy** remains accurate in the registration form, confirmation email,
+   and event announcement; do not add UPI, transaction IDs, payment screenshots, or proof uploads.
+2. **Confirm the date** in all six places listed above.
+3. **Set `ADMIN_KEY`** to a real secret. Do not reuse the local value.
+4. **Contact email.** `CONTACT_EMAIL` in `index.html` is still
+   `registration@whitehatians.in`. The confirmation mailto button uses it. Change it to the
+   organiser mailbox (`SMTP_USER`) so replies land in the same inbox.
+5. Proofread the domain list and schedule against your announcement.
+
+## Deploy checklist
+
+```bash
+npm install
+npm run check        # assets, inline JS, tags, ids, dates, branding, secrets
+```
+
+`npm run check` exits non-zero on any problem and is the fastest way to catch a missing image or a
+leftover reference before you push.
+
+## Legacy files
+
+`src/`, `next.config.mjs`, `tailwind.config.ts`, `postcss.config.mjs`, `tsconfig.json` and
+`future-of-creative-ai-summit.html` are from an earlier Next.js draft with a different theme. The
+deployed site does not use them and `vercel.json` prevents Vercel from building them. Delete them
+once you are comfortable — but note `npm run dev` currently starts that old app, not this site.

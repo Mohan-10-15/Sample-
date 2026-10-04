@@ -869,7 +869,7 @@ Error generating stack: `+l.message+`
     <a href="#contact">Contact</a>
   </nav>
   <button class="menu-toggle" id="menuBtn" type="button" aria-expanded="false" aria-controls="navDrop" aria-label="Toggle menu">☰</button>
-
+  <a class="nav-login" href="user.html">Team Login</a>
   <a class="nav-cta" href="#register" data-manus_clickable="true" data-manus_click_id="8">Register · RH ▶</a>
 </header>
 
@@ -879,7 +879,7 @@ Error generating stack: `+l.message+`
   <a href="#rules">Rules</a>
   <a href="#contact">Contact</a>
   <a href="#register">Lock your seat</a>
-
+  <a href="user.html">Team Login</a>
 </div>
 
 <main id="main">
@@ -1207,7 +1207,7 @@ Error generating stack: `+l.message+`
         <h2>Welcome to <em>the operation.</em></h2>
         <p>Your registration is stored in the mission registry. Entry is free; no payment or receipt is required. Keep this ID safe for check-in.</p>
         <div class="registration-id"><span>REGISTRATION ID</span><strong id="regId">RH26-XXXX</strong></div>
-        <div class="account-credentials"><span>TEAM WORKSPACE LOGIN</span><strong id="accountUsername">TEAM NAME</strong><small>Password: <b id="accountPassword">Shown once after registration</b></small><span class="button ghost">Team workspace will be added with the registration backend</span></div>
+        <div class="account-credentials"><span>TEAM WORKSPACE LOGIN</span><strong id="accountUsername">TEAM NAME</strong><small>Password: <b id="accountPassword">Shown once after registration</b></small><a class="button ghost" href="user.html">Open team workspace →</a></div>
         <div class="register-actions">
           <a class="button primary" id="mailBtn" href="#" aria-label="Send registration email">✉ Send a copy by email</a>
           <button class="button ghost" id="copyBtn" type="button">Copy details</button>
@@ -1772,9 +1772,58 @@ Error generating stack: `+l.message+`
     if (!$("#f-agree").checked) { $("#e-agree").style.display = "block"; ok = false; }
     if (!ok) { showAlert("A few fields need attention — the message beneath each one tells you what."); return; }
 
-    // Persistence is intentionally disabled until a secure backend is selected.
-    // Never show a success state or store participant credentials in the browser.
-    showAlert("Online registration is temporarily unavailable. Please contact the organisers to register.");
+    var payload = {
+      entryFormat: mode === "team" ? "duo" : "solo",
+      teamName: team.team,
+      password: data.password,
+      leader: {
+        fullName: data.name,
+        email: data.email,
+        phone: data.phone,
+        year: data.year,
+        department: data.department,
+        gender: data.gender,
+        rollNumber: data.roll
+      },
+      partner: mode === "team"
+        ? { fullName: team.pname, year: team.pyear, rollNumber: team.proll }
+        : null,
+      domain: data.domain,
+      heardAbout: data.heard,
+      agree: data.agree
+    };
+
+    var button = form.querySelector('button[type="submit"]');
+    var originalLabel = button ? button.textContent : "";
+    submitting = true;
+    if (button) { button.setAttribute("aria-busy", "true"); button.textContent = "Sealing your entry..."; }
+
+    fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    }).then(function (res) {
+      return res.json().catch(function () { return {}; })
+        .then(function (body) { return { status: res.status, body: body }; });
+    }).then(function (result) {
+      submitting = false;
+      if (button) { button.removeAttribute("aria-busy"); button.textContent = originalLabel; }
+
+      if (result.status === 201) {
+        finishRegistration(result.body.registrationId, data, team);
+        return;
+      }
+      if (result.status === 400 || result.status === 409) {
+        renderFieldErrors(result.body.fieldErrors);
+        showAlert(result.body.error || "Some details need attention before we can seal the entry.");
+        return;
+      }
+      showAlert(result.body.error || "The registry did not respond. Please try again in a moment.");
+    }).catch(function () {
+      submitting = false;
+      if (button) { button.removeAttribute("aria-busy"); button.textContent = originalLabel; }
+      showAlert("Could not reach the registry. Check your connection and try again.");
+    });
   });
 
   function finishRegistration(id, data, team) {

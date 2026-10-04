@@ -2,10 +2,24 @@
   "name": "reverse-hackathon-2026",
   "version": "1.0.0",
   "private": true,
-  "description": "Reverse Hackathon 2026 static mission deck website.",
+  "description": "Reverse Hackathon 2026 — static Mission Deck site with MongoDB registration, payment proof and organiser dashboard.",
   "scripts": {
-    "check": "node scripts/check-site.mjs"
+    "dev": "node dev-host.cjs",
+    "dev:vercel": "vercel dev",
+    "check": "node scripts/check-site.mjs",
+    "legacy:dev": "next dev",
+    "legacy:build": "next build",
+    "legacy:start": "next start",
+    "legacy:lint": "next lint",
+    "legacy:generate:og": "node scripts/generate-og.mjs"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "dependencies": {
+    "exceljs": "^4.4.0",
+    "mongodb": "^6.21.0",
+    "nodemailer": "^10.0.10"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/nodemailer": "^8.0.2"
+  }
 }
