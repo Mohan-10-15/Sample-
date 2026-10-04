@@ -343,6 +343,9 @@
   .dossier-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 34px; }
   .dossier-actions .mission-register { margin-top: 0; }
   .view-other-events { margin-top: 0; }
+  .dossier-open-innovation { margin-top: 24px; padding: 16px 18px; border: 1px solid rgba(240,183,74,.38); border-left: 3px solid var(--gold); background: rgba(240,183,74,.07); color: #c8d8df; }
+  .dossier-open-innovation strong { display: block; color: var(--gold); font: 10px var(--display); letter-spacing: .12em; }
+  .dossier-open-innovation p { margin-top: 8px; color: #b8c8d0; font: 14px/1.5 var(--serif); }
   .full-dossier-note { color: #9eb0bf; font-family: var(--display); font-size: 10px; letter-spacing: .1em; margin-top: 18px; }
   .mission-detail-hero p.full-dossier-note { color: #9eb0bf; font-family: var(--display); font-size: 10px; line-height: 1.4; letter-spacing: .1em; margin: 18px 0 0; }
   @media (max-width: 700px) {
@@ -1011,10 +1014,10 @@ Error generating stack: `+l.message+`
           <h2 id="rules-title">Rules and <em>Regulations</em></h2>
           <p class="operations-lead">A serious security event needs a clear operating model. Every participant enters the same controlled environment, works to the same evidence standard, and leaves a defensible record of what changed.</p>
           <p class="operations-copy">The mission is designed like a professional incident-response room: establish identity, respect the boundary, document the signal, and communicate the fix. These rules are the baseline for every pod, from first check-in to final handover.</p>
-          <div class="operations-meta"><span>MISSION CONTROL</span><strong>10 field rules</strong><span>SCROLL THE RAIL</span></div>
+          <div class="operations-meta"><span>MISSION CONTROL</span><strong>13 field rules</strong><span>SCROLL THE RAIL</span></div>
         </div>
         <aside class="operations-rail" aria-label="Rules and Regulations">
-          <div class="operations-rail-head"><span>RULES &amp; REGULATIONS</span><small>01—10 / CONTROLLED</small></div>
+          <div class="operations-rail-head"><span>RULES &amp; REGULATIONS</span><small>01—13 / CONTROLLED</small></div>
           <div class="rules-board">
             <article class="operation-rule"><span>01 / ACCESS</span><strong>Bring your college ID to check-in.</strong><small>Identity verified before entry.</small></article>
             <article class="operation-rule"><span>02 / POD</span><strong>Register solo or as a team of two.</strong><small>One registration record per entry.</small></article>
@@ -1022,10 +1025,13 @@ Error generating stack: `+l.message+`
             <article class="operation-rule"><span>04 / CONDUCT</span><strong>Respect the scope, the system, and every participant.</strong><small>Professional conduct is non-negotiable.</small></article>
             <article class="operation-rule"><span>05 / BOUNDARY</span><strong>Do not probe external systems or other teams.</strong><small>Stay within the approved mission boundary.</small></article>
             <article class="operation-rule"><span>06 / EVIDENCE</span><strong>Document your evidence before you patch.</strong><small>Findings must be reproducible and reviewable.</small></article>
-            <article class="operation-rule late-rule"><span>07 / HANDOVER</span><strong>Explain the risk and the fix with clarity.</strong><small>Technical decisions must be defensible.</small></article>
-            <article class="operation-rule late-rule"><span>08 / PRIVACY</span><strong>Keep credentials, data, and challenge material private.</strong><small>Protect the integrity of the operation.</small></article>
-            <article class="operation-rule late-rule"><span>09 / CUTOFF</span><strong>Submit your final handover before the clock closes.</strong><small>Late submissions enter the waiting ledger.</small></article>
-            <article class="operation-rule late-rule"><span>10 / STANDARD</span><strong>Think like an attacker. Finish like a defender.</strong><small>The operating principle of Reverse Hackathon.</small></article>
+            <article class="operation-rule late-rule"><span>07 / OPEN INNOVATION</span><strong>Choose a problem statement related to your registered domain.</strong><small>Your proposed challenge must stay within the domain selected during registration.</small></article>
+            <article class="operation-rule late-rule"><span>08 / PRESENTATION</span><strong>Prepare your proposed solution before the event and present both within 5 minutes.</strong><small>Explain the problem statement and your proposed solution clearly within the time limit.</small></article>
+            <article class="operation-rule late-rule"><span>09 / PROTOTYPE</span><strong>A prototype is optional.</strong><small>Clear reasoning, a relevant problem, and a practical solution are required.</small></article>
+            <article class="operation-rule late-rule"><span>10 / HANDOVER</span><strong>Explain the risk and the fix with clarity.</strong><small>Technical decisions must be defensible.</small></article>
+            <article class="operation-rule late-rule"><span>11 / PRIVACY</span><strong>Keep credentials, data, and challenge material private.</strong><small>Protect the integrity of the operation.</small></article>
+            <article class="operation-rule late-rule"><span>12 / CUTOFF</span><strong>Submit your final handover before the clock closes.</strong><small>Late submissions enter the waiting ledger.</small></article>
+            <article class="operation-rule late-rule"><span>13 / STANDARD</span><strong>Think like an attacker. Finish like a defender.</strong><small>The operating principle of Reverse Hackathon.</small></article>
           </div>
         </aside>
       </div>
@@ -1251,13 +1257,17 @@ Error generating stack: `+l.message+`
         <h2 id="modalTitle"></h2>
         <p id="modalDesc1"></p>
         <p id="modalDesc2"></p>
+        <div class="dossier-open-innovation" aria-label="Open innovation presentation requirement">
+          <strong>OPEN INNOVATION // 5-MINUTE PRESENTATION</strong>
+          <p>Choose any problem statement related to your registered domain and prepare your proposed solution before the event. Present the problem statement and proposed solution within 5 minutes. A prototype is optional.</p>
+        </div>
         <div class="dossier-meta" aria-label="Event details">
           <div><span>DATE</span><strong>October 13, 2026</strong></div>
           <div><span>TIME</span><strong>09:00 AM IST</strong></div>
           <div><span>LOCATION</span><strong>DEP-CYS Campus</strong></div>
           <div><span>ENTRY FORMAT</span><strong>Solo or duo</strong></div>
           <div><span>PARTICIPANT CAP</span><strong>30 participants</strong></div>
-          <div><span>DURATION</span><strong>3 hours</strong></div>
+          <div><span>DURATION</span><strong>5 minutes</strong></div>
           <div><span>ENTRY FEE</span><strong>Free — no payment required</strong></div>
         </div>
         <p class="full-dossier-note">SECURE YOUR SLOT · CHOOSE YOUR DOMAIN · ENTER THE OPERATION</p>
@@ -1471,7 +1481,7 @@ Error generating stack: `+l.message+`
     modalTitle.style.removeProperty("color");
     modalTitle.removeAttribute("data-color");
     modalDesc1.textContent = d.desc;
-    modalDesc2.textContent = "During this event, your team will work through a focused " + d.title.toLowerCase() + " challenge, make decisions under the clock, and present the reasoning behind your result to the council.";
+    modalDesc2.textContent = "This is an open-innovation activity related to " + d.title + ". Choose any problem statement in this domain, prepare your proposed solution before the event, and present both within 5 minutes. A prototype is optional.";
     modalRegister.textContent = "Register for " + d.title + " ▶";
     modalRegister.dataset.domain = d.num;
     modal.style.setProperty("--dossier-art", "url('" + ART_IMG[d.num] + "')");
